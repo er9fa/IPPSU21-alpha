@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <%- include('../partials/header.ejs') %>
+
+</head>
+
+
+<body>
+
+  <%- include('../partials/nav.ejs') %>
+
+  <div style="text-align: center;">
+    <h2>hi ipp hi serhii hi paul hi karthik hi altin</h2>
+    <div id="variable_here"></div>
+    <div id="cat_fact"></div>
+    <div id="iss_long"></div>
+    <div id="APPL_currency"></div>
+  </div>
+
+  <script>
+    var i = 0;
+    setInterval(() => {
+      console.log(i);
+      document.getElementById("variable_here").innerHTML = i;
+      i++;
+    }, 1000);
+
+    fetch("https://meowfacts.herokuapp.com/").then(r => r.json()).then(data => {
+      document.getElementById("cat_fact").innerHTML = data.data[0];
+    })
+
+    fetch("http://api.open-notify.org/iss-now.json").then(r => r.json()).then(data => {
+      document.getElementById("iss_long").innerHTML = data.iss_position.longitude;
+    })
+
+    fetch("https://finnhub.io/api/v1/stock/profile2?symbol=AAPL").then(r => r.json()).then(data => {
+      document.getElementById("APPL_currency").innerHTML = data.currency;
+    })
+
+  </script>
+
+</body>
+</html>
