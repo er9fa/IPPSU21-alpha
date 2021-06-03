@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <%- include('../partials/header.ejs') %>
+  <link rel="stylesheet" type="text/css" href="stylesheets/serhiiscss.css">
+
+</head>
+
+
+<body>
+
+  <%- include('../partials/nav.ejs') %>
+
+  <div class="title">
+    <h1>Serhii Maltsev</h1>
+  </div>
+
+  <div class="text">
+    <p>
+      My name is Serhii Maltsev. I am from Ukraine, but right now, I am living in Brooklyn, NY. I am a third-year student at the University of Virginia.
+      <br>I study computer science. My hobbies are playing soccer and computer games. My favorite computer game is Dark Souls 2.
+      <br>I started coding when I was in the seventh grade. My favorite part about coding was solving complicated mathematical problems with the help of programming.
+      <br>At the same time, I was interested in modeling physical processes. However, later my interest shifted to the development of the software.
+      <br>My favorite part about software development is the fact that I can make someone's life easier. In the future, I am planning to work as a software developer.
+      <br>Additionally, I would like to do academic research related to 3D graphics and virtual reality.
+    </p>
+  </div>
+
+  <div class="counter">
+    <div id="variable_here"></div>
+  </div>
+
+  <div class="image">
+    <img src="https://media.giphy.com/media/TH13hqypkyybBrdm6o/giphy.gif">
+  </div>
+
+  <script>
+    var i = 0;
+    setInterval(() => {
+      console.log(i);
+      document.getElementById("variable_here").innerHTML = i;
+      i = i + 2;
+    }, 500);
+  </script>
+
+</body>
+</html>

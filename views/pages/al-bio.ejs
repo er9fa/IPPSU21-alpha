@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Al's Bio</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+</head>
+
+<body class="bg-dark text-white">
+    <div class="text-center mx-5 mt-4">
+        <h1>Altin's Bio</h1>
+        <br>
+        <p class="border">My name is Altin Terstena, and I’m a fourth-year CS major at UVA. Outside of coding, my main
+            hobbies include listening to music, watching tv, and gaming (especially Battlefield). I look forward to
+            working on this internship over the summer.</p>
+            <br>
+            <h5>On this day:</h5>
+            <div id="fun-facts-of-the-day"></div>
+            </br>
+            <div id="timer"></div>
+    </div>
+
+    <script>
+        var i = 0;
+        setInterval(() => {
+            console.log(i);
+            document.getElementById("timer").innerHTML = i;
+            document.getElementById("timer").innerHTML.fontsize = '${i}';
+            if (i % 6 === 0) {
+                fetch("http://history.muffinlabs.com/date").then(r => r.json()).then(data => {
+                    document.getElementById("fun-facts-of-the-day").innerHTML = data.data.Events[Math.floor(i/2)].text;
+                    console.log(data)
+                })
+            }
+            i++;
+        }, 1000);
+
+        var d = new Date();
+        var month = d.getMonth();
+        var day = d.getDay();
+
+    </script>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+body{
+   background-image: url("https://i.ibb.co/ZNPKSxy/sam-wermut-3-CNe-P7-EH-g-unsplash.jpg");
+   background-repeat: no-repeat;
+   background-size: 100%;
+}
+
+.title{
+  color:#0000ff;
+  font-family: Impact, sans-serif;
+  font-size: 30px;
+  text-align: center;
+  width: 40%;
+  margin: auto;
+}
+
+.counter{
+  color:#0000ff;
+  font-family: Impact, sans-serif;
+  font-size: 30px;
+  text-align: center;
+  width: 40%;
+  margin: auto;
+}
+
+.text{
+  color:black;
+  font-family: Impact, sans-serif;
+  text-align: center;
+  font-size: 16px;
+  line-height: 1.4em;
+  border: 5px black solid;
+  width: 70%;
+  margin: auto;
+}
+
+.image{
+  border: 5px black solid;
+  width: 24.2%;
+  text-align: center;
+  margin: auto;
+}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <%- include('../partials/header.ejs') %>
+
+</head>
+
+<link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet'>
+
+<style>
+
+body {
+ background-image: url('https://i.pinimg.com/originals/9c/76/9f/9c769f48cf3d318105c1151087a400f5.jpg');
+ background-repeat: no-repeat;
+ background-attachment: fixed;
+ background-size: cover;
+}
+
+.button {
+  background: transparent;
+  border: 2px solid magenta;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 2em 4em;
+  border-radius: 4px;
+  cursor: pointer;
+  transition-duration: 0.4s;
+}
+
+.button:hover {
+  background-color: black;
+}
+
+</style>
+<body>
+
+  <%- include('../partials/nav.ejs') %>
+
+  <div id="text_prefs" style="text-align: center; color:yellow; font-family:Orbitron;">
+    <h1 id="title">Paul's Page</h1>
+    <p id="bio" style="margin: 3em 7em 3em 7em; border-width:5px;
+    border-style:groove; border-color: magenta; padding: 1em">
+    Hi, I’m Paul and I’m a third-year from Stafford, Virginia.
+        I am a BA Computer Science major and when I’m not staying up all night
+        trying to figure out why my code refuses to work as intended, I spend
+        most of my time either playing way too many video games or practicing
+        snare drum in UVA’s Cavalier Marching Band.
+        I can also be seen playing drum set at some Women’s and Men’s Basketball
+         games and follow the NBA pretty closely most seasons (go Nuggets!) so I
+          usually have one or two hot takes ready to go.  I had no experience
+          with anything related to Computer Science before my first year in
+          college but now I couldn’t imagine doing anything else and am
+          looking forward to a future in software development.</p>
+    <button id="the_button" type="button"; class="button"; onclick="getClicked()">Hard to Read? Click Me!</button>
+    <div id="counter" style="font-size: 2em"></div>
+    <image id="the_gif" src="https://images.squarespace-cdn.com/content/v1/57b1fe4ef7e0ab588bc6d3bb/1508870226296-NXNQ08KQ9T4OZXP57KWM/ke17ZwdGBToddI8pDm48kBZN12O5nsk_xgZgkr0pi4JZw-zPPgdn4jUwVcJE1ZvWhcwhEtWJXoshNdA9f1qD7UlsW9OX_ZneFwBCDVKxw6WL3LlpY_tVQNqjc6o4Ku0NTW9HNOVPdrPupPn-Lyp4xQ/1080-surf.gif">
+  </div>
+
+  <script>
+
+  function getClicked() {
+    if (document.body.style.background !== "black") {
+      document.getElementById("text_prefs").style.color = "white";
+      document.getElementById("text_prefs").style.fontFamily = "Times New Roman";
+      document.getElementById("text_prefs").style.fontSize = "1.15em";
+      document.getElementById("bio").style.borderColor = "white";
+      document.getElementById("the_button").style.borderColor = "white";
+      document.getElementById("the_button").innerHTML = "Too Boring? Click Me!";
+      document.getElementById("the_gif").src = "https://i.gifer.com/9PsB.gif";
+      document.body.style.background = "black";
+    }
+    else {
+      document.getElementById("text_prefs").style.color = "yellow";
+      document.getElementById("text_prefs").style.fontFamily = "Orbitron";
+      document.getElementById("text_prefs").style.fontSize = "1em";
+      document.getElementById("bio").style.borderColor = "magenta";
+      document.getElementById("the_button").style.borderColor = "magenta";
+      document.getElementById("the_button").innerHTML = "Hard to Read? Click Me!";
+      document.getElementById("the_gif").src = "https://images.squarespace-cdn.com/content/v1/57b1fe4ef7e0ab588bc6d3bb/1508870226296-NXNQ08KQ9T4OZXP57KWM/ke17ZwdGBToddI8pDm48kBZN12O5nsk_xgZgkr0pi4JZw-zPPgdn4jUwVcJE1ZvWhcwhEtWJXoshNdA9f1qD7UlsW9OX_ZneFwBCDVKxw6WL3LlpY_tVQNqjc6o4Ku0NTW9HNOVPdrPupPn-Lyp4xQ/1080-surf.gif";
+      document.body.style.backgroundImage = "url('https://i.pinimg.com/originals/9c/76/9f/9c769f48cf3d318105c1151087a400f5.jpg')";
+      document.body.style.backgroundRepeat = "no-repeat";
+      document.body.style.backgroundSize = "cover";
+    }
+  }
+
+    var i = 0;
+    var j = 0;
+    setInterval(() => {
+      if (document.body.style.background !== "black") {
+        console.log(i.toFixed(1) + " seconds spent stylilshly");
+        document.getElementById("counter").innerHTML = i.toFixed(1) + " seconds spent hoverboarding";
+        i += .1;
+      }
+      else {
+        console.log(j.toFixed(1) + " seconds spent on the simple side");
+        document.getElementById("counter").innerHTML = j.toFixed(1) + " seconds spent waving";
+        j += .1;
+      }
+    }, 100);
+
+  </script>
+
+</body>
+</html>
