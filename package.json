@@ -11,8 +11,12 @@
     "test": "node test.js"
   },
   "dependencies": {
+    "axios": "^0.21.1",
+    "coinmarketcap-api": "^3.1.1",
     "ejs": "^3.1.6",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "node-coinmarketcap": "^0.2.0",
+    "request-promise": "^4.2.6"
   },
   "devDependencies": {
     "got": "^11.3.0",
