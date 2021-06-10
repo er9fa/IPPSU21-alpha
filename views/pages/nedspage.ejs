@@ -10,32 +10,64 @@
 <body>
 
   <%- include('../partials/nav.ejs') %>
-
+  <title> Karthiks Page </title>
   <div style="text-align: center;">
     <h4>My name is Karthik Eswarapragada, I am a second-year student at UVA. I have lived in Virginia for most of my life, and have always been interested in UVA. I actually share a birthday with TJ. I am studying Mechanical Engineering, I have always wanted to pursue a career in engineering. I am a pretty resourceful person when it comes to problem solving, so I really fell in love with engineering. I am hoping to learn more about the software side of engineering, and gain some real experience in the development cycle. One of the reasons I chose Mechanical over other disciplines was to experience everything STEM has to offer. So that is why I am really excited for this internship and our project. I love watching football, and my favorite team is the Washington Football Team(I hope we get a real name soon).</h4>
+    <div id= "BTC_facts"></div>
     <div id="variable_here"></div>
+    <div id="multiple_here"></div>
+
+
     <img src="https://thumbs.gfycat.com/SelfishWarmheartedCarpenterant-size_restricted.gif" alt= "rg3 gif">
   </div>
   <style>
     h4 {
-      background-color: yellow;
+      position: absolute;
+      border-style: groove;
+      background-color: white;
+      border-color: yellow;
+      border-radius: 5px;
+      border-width: 5px;
+      width: 75%;
+      left: 200px;
+      top: 150px;
     }
     body {
-      background-color: maroon;
+      background-image: url(https://a1.espncdn.com/combiner/i?img=%2Fphoto%2F2020%2F0723%2Fr722785_1242x699_16%2D9.jpg&w=1140&cquality=40&format=jpg);
+      background-size: cover;
     }
     variable_here {
       font-size: 100;
+    }
+    img {
+      position: absolute;
+      left: 570px;
+      top: 550px;
+      width: 20%;
     }
   </style>
   <script>
     var obj = document.getElementById("variable_here");
     obj.setAttribute("style", "font-size: xx-large; color: white;")
-    var i = 1000;
+
+    var count = document.getElementById("multiple_here");
+    count.setAttribute("style", "font-size: xx-large; color: white;")
+
+    var i = 1;
+    var j = 1;
     setInterval(() => {
       console.log(i);
-      document.getElementById("variable_here").innerHTML = i;
-      i--;
+      console.log(j);
+      document.getElementById("variable_here").innerHTML = "Main count: " + i;
+      i++;
+      if (i % 5 == 0){
+        document.getElementById("multiple_here").innerHTML = "Multiple of 5 count: " + j;
+        j++;
+      }
     }, 1000);
+    fetch("https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?CMC_PRO_API_KEY=bc695b6b-f4b5-438b-9fab-88f108aead7f").then(r => r.json()).then(data => {
+      document.getElementById("BTC_facts").innerHTML = data.data[0].quote.USD.price;
+    })
 
   </script>
 
