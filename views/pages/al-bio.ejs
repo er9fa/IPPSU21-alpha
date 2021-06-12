@@ -60,11 +60,17 @@
         <div id="btc-price"></div>
         <div id="btc-market-cap"></div>
         <div id="btc-volume"></div>
+        <div id="test-import"></div>
 
         <div id="timer" class="text-center"></div>
     </div>
+    <script src="data/cryptoAPI.mjs" type="module"></script>
 
-    <script>
+    <script type="module">
+        import cryptoAPI from "/data/cryptoAPI.mjs"
+        const crypto = new cryptoAPI()
+        crypto.getValue("bitcoin", "test-import")
+
         var i = 0;
         setInterval(() => {
             document.getElementById("timer").innerHTML = i;
