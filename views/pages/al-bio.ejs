@@ -69,7 +69,9 @@
     <script type="module">
         import cryptoAPI from "/data/cryptoAPI.mjs"
         const crypto = new cryptoAPI()
-        crypto.getValue("bitcoin", "test-import")
+        crypto.getValue("bitcoin").then(val => {
+            document.getElementById("test-import").innerHTML = val
+        })
 
         var i = 0;
         setInterval(() => {
