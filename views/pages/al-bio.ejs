@@ -45,7 +45,9 @@
     </nav>
 
     <div class="mx-5 mt-4">
-        <h1><%=title%></h1>
+        <h1>
+            <%=title%>
+        </h1>
         <br>
         <p class="border">My name is Altin Terstena, and I’m a fourth-year CS major at UVA. Outside of coding, my main
             hobbies include listening to music, watching tv, and gaming (especially Battlefield). I look forward to
@@ -65,18 +67,8 @@
 
         <div id="timer" class="text-center"></div>
     </div>
-
-    <script type="module">
-        import cryptoAPI from "/data/cryptoAPI.mjs"
-        const crypto = new cryptoAPI()
-        crypto.getValue("bitcoin").then(val => {
-            document.getElementById("test-import").innerHTML = val
-        })
-
-        crypto.getCoin("bitcoin").then(val => {
-            document.getElementById("test-coins").innerHTML = val.bitcoin.usd
-        })
-
+    <script src="/data/cryptoAPI.js"></script>
+    <script>
         // TODO: Add marquee with coin tickers
         //      Use the arrow ascii symbols for if value went up in last 24 hours or down
         //      Maybe color it too
@@ -92,30 +84,10 @@
             i++;
         }, 1000);
 
-        fetch("https://api.coingecko.com/api/v3/coins/", {
-            method: 'GET',
-            headers: {
-                'id': 'bitcoin',
-            }
-        }).then(r => r.json()).then(data => {
-            // Get the current price of BTC
-            let btcPrice = data[0].market_data.current_price.usd.toFixed(2)
-            // Use the Numeral library to format values (e.g. 1000 becomes 1k)
-            let btcMarketCap = numeral(data[0].market_data.market_cap.usd).format('0.0a')
-            let btcVolume = numeral(data[0].market_data.total_volume.usd).format('0.0a')
-
+        getValue("bitcoin").then(value => {
             document.getElementById("btc-price").innerHTML =
-                "Current value: $" + btcPrice
-            document.getElementById("btc-market-cap").innerHTML =
-                "Market cap: $" + btcMarketCap
-            document.getElementById("btc-volume").innerHTML =
-                "24 hour trading vol: $" + btcVolume
-
-            console.log("Bitcoin price: " + btcPrice)
-            console.log("Bitcoin market cap: " + btcMarketCap)
-            console.log("Bitcoin volume: " + btcVolume)
+                "Current value: $" + value
         })
-
     </script>
 
     <!-- Formats numbers with abbreviations (e.g. 1000 -> 1k) -->
