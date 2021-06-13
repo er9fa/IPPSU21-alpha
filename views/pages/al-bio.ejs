@@ -13,7 +13,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Mate+SC&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="stylesheets/al-bio-css.css">
+
+    <!-- Scrolling bar library; Source: https://github.com/tjenkinson/dynamic-marquee -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/dynamic-marquee@2"></script>
+
+    <!-- My crypto API -->
     <script src="/data/cryptoAPI.js"></script>
 </head>
 
@@ -65,17 +69,39 @@
         <div id="timer" class="text-center"></div>
     </div>
     <script>
-        // TODO: Add marquee with coin tickers
-        //      Use the arrow ascii symbols for if value went up in last 24 hours or down
-        //      Maybe color it too
+        getValue("bitcoin").then(value => {
+            document.getElementById("btc-price").innerHTML =
+                "Current value: $" + value
+        })
 
+        // Initialize scrolling bar
         const Marquee = dynamicMarquee.Marquee;
-
-        const marquee = new Marquee(document.getElementById('marquee'))
+        const marquee = new Marquee(document.getElementById('marquee'), {
+            // Move words 100px/s to the left
+            rate: -100
+        })
         const $item = document.createElement('div');
-        $item.textContent = 'testing123';
-        marquee.appendItem($item);
 
+        // Concat popular coins to scrolling bar
+        getPopularCoins().then(coins => {
+            let popularCoins = ""
+            coins.forEach(coin => {
+                const tickerSymbol = coin["symbol"]
+                const price = coin.current_price.toFixed(2)
+                const priceChange = coin.price_change_24h
+                const hasPriceIncreased = (priceChange >= 0) ? "↑" : "↓"
+
+                const result = hasPriceIncreased + " " + tickerSymbol + " $" + price + "\xa0\xa0\xa0\xa0\xa0\xa0\xa0"
+
+                popularCoins += result
+            })
+
+            // Add popular coins to scrolling bar
+            $item.textContent = popularCoins;
+            marquee.appendItem($item);
+        })
+
+        // Timer
         var i = 0;
         setInterval(() => {
             document.getElementById("timer").innerHTML = i;
@@ -86,11 +112,6 @@
             }
             i++;
         }, 1000);
-
-        getValue("bitcoin").then(value => {
-            document.getElementById("btc-price").innerHTML =
-                "Current value: $" + value
-        })
     </script>
 
     <!-- Formats numbers with abbreviations (e.g. 1000 -> 1k) -->
