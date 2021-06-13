@@ -96,6 +96,9 @@
             })
 
             // Add popular coins to scrolling bar
+            // For looping infinitely, the dynamicMarquee library
+            //      uses an array of functions which return strings or elements to iterate through
+            // TODO: What is "window.l"?
             window.l = dynamicMarquee.loop(marquee, [
             () => popularCoins
         ])
