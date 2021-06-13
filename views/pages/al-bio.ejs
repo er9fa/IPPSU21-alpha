@@ -61,10 +61,10 @@
         <div id="btc-market-cap"></div>
         <div id="btc-volume"></div>
         <div id="test-import"></div>
+        <div id="test-coins"></div>
 
         <div id="timer" class="text-center"></div>
     </div>
-    <script src="data/cryptoAPI.mjs" type="module"></script>
 
     <script type="module">
         import cryptoAPI from "/data/cryptoAPI.mjs"
@@ -72,6 +72,14 @@
         crypto.getValue("bitcoin").then(val => {
             document.getElementById("test-import").innerHTML = val
         })
+
+        crypto.getCoin("bitcoin").then(val => {
+            document.getElementById("test-coins").innerHTML = val.bitcoin.usd
+        })
+
+        // TODO: Add marquee with coin tickers
+        //      Use the arrow ascii symbols for if value went up in last 24 hours or down
+        //      Maybe color it too
 
         var i = 0;
         setInterval(() => {
