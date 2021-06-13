@@ -80,7 +80,6 @@
             // Move words 100px/s to the left
             rate: -100
         })
-        const $item = document.createElement('div');
 
         // Concat popular coins to scrolling bar
         getPopularCoins().then(coins => {
@@ -91,14 +90,15 @@
                 const priceChange = coin.price_change_24h
                 const hasPriceIncreased = (priceChange >= 0) ? "↑" : "↓"
 
-                const result = hasPriceIncreased + " " + tickerSymbol + " $" + price + "\xa0\xa0\xa0\xa0\xa0\xa0\xa0"
+                const result = hasPriceIncreased + " " + tickerSymbol + " $" + price + "\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0"
 
                 popularCoins += result
             })
 
             // Add popular coins to scrolling bar
-            $item.textContent = popularCoins;
-            marquee.appendItem($item);
+            window.l = dynamicMarquee.loop(marquee, [
+            () => popularCoins
+        ])
         })
 
         // Timer
