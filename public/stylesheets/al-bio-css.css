@@ -12,3 +12,16 @@ body {
     background-attachment: fixed;
     background-size: cover;
 }
+
+#marquee {
+    position: fixed;
+    overflow: hidden;
+    margin: 0;
+    padding: 0.6em 0 0.2em 0;
+    font-size: medium;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #000000;
+    color: #ffffff;
+}

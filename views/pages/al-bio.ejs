@@ -13,7 +13,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Mate+SC&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="stylesheets/al-bio-css.css">
-
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/dynamic-marquee@2"></script>
+    <script src="/data/cryptoAPI.js"></script>
 </head>
 
 <body>
@@ -60,18 +61,20 @@
         <!-- Bitcoin tracking elements -->
         <h5>Bitcoin</h5>
         <div id="btc-price"></div>
-        <div id="btc-market-cap"></div>
-        <div id="btc-volume"></div>
-        <div id="test-import"></div>
-        <div id="test-coins"></div>
-
+        <div id="marquee"></div>
         <div id="timer" class="text-center"></div>
     </div>
-    <script src="/data/cryptoAPI.js"></script>
     <script>
         // TODO: Add marquee with coin tickers
         //      Use the arrow ascii symbols for if value went up in last 24 hours or down
         //      Maybe color it too
+
+        const Marquee = dynamicMarquee.Marquee;
+
+        const marquee = new Marquee(document.getElementById('marquee'))
+        const $item = document.createElement('div');
+        $item.textContent = 'testing123';
+        marquee.appendItem($item);
 
         var i = 0;
         setInterval(() => {
