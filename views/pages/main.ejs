@@ -2,7 +2,6 @@
 <html>
 <head>
 
-  <%- include('../partials/header.ejs') %>
   <link rel="stylesheet" type="text/css" href="stylesheets/mainpage.css">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
@@ -10,7 +9,6 @@
 
 <body>
 
-  <%- include('../partials/nav.ejs') %>
 
   <input type="checkbox" id="check">
   <header>
@@ -24,7 +22,7 @@
     <div>
   </header>
 
-  <div class = "sidebar">
+  <div class="sidebar">
     <center>
       <img src = "https://i.ibb.co/G9CVPYh/bitcoin-dd8a16.png" class="profile_image" alt = "">
       <h4>Crypto Calc</h4>
@@ -34,7 +32,18 @@
     <a href="/news"><i class="fas fa-newspaper"><span> News</span></i></a>
     <a href="/database"><i class="fas fa-database"><span> Database</span></i></a>
     <a href="/game"><i class="fas fa-gamepad"><span> Game</span></i></a>
-  <div>
+  </div>
+
+  <div class="history_chart">
+    <table>
+      <tr>
+        <th>Currency 1</th>
+        <th>Value 1</th>
+        <th>Currency 2</th>
+        <th>Value 2</th>
+        <th>Date and time</th>
+      </tr>
+  </div>
 
 
   <script>
