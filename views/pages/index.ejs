@@ -1,66 +1,102 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <%- include ("../partials/header.ejs") %>
-</head>
+  <head>
+    <title>Crypto Calc</title>
+    <link rel="stylesheet" type="text/css" href="stylesheets/Karthik.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/mainpage.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  </head>
+  <body>
+    <h1 contenteditable spellcheck="false">Crypto Calc</h1>
+    <form class="input">
+    Input :
+      <input type="text" name="Input">
+    </form>
+    <form class="output">
+    Output :
+      <input type = "text" name "output">
+    </form>
 
-<body>
+    <table>
+      <tr>
+        <th> Date and Time: </th>
+        <th> Input: </th>
+        <th> Output: </th>
+      </tr>
+      <tr>
+        <td>Wednesday, June 9th. 9:41 PM</td>
+        <td>Example Input</td>
+        <td>Example Output</td>
+      </tr>
+    </table>
+    <button class= "button button1">ENTER</button>
 
-  <%- include ("../partials/nav.ejs") %>
-
-<div class="jumbotron text-center">
-  <div class="container">
-    <a href="/" class="lang-logo">
-      <img src="/lang-logo.png">
-    </a>
-    <h1>Getting Started on Heroku with Node.js</h1>
-    <p>This is a sample Node application deployed to Heroku. It's a reasonably simple app - but a good foundation for understanding how to get the most out of the Heroku platform.</p>
-    <a type="button" class="btn btn-lg btn-default" href="https://devcenter.heroku.com/articles/getting-started-with-nodejs"><span class="glyphicon glyphicon-flash"></span> Getting Started on Heroku with Node.js</a>
-    <a type="button" class="btn btn-lg btn-primary" href="https://github.com/heroku/node-js-getting-started"><span class="glyphicon glyphicon-download"></span> Source on GitHub</a>
-  </div>
-</div>
-<div class="container">
-  <div class="alert alert-info text-center" role="alert">
-    To deploy your own copy, and learn the fundamentals of the Heroku platform, head over to the <a href="https://devcenter.heroku.com/articles/getting-started-with-nodejs" class="alert-link">Getting Started on Heroku with Node.js</a> tutorial.
-  </div>
-  <hr>
-  <div class="row">
-    <div class="col-md-6">
-      <h3><span class="glyphicon glyphicon-info-sign"></span> How this sample app works</h3>
-      <ul>
-        <li>This app was deployed to Heroku, either using Git or by using <a href="https://github.com/heroku/node-js-getting-started">Heroku Button</a> on the repository.</li>
-
-        <li>When Heroku received the source code, it fetched all the dependencies in the <a href="https://github.com/heroku/node-js-getting-started/blob/main/package.json">package.json</a>, creating a deployable slug.</li>
-        <li>The platform then spins up a dyno, a lightweight container that provides an isolated environment in which the slug can be mounted and executed.</li>
-        <li>You can scale your app, manage it, and deploy over <a href="https://addons.heroku.com/">150 add-on services</a>, from the Dashboard or CLI.</li>
-      </ul>
+    <div class="dropdown">
+      <button onclick="myFunction()" class="dropbtn">Coin</button>
+      <div id="myDropdown" class="dropdown-content">
+        <a href="#">Bitcoin</a>
+        <a href="#">Ethereum</a>
+        <a href="#">Dogecoin</a>
+      </div>
     </div>
-    <div class="col-md-6">
-      <h3><span class="glyphicon glyphicon-link"></span> Next Steps</h3>
-      <ul>
-        <li>If you are following the <a href="https://devcenter.heroku.com/articles/getting-started-with-nodejs">Getting Started</a> guide, then please head back to the tutorial and follow the next steps!</li>
-        <li>If you deployed this app by deploying the Heroku Button, then in a command line shell, run:</li>
-        <ul>
-          <li><code>git clone https://github.com/heroku/node-js-getting-started.git</code> - this will create a local copy of the source code for the app</li>
-          <li><code>cd node-js-getting-started</code> - change directory into the local source code repository</li>
-          <li><code>heroku git:remote -a &lt;your-app-name></code> - associate the Heroku app with the repository</li>
-          <li>You'll now be set up to run the app locally, or <a href="https://devcenter.heroku.com/articles/getting-started-with-nodejs#push-local-changes">deploy changes</a> to Heroku</li>
-        </ul>
-      </ul>
-      <h3><span class="glyphicon glyphicon-link"></span> Helpful Links</h3>
-      <ul>
-        <li><a href="https://www.heroku.com/home">Heroku</a></li>
-        <li><a href="https://devcenter.heroku.com/">Heroku Dev Center</a></li>
-        <li><a href="https://devcenter.heroku.com/articles/getting-started-with-nodejs">Getting Started on Heroku with Node.js</a></li>
-        <li><a href="https://devcenter.heroku.com/articles/deploying-nodejs">Deploying Node Apps on Heroku</a></li>
-      </ul>
+
+    <input type="checkbox" id="check">
+    <header>
+      <label for="check">
+        <i class="fas fa-bars" id="sidebar_btn"></i>
+      </label>
+      <div class="left_area">
+        <h3>Main</h3>
+      </div>
+      <div class="right_area">
+      <div>
+    </header>
+
+    <div class="sidebar">
+      <center>
+        <img src = "https://i.ibb.co/G9CVPYh/bitcoin-dd8a16.png" class="profile_image" alt = "">
+        <h4>Crypto Calc</h4>
+      </center>
+      <a href="/main"><i class="fas fa-coins"><span> Main</span></i></a>
+      <a href="/calculator"><i class="fas fa-calculator"><span> Calculator</span></i></a>
+      <a href="/news"><i class="fas fa-newspaper"><span> News</span></i></a>
+      <a href="/database"><i class="fas fa-database"><span> Database</span></i></a>
+      <a href="/game"><i class="fas fa-gamepad"><span> Game</span></i></a>
     </div>
-  </div> <!-- row -->
-   <div class="alert alert-info text-center" role="alert">
-    Please do work through the Getting Started guide, even if you do know how to build such an application.  The guide covers the basics of working with Heroku, and will familiarize you with all the concepts you need in order to build and deploy your own apps.
-  </div>
-</div>
+
+<!--
+    <div class="history_chart">
+      <table>
+        <tr>
+          <th>Currency 1</th>
+          <th>Value 1</th>
+          <th>Currency 2</th>
+          <th>Value 2</th>
+          <th>Date and time</th>
+        </tr>
+    </div>
+-->
+
+  </body>
 
 
-</body>
+  <script>
+    function myFunction() {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+  // Close the dropdown menu if the user clicks outside of it
+    window.onclick = function(event) {
+      if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
+  </script>
 </html>
