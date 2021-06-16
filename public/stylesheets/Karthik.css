@@ -118,11 +118,11 @@ h1:focus {
     0 0 6rem var(--neon-border-color),
     0 0 8rem var(--neon-border-color),
     0 0 10rem var(--neon-border-color);
-    width: 50%;
+    width: 55%;
     color: white;
     position: fixed;
     top: 55%;
-    left: 19.5%;
+    left: 23%;
   }
 .dropbtn {
   background-color: var(--neon-border-color);
