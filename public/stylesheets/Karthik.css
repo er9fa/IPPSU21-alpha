@@ -102,7 +102,7 @@ h1:focus {
     color: white;
     position: fixed;
     top: 40%;
-    left: 59%;
+    left: 57%;
   }
 
   input[type = text]{
@@ -135,12 +135,10 @@ h1:focus {
   border: 0.4rem solid #fff;
   border-radius: 2rem;
   text-transform: uppercase;
-    position: fixed;
-    top: 40%;
-    right: 47.5%;
     border: none;
     cursor: pointer;
   }
+
 .dropbtn:hover, .dropbtn:focus {
   background-color: #2980B9;
 }
@@ -180,9 +178,24 @@ h1:focus {
   border-radius: 2rem;
   text-transform: uppercase;
   position: fixed;
-  top: 40%;
+  top: 39%;
   left: 76%;
 }
 .button:hover, .button:focus {
   background-color: #2980B9;
+}
+label{
+  font-size: 20px;
+  text-shadow: -0.2rem -0.2rem 1rem #fff,
+  0.2rem 0.2rem 1rem #fff,
+  0 0 2rem var(--neon-border-color),
+  0 0 4rem var(--neon-border-color),
+  0 0 6rem var(--neon-border-color),
+  0 0 8rem var(--neon-border-color),
+  0 0 10rem var(--neon-border-color);
+  color: white;
+}
+select{
+  font-size: 600%;
+  color: black;
 }
