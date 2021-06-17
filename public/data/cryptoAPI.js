@@ -82,6 +82,10 @@ async function fetchPopularCoins() {
     return response
 }
 
+/**
+ * Formats the response from the CoinGecko API for popular coins 
+ * @param response The JSON object returned from the CoinGecko API
+ */
 function formatPopularCoins(response) {
     let coins = []
     response.forEach(coin => {
