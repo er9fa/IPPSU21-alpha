@@ -42,11 +42,11 @@
             const result = "\xa0\xa0" + tickerSymbol + " $" + price + "\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0"
 
             // Create text element to store ticker
-            const $coinText = document.createElement("div").className("sb-coin-text")
+            const $coinText = document.createElement("div"); $coinText.className = "sb-coin-text"
             $coinText.textContent = result
 
             // Create image element for the coin price change triangle image
-            const $priceChangeSymbol = document.createElement("img").className("sb-prioce-change-symbol")
+            const $priceChangeSymbol = document.createElement("img"); $priceChangeSymbol.className = "sb-price-change-symbol"
             $priceChangeSymbol.src = priceChangeSymbol
 
             // Append ticker and image elements to the result DOM object
