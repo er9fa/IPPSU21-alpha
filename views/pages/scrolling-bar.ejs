@@ -18,41 +18,43 @@
     <div id="scrolling-bar"></div>
 </body>
 <script>
-    // Initialize scrolling bar
+    // Initialize scrolling bar from library
     const Marquee = dynamicMarquee.Marquee;
     const marquee = new Marquee(document.getElementById('scrolling-bar'), {
         // Move words 100px/s to the left
         rate: -100
     })
 
-    // Concat popular coins to scrolling bar
+    // Append the popular cryptocurrencies to the scrolling bar
+    // Retrieve popular coins using cryptoAPI.js method
     getPopularCoins().then(coins => {
-        const $div = document.createElement("div")
-        $div.setAttribute('display', 'inline')
+        const $result = document.createElement("div")
+        $result.setAttribute('display', 'inline')
         console.log(coins)
         coins.forEach(coin => {
             const tickerSymbol = coin.tickerSymbol
             const price = coin.price
             const priceChange = coin.priceChange
             const hasPriceIncreased = (priceChange >= 0) ? true : false
-            const priceChangeSymbol = (hasPriceIncreased) ? "/images/scrolling-bar-green-triangle.png" : "/images/scrolling-bar-red-triangle.png"
+            const priceChangeSymbol = (hasPriceIncreased) ? 
+            "/images/scrolling-bar-green-triangle.png" : "/images/scrolling-bar-red-triangle.png"
 
             const result = "\xa0\xa0" + tickerSymbol + " $" + price + "\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0"
 
-            const $coinText = document.createElement("div")
-            $coinText.className = "sb-coin-text"
+            // Create text element to store ticker
+            const $coinText = document.createElement("div").className("sb-coin-text")
             $coinText.textContent = result
 
-            const $priceChangeSymbol = document.createElement("img")
-            $priceChangeSymbol.className = "sb-price-change-symbol"
+            // Create image element for the coin price change triangle image
+            const $priceChangeSymbol = document.createElement("img").className("sb-prioce-change-symbol")
             $priceChangeSymbol.src = priceChangeSymbol
 
-            $div.appendChild($priceChangeSymbol)
-            $div.appendChild($coinText)
+            // Append ticker and image elements to the result DOM object
+            $result.appendChild($priceChangeSymbol)
+            $result.appendChild($coinText)
         })
-        window.l = dynamicMarquee.loop(marquee, [
-            () => $div
-        ])
+        // Add result DOM object with all the tickers and images to the scrollbar
+        marquee.appendItem($result)
     })
 </script>
 <!-- Formats numbers with abbreviations (e.g. 1000 -> 1k) -->
