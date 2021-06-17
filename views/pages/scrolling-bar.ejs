@@ -29,10 +29,11 @@
     getPopularCoins().then(coins => {
         const $div = document.createElement("div")
         $div.setAttribute('display', 'inline')
+        console.log(coins)
         coins.forEach(coin => {
-            const tickerSymbol = coin["symbol"].toUpperCase()
-            const price = coin.current_price.toFixed(2)
-            const priceChange = coin.price_change_24h
+            const tickerSymbol = coin.tickerSymbol
+            const price = coin.price
+            const priceChange = coin.priceChange
             const hasPriceIncreased = (priceChange >= 0) ? true : false
             const priceChangeSymbol = (hasPriceIncreased) ? "/images/scrolling-bar-green-triangle.png" : "/images/scrolling-bar-red-triangle.png"
 
@@ -53,9 +54,6 @@
             () => $div
         ])
     })
-
-    testGetPopularCoins()
-
 </script>
 <!-- Formats numbers with abbreviations (e.g. 1000 -> 1k) -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
