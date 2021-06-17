@@ -8,11 +8,11 @@
       <h1 contenteditable spellcheck="false">Crypto Calc</h1>
     <form class="input">
     Input :
-      <input type="text" name="Input">
+      <input type="text" name="Input" id="txtInput">
     </form>
     <form class="output">
     Output :
-      <input type = "text" name "output">
+      <input type = "text" name "output" id= "txtOutput">
     </form>
 
     <table>
@@ -27,35 +27,60 @@
         <td>Example Output</td>
       </tr>
     </table>
-    <button class= "button button1">ENTER</button>
+    <button class= "button button1" onclick="convert()">ENTER</button>
 
-  <div class="dropdown">
-    <button onclick="myFunction()" class="dropbtn">Coin</button>
-    <div id="myDropdown" class="dropdown-content">
-      <a href="#">Bitcoin</a>
-      <a href="#">Ethereum</a>
-      <a href="#">Dogecoin</a>
+    <div class="dropdown v1" style="position: fixed; top: 47%; left: 23%;">
+      <label for="currency"> Choose an input: </label>
+      <select name="input currencty" id="inputCurrency">
+        <option value="Bitcoin">Bitcoin</option>
+      </select>
     </div>
-  </div>
+
+<div class="dropdown v2" style="position: fixed; top: 47%; left: 42%;">
+  <label for="coins"> Choose a coin: </label>
+  <select id= "coin_value">
+    <option value="blank" ></option>
+    <option value="Litecoin">Litecoin</option>
+    <option value="Ethereum">Ethereum</option>
+    <option value="Bitcoin Cash">Bitcoin Cash</option>
+  </select>
+</div>
+
 
   </body>
   <script>
-  function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
 
-// Close the dropdown menu if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
+  var factor = 0;
+
+
+
+
+  function convert(){
+    var inputVal = document.getElementById("txtInput");
+    var outputVal = document.getElementById("txtOutput");
+    var currency = inputVal.value;
+    var num = currency * factor;
+    outputVal.value = num;
+    
+    if(document.getElementById("coin_value").value == "Litecoin"){
+      fetch("http://api.coingecko.com/api/v3/exchange_rates").then(r => r.json()).then(data => {
+        factor = data.rates.ltc.value;
+      })
+    }
+
+    if(document.getElementById("coin_value").value == "Ethereum"){
+      fetch("http://api.coingecko.com/api/v3/exchange_rates").then(r => r.json()).then(data => {
+        factor = data.rates.eth.value;
+      })
+    }
+
+    if(document.getElementById("coin_value").value == "Bitcoin Cash"){
+      fetch("http://api.coingecko.com/api/v3/exchange_rates").then(r => r.json()).then(data => {
+        factor = data.rates.bch.value;
+      })
     }
   }
-}
+
+
   </script>
 </html>
