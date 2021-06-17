@@ -3,9 +3,11 @@
   <head>
     <title>Crypto Calc</title>
     <link rel="stylesheet" type="text/css" href="stylesheets/Karthik.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/mainpage.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   </head>
   <body>
-      <h1 contenteditable spellcheck="false">Crypto Calc</h1>
+    <h1 contenteditable spellcheck="false">Crypto Calc</h1>
     <form class="input">
     Input :
       <input type="text" name="Input">
@@ -29,33 +31,72 @@
     </table>
     <button class= "button button1">ENTER</button>
 
-  <div class="dropdown">
-    <button onclick="myFunction()" class="dropbtn">Coin</button>
-    <div id="myDropdown" class="dropdown-content">
-      <a href="#">Bitcoin</a>
-      <a href="#">Ethereum</a>
-      <a href="#">Dogecoin</a>
+    <div class="dropdown">
+      <button onclick="myFunction()" class="dropbtn">Coin</button>
+      <div id="myDropdown" class="dropdown-content">
+        <a href="#">Bitcoin</a>
+        <a href="#">Ethereum</a>
+        <a href="#">Dogecoin</a>
+      </div>
     </div>
-  </div>
+
+    <input type="checkbox" id="check">
+    <header>
+      <label for="check">
+        <i class="fas fa-bars" id="sidebar_btn"></i>
+      </label>
+      <div class="left_area">
+        <h3>Main</h3>
+      </div>
+      <div class="right_area">
+      <div>
+    </header>
+
+    <div class="sidebar">
+      <center>
+        <img src = "https://i.ibb.co/G9CVPYh/bitcoin-dd8a16.png" class="profile_image" alt = "">
+        <h4>Crypto Calc</h4>
+      </center>
+      <a href="/main"><i class="fas fa-coins"><span> Main</span></i></a>
+      <a href="/calculator"><i class="fas fa-calculator"><span> Calculator</span></i></a>
+      <a href="/news"><i class="fas fa-newspaper"><span> News</span></i></a>
+      <a href="/database"><i class="fas fa-database"><span> Database</span></i></a>
+      <a href="/game"><i class="fas fa-gamepad"><span> Game</span></i></a>
+    </div>
+
+<!--
+    <div class="history_chart">
+      <table>
+        <tr>
+          <th>Currency 1</th>
+          <th>Value 1</th>
+          <th>Currency 2</th>
+          <th>Value 2</th>
+          <th>Date and time</th>
+        </tr>
+    </div>
+-->
 
   </body>
-  <script>
-  function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
 
-// Close the dropdown menu if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
+
+  <script>
+    function myFunction() {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+  // Close the dropdown menu if the user clicks outside of it
+    window.onclick = function(event) {
+      if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
       }
     }
-  }
-}
   </script>
 </html>
