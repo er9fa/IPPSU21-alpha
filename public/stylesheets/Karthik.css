@@ -178,7 +178,7 @@ h1:focus {
   border-radius: 2rem;
   text-transform: uppercase;
   position: fixed;
-  top: 40%;
+  top: 39%;
   left: 76%;
 }
 .button:hover, .button:focus {
