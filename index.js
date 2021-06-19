@@ -8,7 +8,6 @@ exports.index = function(req, res) {
     res.render('index', { CoinMarketCap: CoinMarketCap });
 }
 
-
 express()
   .use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
