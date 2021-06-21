@@ -125,6 +125,7 @@ h1:focus {
     0 0 6rem var(--neon-border-color),
     0 0 8rem var(--neon-border-color),
     0 0 10rem var(--neon-border-color);
+
   }
   td{
   font-size: 20px;
