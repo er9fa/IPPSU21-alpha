@@ -1,9 +1,8 @@
-
 <!DOCTYPE html>
 <html>
 <head>
 
-<%- include('../partials/header.ejs') %>
+  <%- include('../partials/header.ejs') %>
 
 </head>
 
@@ -11,99 +10,99 @@
 
 <style>
 body {
-background-image: url('https://i.pinimg.com/originals/9c/76/9f/9c769f48cf3d318105c1151087a400f5.jpg');
-background-repeat: no-repeat;
-background-attachment: fixed;
-background-size: cover;
+ background-image: url('https://i.pinimg.com/originals/9c/76/9f/9c769f48cf3d318105c1151087a400f5.jpg');
+ background-repeat: no-repeat;
+ background-attachment: fixed;
+ background-size: cover;
 }
 .button {
-background: transparent;
-border: 2px solid magenta;
-padding: 15px 32px;
-text-align: center;
-text-decoration: none;
-display: inline-block;
-margin: 2em 4em;
-border-radius: 4px;
-cursor: pointer;
-transition-duration: 0.4s;
+  background: transparent;
+  border: 2px solid magenta;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 2em 4em;
+  border-radius: 4px;
+  cursor: pointer;
+  transition-duration: 0.4s;
 }
 .button:hover {
-background-color: black;
+  background-color: black;
 }
 a:link {
-color: yellow;
-background-color: transparent;
-text-decoration: none;
+  color: yellow;
+  background-color: transparent;
+  text-decoration: none;
 }
 a:visited {
-color: magenta;
-background-color: transparent;
-text-decoration: italic;
+  color: magenta;
+  background-color: transparent;
+  text-decoration: italic;
 }
 a:hover {
-color: black;
-background-color: transparent;
-text-decoration: underline;
+  color: black;
+  background-color: transparent;
+  text-decoration: underline;
 }
 a:active {
-color: yellow;
-background-color: transparent;
-text-decoration: underline;
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
 }
 </style>
 <body>
 
-<%- include('../partials/nav.ejs') %>
+  <%- include('../partials/nav.ejs') %>
 
-<div id="text_prefs" style="text-align: center; color:yellow; font-family:Orbitron;">
-  <h1 id="title">Paul's Page</h1>
-  <p id="bio" style="margin: 3em 7em 3em 7em; border-width:5px;
-  border-style:groove; border-color: magenta; padding: 1em">
-  Hi, I’m Paul and I’m a third-year from Stafford, Virginia.
-      I am a BA Computer Science major and when I’m not staying up all night
-      trying to figure out why my code refuses to work as intended, I spend
-      most of my time either playing way too many video games or practicing
-      snare drum in UVA’s Cavalier Marching Band.
-      I can also be seen playing drum set at some Women’s and Men’s Basketball
-       games and follow the NBA pretty closely most seasons (go Nuggets!) so I
-        usually have one or two hot takes ready to go.  I had no experience
-        with anything related to Computer Science before my first year in
-        college but now I couldn’t imagine doing anything else and am
-        looking forward to a future in software development.</p>
-  <button id="the_button" type="button"; class="button"; onclick="getClicked()">Hard to Read? Click Me!</button>
-  <div id="counter" style="font-size: 2em"></div>
-  <image id="the_gif" src="https://images.squarespace-cdn.com/content/v1/57b1fe4ef7e0ab588bc6d3bb/1508870226296-NXNQ08KQ9T4OZXP57KWM/ke17ZwdGBToddI8pDm48kBZN12O5nsk_xgZgkr0pi4JZw-zPPgdn4jUwVcJE1ZvWhcwhEtWJXoshNdA9f1qD7UlsW9OX_ZneFwBCDVKxw6WL3LlpY_tVQNqjc6o4Ku0NTW9HNOVPdrPupPn-Lyp4xQ/1080-surf.gif">
-  <h3 id="crypto_news">Crypto News:</h3>
-  <article style="margin: 8em 1em 8em 4em; text-align: left">
-    <h5><a id="title_0" href="" target="_blank"></a></h5>
-    <p><img id="image_0" style="float: left; padding-right: 1em" src="" onerror="this.src='https://www.flexx.co/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png'" width="auto" height="100"/></p>
-    <p id="preview_0"></p>
-  </article>
-  <article style="margin: 8em 1em 8em 4em; text-align: left">
-    <h5><a id="title_1" href="" target="_blank"></a></h5>
-    <p><img id="image_1" style="float: left; padding-right: 1em" src="" onerror="this.src='https://www.flexx.co/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png'" width="auto" height="100"/></p>
-    <p id="preview_1"></p>
-  </article>
-  <article style="margin: 8em 1em 8em 4em; text-align: left">
-    <h5><a id="title_2" href="" target="_blank"></a></h5>
-    <p><img id="image_2" style="float: left; padding-right: 1em" src="" onerror="this.src='https://www.flexx.co/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png'" width="auto" height="100"/></p>
-    <p id="preview_2"></p>
-  </article>
-  <article style="margin: 8em 1em 8em 4em; text-align: left">
-    <h5><a id="title_3" href="" target="_blank"></a></h5>
-    <p><img id="image_3" style="float: left; padding-right: 1em" src="" onerror="this.src='https://www.flexx.co/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png'" width="auto" height="100"/></p>
-    <p id="preview_3"></p>
-  </article>
-  <article style="margin: 8em 1em 8em 4em; text-align: left">
-    <h5><a id="title_4" href="" target="_blank"></a></h5>
-    <p><img id="image_4" style="float: left; padding-right: 1em" src="" onerror="this.src='https://www.flexx.co/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png'" width="auto" height="100"/></p>
-    <p id="preview_4"></p>
-  </article>
-</div>
+  <div id="text_prefs" style="text-align: center; color:yellow; font-family:Orbitron;">
+    <h1 id="title">Paul's Page</h1>
+    <p id="bio" style="margin: 3em 7em 3em 7em; border-width:5px;
+    border-style:groove; border-color: magenta; padding: 1em">
+    Hi, I’m Paul and I’m a third-year from Stafford, Virginia.
+        I am a BA Computer Science major and when I’m not staying up all night
+        trying to figure out why my code refuses to work as intended, I spend
+        most of my time either playing way too many video games or practicing
+        snare drum in UVA’s Cavalier Marching Band.
+        I can also be seen playing drum set at some Women’s and Men’s Basketball
+         games and follow the NBA pretty closely most seasons (go Nuggets!) so I
+          usually have one or two hot takes ready to go.  I had no experience
+          with anything related to Computer Science before my first year in
+          college but now I couldn’t imagine doing anything else and am
+          looking forward to a future in software development.</p>
+    <button id="the_button" type="button"; class="button"; onclick="getClicked()">Hard to Read? Click Me!</button>
+    <div id="counter" style="font-size: 2em"></div>
+    <image id="the_gif" src="https://images.squarespace-cdn.com/content/v1/57b1fe4ef7e0ab588bc6d3bb/1508870226296-NXNQ08KQ9T4OZXP57KWM/ke17ZwdGBToddI8pDm48kBZN12O5nsk_xgZgkr0pi4JZw-zPPgdn4jUwVcJE1ZvWhcwhEtWJXoshNdA9f1qD7UlsW9OX_ZneFwBCDVKxw6WL3LlpY_tVQNqjc6o4Ku0NTW9HNOVPdrPupPn-Lyp4xQ/1080-surf.gif">
+    <h3 id="crypto_news">Crypto News:</h3>
+    <article style="margin: 8em 1em 8em 4em; text-align: left">
+      <h5><a id="title_0" href="" target="_blank"></a></h5>
+      <p><img id="image_0" style="float: left; padding-right: 1em" src="" onerror="this.src='https://www.flexx.co/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png'" width="auto" height="100"/></p>
+      <p id="preview_0"></p>
+    </article>
+    <article style="margin: 8em 1em 8em 4em; text-align: left">
+      <h5><a id="title_1" href="" target="_blank"></a></h5>
+      <p><img id="image_1" style="float: left; padding-right: 1em" src="" onerror="this.src='https://www.flexx.co/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png'" width="auto" height="100"/></p>
+      <p id="preview_1"></p>
+    </article>
+    <article style="margin: 8em 1em 8em 4em; text-align: left">
+      <h5><a id="title_2" href="" target="_blank"></a></h5>
+      <p><img id="image_2" style="float: left; padding-right: 1em" src="" onerror="this.src='https://www.flexx.co/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png'" width="auto" height="100"/></p>
+      <p id="preview_2"></p>
+    </article>
+    <article style="margin: 8em 1em 8em 4em; text-align: left">
+      <h5><a id="title_3" href="" target="_blank"></a></h5>
+      <p><img id="image_3" style="float: left; padding-right: 1em" src="" onerror="this.src='https://www.flexx.co/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png'" width="auto" height="100"/></p>
+      <p id="preview_3"></p>
+    </article>
+    <article style="margin: 8em 1em 8em 4em; text-align: left">
+      <h5><a id="title_4" href="" target="_blank"></a></h5>
+      <p><img id="image_4" style="float: left; padding-right: 1em" src="" onerror="this.src='https://www.flexx.co/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png'" width="auto" height="100"/></p>
+      <p id="preview_4"></p>
+    </article>
+  </div>
 
-<script>
-function getClicked() {
+    <script>
+    function getClicked() {
   if (document.body.style.background !== "black") {
     document.getElementById("text_prefs").style.color = "white";
     document.getElementById("text_prefs").style.fontFamily = "Times New Roman";

@@ -109,6 +109,13 @@ h1:focus {
     color: black;
   }
   table{
+    width: 50%;
+    color: white;
+    position: fixed;
+    top: 55%;
+    left: 19.5%;
+  }
+  th{
     font-size: 20px;
     text-align: center;
     text-shadow: -0.2rem -0.2rem 1rem #fff,
@@ -118,12 +125,14 @@ h1:focus {
     0 0 6rem var(--neon-border-color),
     0 0 8rem var(--neon-border-color),
     0 0 10rem var(--neon-border-color);
-    width: 50%;
-    color: white;
-    position: fixed;
-    top: 55%;
-    left: 19.5%;
   }
+  td{
+  font-size: 20px;
+  text-align: center;
+  color: black;
+  background-color: white;
+
+}
 .dropbtn {
   background-color: var(--neon-border-color);
   color: var(--neon-text-color);
