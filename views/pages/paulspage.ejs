@@ -1,9 +1,8 @@
-
 <!DOCTYPE html>
 <html>
 <head>
 
-<%- include('../partials/header.ejs') %>
+  <%- include('../partials/header.ejs') %>
 
 </head>
 
@@ -11,45 +10,45 @@
 
 <style>
 body {
-background-image: url('https://i.pinimg.com/originals/9c/76/9f/9c769f48cf3d318105c1151087a400f5.jpg');
-background-repeat: no-repeat;
-background-attachment: fixed;
-background-size: cover;
+ background-image: url('https://i.pinimg.com/originals/9c/76/9f/9c769f48cf3d318105c1151087a400f5.jpg');
+ background-repeat: no-repeat;
+ background-attachment: fixed;
+ background-size: cover;
 }
 .button {
-background: transparent;
-border: 2px solid magenta;
-padding: 15px 32px;
-text-align: center;
-text-decoration: none;
-display: inline-block;
-margin: 2em 4em;
-border-radius: 4px;
-cursor: pointer;
-transition-duration: 0.4s;
+  background: transparent;
+  border: 2px solid magenta;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 2em 4em;
+  border-radius: 4px;
+  cursor: pointer;
+  transition-duration: 0.4s;
 }
 .button:hover {
-background-color: black;
+  background-color: black;
 }
 a:link {
-color: yellow;
-background-color: transparent;
-text-decoration: none;
+  color: yellow;
+  background-color: transparent;
+  text-decoration: none;
 }
 a:visited {
-color: magenta;
-background-color: transparent;
-text-decoration: italic;
+  color: magenta;
+  background-color: transparent;
+  text-decoration: italic;
 }
 a:hover {
-color: black;
-background-color: transparent;
-text-decoration: underline;
+  color: black;
+  background-color: transparent;
+  text-decoration: underline;
 }
 a:active {
-color: yellow;
-background-color: transparent;
-text-decoration: underline;
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
 }
 
 
@@ -125,9 +124,7 @@ a:active {
     </article>
   </div>
 
-  <script>
 
-  function getClicked() {
     if (document.body.style.background !== "black") {
       document.getElementById("counter").innerHTML = i.toFixed(1) + " seconds spent hoverboarding";
       i += .1;
