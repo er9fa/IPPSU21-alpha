@@ -12,30 +12,76 @@
 
   <%- include('../partials/nav.ejs') %>
 
-  <div class="title">
-    <h1>Serhii Maltsev</h1>
-  </div>
+  <div class="grid">
+    <div class="column_1">
+      <div class="title">
+        <h1>Serhii Maltsev</h1>
+      </div>
 
-  <div class="text">
-    <p>
-      My name is Serhii Maltsev. I am from Ukraine, but right now, I am living in Brooklyn, NY. I am a third-year student at the University of Virginia.
-      <br>I study computer science. My hobbies are playing soccer and computer games. My favorite computer game is Dark Souls 2.
-      <br>I started coding when I was in the seventh grade. My favorite part about coding was solving complicated mathematical problems with the help of programming.
-      <br>At the same time, I was interested in modeling physical processes. However, later my interest shifted to the development of the software.
-      <br>My favorite part about software development is the fact that I can make someone's life easier. In the future, I am planning to work as a software developer.
-      <br>Additionally, I would like to do academic research related to 3D graphics and virtual reality.
-    </p>
-  </div>
+      <div class="text">
+        <p>
+          My name is Serhii Maltsev. I am from Ukraine, but right now, I am living in Brooklyn, NY. I am a third-year student at the University of Virginia.
+          <br>I study computer science. My hobbies are playing soccer and computer games. My favorite computer game is Dark Souls 2.
+          <br>I started coding when I was in the seventh grade. My favorite part about coding was solving complicated mathematical problems with the help of programming.
+          <br>At the same time, I was interested in modeling physical processes. However, later my interest shifted to the development of the software.
+          <br>My favorite part about software development is the fact that I can make someone's life easier. In the future, I am planning to work as a software developer.
+          <br>Additionally, I would like to do academic research related to 3D graphics and virtual reality.
+        </p>
+      </div>
 
-  <div class="counter">
-    <div id="variable_here"></div>
-  </div>
+      <div class="counter">
+        <div id="variable_here"></div>
+      </div>
 
-  <div class="image">
-    <img src="https://media.giphy.com/media/TH13hqypkyybBrdm6o/giphy.gif">
+      <div class="image">
+        <img src="https://media.giphy.com/media/TH13hqypkyybBrdm6o/giphy.gif">
+      </div>
+    </div>
+
+    <div class="column_2">
+      <div class="bitcoin_title">
+        <h1>Bitcoin Info</h1>
+      </div>
+
+      <div class="bitcoin_button">
+        <button id="the_button" type="button"; class="button"; onclick="getClicked()">Get Info</button>
+      </div>
+
+      <div class="bitcoin_selector">
+        <select id="Currency">
+          <option value="Bitcoin" selected>Bitcoin</option>
+          <option value="Ethereum">Ethereum</option>
+          <option value="Dogecoin">Dogecoin</option>
+        </select>
+      </div>
+
+      <div class="bitcoin_info">
+        <textarea id="info" name="info" rows="3" cols="40">
+
+        </textarea>
+      </div>
+
+      <div class="bitcoin_image">
+        <img src="https://media.giphy.com/media/RgxAkfVQWwkjS/giphy.gif" height="400px">
+      </div>
+
   </div>
 
   <script>
+    function getClicked() {
+      if (document.getElementById("Currency").value == "Bitcoin") {
+        document.getElementById("info").value = "Price: Bitcoin \nMarket Cap: Bitcoin \nVolume: Bitcoin";
+      }
+      if (document.getElementById("Currency").value == "Ethereum") {
+        document.getElementById("info").value = "Price: Ethereum \nMarket Cap: Ethereum \nVolume: Ethereum";
+      }
+      if (document.getElementById("Currency").value == "Dogecoin") {
+        document.getElementById("info").value = "Price: Dogecoin \nMarket Cap: Dogecoin \nVolume: Dogecoin";
+      }
+    }
+
+    document.getElementById("info").value = "Price: \nMarket Cap: \nVolume: ";
+
     var i = 0;
     setInterval(() => {
       console.log(i);

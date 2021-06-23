@@ -9,14 +9,12 @@
 <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet'>
 
 <style>
-
 body {
  background-image: url('https://i.pinimg.com/originals/9c/76/9f/9c769f48cf3d318105c1151087a400f5.jpg');
  background-repeat: no-repeat;
  background-attachment: fixed;
  background-size: cover;
 }
-
 .button {
   background: transparent;
   border: 2px solid magenta;
@@ -29,10 +27,30 @@ body {
   cursor: pointer;
   transition-duration: 0.4s;
 }
-
 .button:hover {
   background-color: black;
 }
+a:link {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  color: magenta;
+  background-color: transparent;
+  text-decoration: italic;
+}
+a:hover {
+  color: black;
+  background-color: transparent;
+  text-decoration: underline;
+}
+a:active {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
 
 a:link {
   color: yellow;
@@ -87,31 +105,16 @@ a:active {
 
   </div>
 
-  <script>
 
-  function getClicked() {
     if (document.body.style.background !== "black") {
-      document.getElementById("text_prefs").style.color = "white";
-      document.getElementById("text_prefs").style.fontFamily = "Times New Roman";
-      document.getElementById("text_prefs").style.fontSize = "1.15em";
-      document.getElementById("bio").style.borderColor = "white";
-      document.getElementById("the_button").style.borderColor = "white";
-      document.getElementById("the_button").innerHTML = "Too Boring? Click Me!";
-      document.getElementById("the_gif").src = "https://i.gifer.com/9PsB.gif";
-      document.body.style.background = "black";
+      document.getElementById("counter").innerHTML = i.toFixed(1) + " seconds spent hoverboarding";
+      i += .1;
     }
     else {
-      document.getElementById("text_prefs").style.color = "yellow";
-      document.getElementById("text_prefs").style.fontFamily = "Orbitron";
-      document.getElementById("text_prefs").style.fontSize = "1em";
-      document.getElementById("bio").style.borderColor = "magenta";
-      document.getElementById("the_button").style.borderColor = "magenta";
-      document.getElementById("the_button").innerHTML = "Hard to Read? Click Me!";
-      document.getElementById("the_gif").src = "https://images.squarespace-cdn.com/content/v1/57b1fe4ef7e0ab588bc6d3bb/1508870226296-NXNQ08KQ9T4OZXP57KWM/ke17ZwdGBToddI8pDm48kBZN12O5nsk_xgZgkr0pi4JZw-zPPgdn4jUwVcJE1ZvWhcwhEtWJXoshNdA9f1qD7UlsW9OX_ZneFwBCDVKxw6WL3LlpY_tVQNqjc6o4Ku0NTW9HNOVPdrPupPn-Lyp4xQ/1080-surf.gif";
-      document.body.style.backgroundImage = "url('https://i.pinimg.com/originals/9c/76/9f/9c769f48cf3d318105c1151087a400f5.jpg')";
-      document.body.style.backgroundRepeat = "no-repeat";
-      document.body.style.backgroundSize = "cover";
+      document.getElementById("counter").innerHTML = j.toFixed(1) + " seconds spent waving";
+      j += .1;
     }
+
   }
 
     var i = 0;
@@ -134,6 +137,28 @@ a:active {
         document.getElementById("volume").innerHTML = data.data[0].quote.USD.volume_24h;
       })
     }, 1000);
+
+  const rp = require('request-promise');
+  const requestOptions = {
+    method: 'GET',
+    uri: 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest',
+    qs: {
+      'start': '1',
+      'limit': '5000',
+      'convert': 'USD'
+    },
+    headers: {
+      'X-CMC_PRO_API_KEY': 'b54bcf4d-1bca-4e8e-9a24-22ff2c3d462c'
+    },
+    json: true,
+    gzip: true
+  };
+
+  rp(requestOptions).then(response => {
+    console.log('API call response:', response);
+  }).catch((err) => {
+    console.log('API call error:', err.message);
+  });
 
   </script>
 
