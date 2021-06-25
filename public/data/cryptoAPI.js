@@ -7,7 +7,7 @@ const base = `https://api.coingecko.com/api/v3/`
  */
 async function getValue(coinID) {
     const coin = await getCoin(coinID)
-    return coin[coinID].usd
+    return coin[coinID].usd.toFixed(2)
 }
 
 /**
