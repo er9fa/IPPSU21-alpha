@@ -16,18 +16,7 @@
         <canvas id="chart" width="700" height="500"></canvas>
     </div>
     <script>
-        let dataPoints = []
-        let chart = createChart(dataPoints)
-
-        async function updateChart() {
-            getValue("bitcoin").then(value => {
-                dataPoints.push(value)
-                chart.update()
-            })
-        }
-
-        updateChart()
-        setInterval(() => updateChart(), 5000)
+        let chart = createChart("bitcoin", "chart")
     </script>
 
 </body>

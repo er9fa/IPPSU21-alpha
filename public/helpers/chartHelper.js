@@ -1,10 +1,23 @@
 // TODO: How do you import cryptoAPI.js inside of this file, instead of in the HTML page template?
 
-function createChart(dataPoints) {
+// Requires the following to first be imported: CryptoAPI.js 
+
+let dataPoints = []
+let coin = ""
+
+/**
+ * 
+ * @param {String} c The ID of the cryptocurrency to be charted
+ * @param {String} divElementID The ID of the HTML div element to be populated with the chart
+ * @returns A chart object (see Chart.js documentation)
+ */
+function createChart(c, divElementID) {
+    coin = c
+    labels = getLabels()
     const data = {
         labels: labels,
         datasets: [{
-            label: 'Cryptocurrency value',
+            label: `${c} value`,
             backgroundColor: 'rgb(0, 102, 204)',
             borderColor: 'rgb(0, 153, 255)',
             data: dataPoints
@@ -18,9 +31,12 @@ function createChart(dataPoints) {
         }
     };
     var chart = new Chart(
-        document.getElementById('chart'),
+        document.getElementById(divElementID),
         config
     );
+
+    updateChart(chart, dataPoints)
+    setInterval(() => updateChart(chart, dataPoints), 5000)
 
     return chart
 }
@@ -47,4 +63,12 @@ function getLabels() {
     }
 
     return labels
+}
+
+function updateChart() {
+    getValue(coin).then(value => {
+        dataPoints.push(value)
+        chart.update()
+        console.log(chart.data)
+    })
 }
