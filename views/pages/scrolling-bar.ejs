@@ -1,22 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <title>Scrolling bar</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <!-- Scrolling bar stylesheet -->
-    <link rel="stylesheet" href="stylesheets/scrolling-bar.css">
-    <!-- Scrolling bar library; Source: https://github.com/tjenkinson/dynamic-marquee -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/dynamic-marquee@2"></script>
-    <!-- My coin API to connect with CoinGecko -->
-    <script src="/data/cryptoAPI.js"></script>
-</head>
-
-<body>
-    <div id="scrolling-bar"></div>
-</body>
+<!-- Scrolling bar stylesheet -->
+<link rel="stylesheet" href="stylesheets/scrolling-bar.css">
+<!-- Scrolling bar library; Source: https://github.com/tjenkinson/dynamic-marquee -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/dynamic-marquee@2"></script>
+<!-- My coin API to connect with CoinGecko -->
+<script src="/data/cryptoAPI.js"></script>
+<div id="scrolling-bar"></div>
 <script>
     // Initialize scrolling bar from library
     const Marquee = dynamicMarquee.Marquee;
@@ -36,8 +24,8 @@
             const price = coin.price
             const priceChange = coin.priceChange
             const hasPriceIncreased = (priceChange >= 0) ? true : false
-            const priceChangeSymbol = (hasPriceIncreased) ? 
-            "/images/scrolling-bar-green-triangle.png" : "/images/scrolling-bar-red-triangle.png"
+            const priceChangeSymbol = (hasPriceIncreased) ?
+                "/images/scrolling-bar-green-triangle.png" : "/images/scrolling-bar-red-triangle.png"
 
             const result = "\xa0\xa0" + tickerSymbol + " $" + price + "\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0"
 
@@ -59,9 +47,3 @@
 </script>
 <!-- Formats numbers with abbreviations (e.g. 1000 -> 1k) -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
-<!-- Bootstrap Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
-    crossorigin="anonymous"></script>
-
-</html>

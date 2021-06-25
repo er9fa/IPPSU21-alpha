@@ -22,7 +22,7 @@
 </head>
 
 <body>
-
+    <%- include ("scrolling-bar.ejs") %>
     <nav class="navbar navbar-expand-lg navbar-dark uva-orange">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Navbar</a>
@@ -72,36 +72,6 @@
         getValue("bitcoin").then(value => {
             document.getElementById("btc-price").innerHTML =
                 "Current value: $" + value
-        })
-
-        // Initialize scrolling bar
-        const Marquee = dynamicMarquee.Marquee;
-        const marquee = new Marquee(document.getElementById('marquee'), {
-            // Move words 100px/s to the left
-            rate: -100
-        })
-
-        // Concat popular coins to scrolling bar
-        getPopularCoins().then(coins => {
-            let popularCoins = ""
-            coins.forEach(coin => {
-                const tickerSymbol = coin["symbol"]
-                const price = coin.current_price.toFixed(2)
-                const priceChange = coin.price_change_24h
-                const hasPriceIncreased = (priceChange >= 0) ? "↑" : "↓"
-
-                const result = hasPriceIncreased + " " + tickerSymbol + " $" + price + "\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0"
-
-                popularCoins += result
-            })
-
-            // Add popular coins to scrolling bar
-            // For looping infinitely, the dynamicMarquee library
-            //      uses an array of functions which return strings or elements to iterate through
-            // TODO: What is "window.l"?
-            window.l = dynamicMarquee.loop(marquee, [
-            () => popularCoins
-        ])
         })
 
         // Timer
