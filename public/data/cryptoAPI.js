@@ -33,28 +33,30 @@ async function getCoins(coinIDs) {
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
 
     const response = await fetch(url).then(r => r.json())
-        .then(data => {
-            /* Coins are returned in the following JSON format
-            {
-                "bitcoin": {
-                    "usd": 35674,
-                    "usd_market_cap": 668148892256.3638,
-                    "usd_24h_vol": 35636689529.785774,
-                    "usd_24h_change": -4.35081290184123
-                },
-                "ethereum": {
-                    "usd": 2380.23,
-                    "usd_market_cap": 276714108452.90765,
-                    "usd_24h_vol": 28220756437.30981,
-                    "usd_24h_change": 1.0382271224597475
-                }
-            } */
-            console.log("Retrieved specified coins", data)
-            return data
-        })
+
+    .then(data => {
+        /* Coins are returned in the following JSON format
+        {
+            "bitcoin": {
+                "usd": 35674,
+                "usd_market_cap": 668148892256.3638,
+                "usd_24h_vol": 35636689529.785774,
+                "usd_24h_change": -4.35081290184123
+            },
+            "ethereum": {
+                "usd": 2380.23,
+                "usd_market_cap": 276714108452.90765,
+                "usd_24h_vol": 28220756437.30981,
+                "usd_24h_change": 1.0382271224597475
+            }
+        } */
+        console.log("Retrieved specified coins", data)
+        return data
+    })
     // Return the coins as a JSON object
     return response
 }
+
 
 async function getPopularCoins() {
     const response = await fetchPopularCoins()
