@@ -8,49 +8,26 @@
         integrity="sha512-VCHVc5miKoln972iJPvkQrUYYq7XpxXzvqNfiul1H4aZDwGBGC0lq373KNleaB2LpnC2a/iNfE5zoRYmB4TRDQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="/data/cryptoAPI.js"></script>
+    <script src="helpers/chartHelper.js"></script>
 </head>
 
 <body>
     <div>
-        <canvas id="myChart" width="700" height="500"></canvas>
+        <canvas id="chart" width="700" height="500"></canvas>
     </div>
     <script>
-        const labels = [
-            'January',
-            'February',
-            'March',
-            'April',
-            'May',
-            'June',
-        ];
-        const data = {
-            labels: labels,
-            datasets: [{
-                label: 'My First dataset',
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
-                data: [0, 10, 5, 2, 20, 30, 45],
-            }]
-        };
-        const config = {
-            type: 'line',
-            data,
-            options: {
-                responsive: false
-            }
-        };
-        var myChart = new Chart(
-            document.getElementById('myChart'),
-            config
-        );
+        let dataPoints = []
+        let chart = createChart(dataPoints)
 
-        function addData(chart, data) {
-            chart.data()
-            chart.update();
+        async function updateChart() {
+            getValue("bitcoin").then(value => {
+                dataPoints.push(value)
+                chart.update()
+            })
         }
 
-        addData(myChart, data)
-
+        updateChart()
+        setInterval(() => updateChart(), 5000)
     </script>
 
 </body>
