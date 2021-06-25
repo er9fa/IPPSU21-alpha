@@ -8,43 +8,117 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Mate+SC&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="stylesheets/al-bio-css.css">
+
+    <!-- Scrolling bar library; Source: https://github.com/tjenkinson/dynamic-marquee -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/dynamic-marquee@2"></script>
+
+    <!-- My crypto API -->
+    <script src="/data/cryptoAPI.js"></script>
 </head>
 
-<body class="bg-dark text-white">
-    <div class="text-center mx-5 mt-4">
-        <h1>Altin's Bio</h1>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark uva-orange">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link 1</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link 2</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link 3</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="mx-5 mt-4">
+        <h1>
+            <%=title%>
+        </h1>
         <br>
         <p class="border">My name is Altin Terstena, and I’m a fourth-year CS major at UVA. Outside of coding, my main
             hobbies include listening to music, watching tv, and gaming (especially Battlefield). I look forward to
             working on this internship over the summer.</p>
-            <br>
-            <h5>On this day:</h5>
-            <div id="fun-facts-of-the-day"></div>
-            </br>
-            <div id="timer"></div>
-    </div>
+        <br>
+        <h4>On this day:</h4>
+        <div id="fun-facts-of-the-day" class="border"></div>
+        </br>
 
+        <!-- Bitcoin tracking elements -->
+        <h5>Bitcoin</h5>
+        <div id="btc-price"></div>
+        <div id="marquee"></div>
+        <div id="timer" class="text-center"></div>
+    </div>
     <script>
+        getValue("bitcoin").then(value => {
+            document.getElementById("btc-price").innerHTML =
+                "Current value: $" + value
+        })
+
+        // Initialize scrolling bar
+        const Marquee = dynamicMarquee.Marquee;
+        const marquee = new Marquee(document.getElementById('marquee'), {
+            // Move words 100px/s to the left
+            rate: -100
+        })
+
+        // Concat popular coins to scrolling bar
+        getPopularCoins().then(coins => {
+            let popularCoins = ""
+            coins.forEach(coin => {
+                const tickerSymbol = coin["symbol"]
+                const price = coin.current_price.toFixed(2)
+                const priceChange = coin.price_change_24h
+                const hasPriceIncreased = (priceChange >= 0) ? "↑" : "↓"
+
+                const result = hasPriceIncreased + " " + tickerSymbol + " $" + price + "\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0"
+
+                popularCoins += result
+            })
+
+            // Add popular coins to scrolling bar
+            // For looping infinitely, the dynamicMarquee library
+            //      uses an array of functions which return strings or elements to iterate through
+            // TODO: What is "window.l"?
+            window.l = dynamicMarquee.loop(marquee, [
+            () => popularCoins
+        ])
+        })
+
+        // Timer
         var i = 0;
         setInterval(() => {
-            console.log(i);
             document.getElementById("timer").innerHTML = i;
-            document.getElementById("timer").innerHTML.fontsize = '${i}';
             if (i % 6 === 0) {
                 fetch("http://history.muffinlabs.com/date").then(r => r.json()).then(data => {
-                    document.getElementById("fun-facts-of-the-day").innerHTML = data.data.Events[Math.floor(i/2)].text;
-                    console.log(data)
+                    document.getElementById("fun-facts-of-the-day").innerHTML = data.data.Events[Math.floor(i / 6)].text;
                 })
             }
             i++;
         }, 1000);
-
-        var d = new Date();
-        var month = d.getMonth();
-        var day = d.getDay();
-
     </script>
 
+    <!-- Formats numbers with abbreviations (e.g. 1000 -> 1k) -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
