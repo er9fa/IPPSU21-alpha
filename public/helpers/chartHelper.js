@@ -2,8 +2,11 @@
 
 // Requires the following to first be imported: CryptoAPI.js 
 
-let dataPoints = []
-let coin = ""
+let coin = "" // The coin to be tracked on the graph
+const updateInterval = 20 // Update the graph every 20 seconds
+let dataPoints = [] // An array of the data points to be plotted on the chart
+let chartXAxisTickers = [] // An array of the x-axis tickers
+let mostRecentTimeTicker = {} // The rightmost time ticker on the chart x-axis represented as a date object (e.g. 05:25:17 PM)
 
 /**
  * Creates a chart which plots the value of a cryptocurrency over time (every 20 seconds)
@@ -13,9 +16,9 @@ let coin = ""
  */
 function createChart(coinID, divElementID) {
     coin = coinID
-    labels = getLabels()
+    chartXAxisTickers = getStartingXAxisTickers()
     const data = {
-        labels: labels,
+        labels: chartXAxisTickers,
         datasets: [{
             label: `${coinID} value`,
             backgroundColor: 'rgb(0, 102, 204)',
@@ -29,14 +32,14 @@ function createChart(coinID, divElementID) {
         options: {
             responsive: false,
             scales: {
-                // Changes the y-axis ticker values
                 y: {
                     ticks: {
+                        // Changes the y-axis ticker values
                         // Append a dollar sign to the tickers
-                        callback: function(value, index, values) {
+                        callback: function (value, index, values) {
                             return '$' + value.toFixed(2);
                         }
-                    }
+                    },
                 }
             },
             plugins: {
@@ -55,39 +58,48 @@ function createChart(coinID, divElementID) {
     // Add the first data point to the chart
     updateChart(chart, dataPoints)
     // Continue adding data points to the chart every 20 seconds
-    setInterval(() => updateChart(chart, dataPoints), 20000)
+    setInterval(() => updateChart(chart, dataPoints), updateInterval * 1000)
 
     return chart
 }
 
-function getLabels() {
-    let currentTime = new Date()
+function getStartingXAxisTickers(array) {
+    mostRecentTimeTicker = new Date()
 
-    let hour = currentTime.getHours()
-    let minutes = currentTime.getMinutes()
-    let seconds = currentTime.getSeconds()
-
-    const labels = []
-    labels[0] = hour + ":" + minutes + ":" + seconds
-    for (i = 0; i < 10; i++) {
-        currentTime.setSeconds(currentTime.getSeconds() + 20)
-        hour = currentTime.getHours()
-        minutes = currentTime.getMinutes()
-        seconds = currentTime.getSeconds()
-
-        if (minutes < 10) minutes = "0" + minutes
-        if (seconds < 10) seconds = "0" + seconds
-
-        labels[i] = hour + ":" + minutes + ":" + seconds
+    let tickers = []
+    tickers[0] = convertTimeToString(mostRecentTimeTicker)
+    for (i = 1; i < 10; i++) {
+        // The next time ticker on the x-axis should be +20s ahead
+        incrementTimeByXSeconds(mostRecentTimeTicker, updateInterval)
+        tickers[i] = convertTimeToString(mostRecentTimeTicker)
     }
 
-    return labels
+    return tickers
+}
+
+function convertTimeToString(time) {
+    hour = time.getHours()
+    minutes = time.getMinutes()
+    seconds = time.getSeconds()
+
+    if (minutes < 10) minutes = "0" + minutes
+    if (seconds < 10) seconds = "0" + seconds
+
+    return hour + ":" + minutes + ":" + seconds
+}
+
+function incrementTimeByXSeconds(time, seconds) {
+    time.setSeconds(mostRecentTimeTicker.getSeconds() + seconds)
 }
 
 function updateChart() {
+    if (dataPoints.length > 8) {
+        incrementTimeByXSeconds(mostRecentTimeTicker, updateInterval)
+        chartXAxisTickers.push(convertTimeToString(mostRecentTimeTicker))
+        chart.update()
+    }
     getValue(coin).then(value => {
         dataPoints.push(value)
         chart.update()
-        console.log(chart.data)
     })
 }
