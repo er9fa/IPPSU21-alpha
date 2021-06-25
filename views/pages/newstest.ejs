@@ -3,13 +3,6 @@
   <head>
     <%- include('../partials/header.ejs') %>
     <title>Crypto Calc</title>
-    <link rel="stylesheet" href="stylesheets/al-bio-css.css">
-    <!-- Scrolling bar library; Source: https://github.com/tjenkinson/dynamic-marquee -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/dynamic-marquee@2"></script>
-    <!-- My crypto API -->
-    <script src="/data/cryptoAPI.js"></script>
-    <link rel="stylesheet" type="text/css" href="stylesheets/mainpage.css">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   </head>
   <style>
   @import url(https://fonts.googleapis.com/css?family=Exo+2:200i);
@@ -284,31 +277,7 @@ aside {
         <button id="nextButton" onclick="twoClicked()" class= "button last-button">Next</button>
     </div>
 
-      <div id="marquee"></div>
 
-      <input type="checkbox" id="check">
-      <header>
-        <label for="check">
-          <i class="fas fa-bars" id="sidebar_btn"></i>
-        </label>
-        <div class="left_area">
-          <h3>Main</h3>
-        </div>
-        <div class="right_area">
-        <div>
-      </header>
-
-      <div class="sidebar">
-        <center>
-          <img src = "https://i.ibb.co/G9CVPYh/bitcoin-dd8a16.png" class="profile_image" alt = "">
-          <h4>Crypto Calc</h4>
-        </center>
-        <a href="/"><i class="fas fa-coins"><span> Main</span></i></a>
-        <a href="/calculator"><i class="fas fa-calculator"><span> Calculator</span></i></a>
-        <a href="/news"><i class="fas fa-newspaper"><span> News</span></i></a>
-        <a href="/database"><i class="fas fa-database"><span> Database</span></i></a>
-        <a href="/game"><i class="fas fa-gamepad"><span> Game</span></i></a>
-      </div>
 
   </body>
   <script>
@@ -1045,87 +1014,5 @@ aside {
           document.getElementById("preview_9").innerHTML = pretty_descript;
       })
     }
-  function rightClicked() {
-    if (i === 10) {
-      page_num++;
-      i = 0;
-    }
-    else {
-      i = 10;
-    }
-    fetch("https://newsapi.org/v2/everything?apiKey=a791d1a1c2674ac8914503c53d9a1e8b&language=en&q=bitcoin&page=" + page_num).then(r => r.json()).then(data => {
-        var num_articles = data.totalResults;
-        console.log(num_articles + " articles found");
-        document.getElementById("title_0").innerHTML = data.articles[i].title;
-        document.getElementById("title_0").href = data.articles[i].url;
-        document.getElementById("image_0").src = data.articles[i].urlToImage;
-        document.getElementById("preview_0").innerHTML = data.articles[i].content.substring(0, 200);
-        document.getElementById("title_1").innerHTML = data.articles[i+1].title;
-        document.getElementById("title_1").href = data.articles[i+1].url;
-        document.getElementById("image_1").src = data.articles[i+1].urlToImage;
-        document.getElementById("preview_1").innerHTML = data.articles[i+1].content.substring(0, 200);
-        document.getElementById("title_2").innerHTML = data.articles[i+2].title;
-        document.getElementById("title_2").href = data.articles[i+2].url;
-        document.getElementById("image_2").src = data.articles[i+2].urlToImage;
-        document.getElementById("preview_2").innerHTML = data.articles[i+2].content.substring(0, 200);
-        document.getElementById("title_3").innerHTML = data.articles[i+3].title;
-        document.getElementById("title_3").href = data.articles[i+3].url;
-        document.getElementById("image_3").src = data.articles[i+3].urlToImage;
-        document.getElementById("preview_3").innerHTML = data.articles[i+3].content.substring(0, 200);
-        document.getElementById("title_4").innerHTML = data.articles[i+4].title;
-        document.getElementById("title_4").href = data.articles[i+4].url;
-        document.getElementById("image_4").src = data.articles[i+4].urlToImage;
-        document.getElementById("preview_4").innerHTML = data.articles[i+4].content.substring(0, 200);
-        document.getElementById("title_5").innerHTML = data.articles[i+5].title;
-        document.getElementById("title_5").href = data.articles[i+5].url;
-        document.getElementById("image_5").src = data.articles[i+5].urlToImage;
-        document.getElementById("preview_5").innerHTML = data.articles[i+5].content.substring(0, 200);
-        document.getElementById("title_6").innerHTML = data.articles[i+6].title;
-        document.getElementById("title_6").href = data.articles[i+6].url;
-        document.getElementById("image_6").src = data.articles[i+6].urlToImage;
-        document.getElementById("preview_6").innerHTML = data.articles[i+6].content.substring(0, 200);
-        document.getElementById("title_7").innerHTML = data.articles[i+7].title;
-        document.getElementById("title_7").href = data.articles[i+7].url;
-        document.getElementById("image_7").src = data.articles[i+7].urlToImage;
-        document.getElementById("preview_7").innerHTML = data.articles[i+7].content.substring(0, 200);
-        document.getElementById("title_8").innerHTML = data.articles[i+8].title;
-        document.getElementById("title_8").href = data.articles[i+8].url;
-        document.getElementById("image_8").src = data.articles[i+8].urlToImage;
-        document.getElementById("preview_8").innerHTML = data.articles[i+8].content.substring(0, 200);
-        document.getElementById("title_9").innerHTML = data.articles[i+9].title;
-        document.getElementById("title_9").href = data.articles[i+9].url;
-        document.getElementById("image_9").src = data.articles[i+9].urlToImage;
-        document.getElementById("preview_9").innerHTML = data.articles[i+9].content.substring(0, 200);
-    })
-  }
-  // Initialize scrolling bar
-  const Marquee = dynamicMarquee.Marquee;
-  const marquee = new Marquee(document.getElementById('marquee'), {
-      // Move words 100px/s to the left
-      rate: -100
-  })
-
-  // Concat popular coins to scrolling bar
-  getPopularCoins().then(coins => {
-      let popularCoins = ""
-      coins.forEach(coin => {
-          const tickerSymbol = coin["symbol"]
-          const price = coin.current_price.toFixed(2)
-          const priceChange = coin.price_change_24h
-          const hasPriceIncreased = (priceChange >= 0) ? "↑" : "↓"
-
-          const result = hasPriceIncreased + " " + tickerSymbol + " $" + price + "\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0"
-
-          popularCoins += result
-      })
-
-      // Add popular coins to scrolling bar
-      // For looping infinitely, the dynamicMarquee library
-      //      uses an array of functions which return strings or elements to iterate through
-      // TODO: What is "window.l"?
-      window.l = dynamicMarquee.loop(marquee, [
-      () => popularCoins
-  ])
-  })
   </script>
 </html>
