@@ -24,11 +24,12 @@
         <th> Output: </th>
       </tr>
     </table>
-    <button class= "button button1" onclick="convert(); history()">ENTER</button>
+    <audio id="mysound" src="ka-ching.mp3" preload="auto"></audio>
+    <button class= "button button1" onclick="convert(); history(); playsound()">ENTER</button>
 
     <div class="dropdown v1" style="position: fixed; top: 47%; left: 23%;">
       <label for="currency"> Choose an input: </label>
-      <select name="input currencty" id="inputCurrency">
+      <select name="input currency" id="inputCurrency">
         <option value="Bitcoin">Bitcoin</option>
         <option value="Litecoin">Litecoin</option>
         <option value="Bitcoin Cash">Bitcoin Cash</option>
@@ -108,9 +109,11 @@
     cell1.innerHTML = date;
     cell2.innerHTML = inputVal.value + " " + document.getElementById("inputCurrency").value;
     cell3.innerHTML = outputVal.value + " " + document.getElementById("coin_value").value;
-
-
-
+  }
+  function playsound() {
+    var mysound = document.getElementById("mysound");
+    mysound.autoplay = 'true';
+    mysound.load();
   }
 
 

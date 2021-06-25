@@ -125,14 +125,13 @@ h1:focus {
     0 0 6rem var(--neon-border-color),
     0 0 8rem var(--neon-border-color),
     0 0 10rem var(--neon-border-color);
-
   }
   td{
   font-size: 20px;
   text-align: center;
-  color: black;
-  background-color: white;
-
+  color: yellow;
+  border: 1px solid magenta;
+  background-color: gray;
 }
 .dropbtn {
   background-color: var(--neon-border-color);

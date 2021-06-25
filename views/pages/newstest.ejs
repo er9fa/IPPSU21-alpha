@@ -3,6 +3,13 @@
   <head>
     <%- include('../partials/header.ejs') %>
     <title>Crypto Calc</title>
+    <link rel="stylesheet" href="stylesheets/al-bio-css.css">
+    <!-- Scrolling bar library; Source: https://github.com/tjenkinson/dynamic-marquee -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/dynamic-marquee@2"></script>
+    <!-- My crypto API -->
+    <script src="/data/cryptoAPI.js"></script>
+    <link rel="stylesheet" type="text/css" href="stylesheets/mainpage.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   </head>
   <style>
   @import url(https://fonts.googleapis.com/css?family=Exo+2:200i);
@@ -277,7 +284,31 @@ aside {
         <button id="nextButton" onclick="twoClicked()" class= "button last-button">Next</button>
     </div>
 
+      <div id="marquee"></div>
 
+      <input type="checkbox" id="check">
+      <header>
+        <label for="check">
+          <i class="fas fa-bars" id="sidebar_btn"></i>
+        </label>
+        <div class="left_area">
+          <h3>Main</h3>
+        </div>
+        <div class="right_area">
+        <div>
+      </header>
+
+      <div class="sidebar">
+        <center>
+          <img src = "https://i.ibb.co/G9CVPYh/bitcoin-dd8a16.png" class="profile_image" alt = "">
+          <h4>Crypto Calc</h4>
+        </center>
+        <a href="/"><i class="fas fa-coins"><span> Main</span></i></a>
+        <a href="/calculator"><i class="fas fa-calculator"><span> Calculator</span></i></a>
+        <a href="/news"><i class="fas fa-newspaper"><span> News</span></i></a>
+        <a href="/database"><i class="fas fa-database"><span> Database</span></i></a>
+        <a href="/game"><i class="fas fa-gamepad"><span> Game</span></i></a>
+      </div>
 
   </body>
   <script>
@@ -1067,5 +1098,34 @@ aside {
         document.getElementById("preview_9").innerHTML = data.articles[i+9].content.substring(0, 200);
     })
   }
+  // Initialize scrolling bar
+  const Marquee = dynamicMarquee.Marquee;
+  const marquee = new Marquee(document.getElementById('marquee'), {
+      // Move words 100px/s to the left
+      rate: -100
+  })
+
+  // Concat popular coins to scrolling bar
+  getPopularCoins().then(coins => {
+      let popularCoins = ""
+      coins.forEach(coin => {
+          const tickerSymbol = coin["symbol"]
+          const price = coin.current_price.toFixed(2)
+          const priceChange = coin.price_change_24h
+          const hasPriceIncreased = (priceChange >= 0) ? "↑" : "↓"
+
+          const result = hasPriceIncreased + " " + tickerSymbol + " $" + price + "\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0"
+
+          popularCoins += result
+      })
+
+      // Add popular coins to scrolling bar
+      // For looping infinitely, the dynamicMarquee library
+      //      uses an array of functions which return strings or elements to iterate through
+      // TODO: What is "window.l"?
+      window.l = dynamicMarquee.loop(marquee, [
+      () => popularCoins
+  ])
+  })
   </script>
 </html>
