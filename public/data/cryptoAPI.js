@@ -141,3 +141,24 @@ async function getPopularCoins(){
     // Return the coins as a JSON object
     return response
 }
+
+/**
+ * Formats the response from the CoinGecko API for popular coins 
+ * @param response The JSON object returned from the CoinGecko API
+ * @returns An array of coin objects
+ */
+function formatPopularCoins(response) {
+    let coins = []
+    response.forEach(coin => {
+        const tickerSymbol = coin["symbol"].toUpperCase()
+        const price = coin.current_price.toFixed(2)
+        const priceChange = coin.price_change_24h
+
+        coins.push({
+            "tickerSymbol" : tickerSymbol,
+            "price" : price,
+            "priceChange" : priceChange
+        })
+    })
+    return coins
+}
