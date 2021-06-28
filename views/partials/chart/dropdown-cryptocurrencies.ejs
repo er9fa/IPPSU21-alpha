@@ -1,0 +1,23 @@
+<script src="scripts/bvselect/bvselect.js"></script>
+<link rel="stylesheet" href="stylesheets/bvselect/bvselect.css">
+<select id="selectbox">
+    <option data-separator="true"> Select Option </option>
+    <option value="1"> Option 1 </option>
+    <option value="2"> Option 2 </option>
+    <option value="3" disabled> Option 3 </option>
+    <option value="4"> Option 4 </option>
+</select>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+            var demo1 = new BVSelect({
+                selector: "#selectbox",
+                width: "100%",
+                searchbox: true,
+                offset: true,
+                placeholder: "Select Option",
+                search_placeholder: "Search...",
+                search_autofocus: true,
+                breakpoint: 450
+            });
+        });
+</script>
