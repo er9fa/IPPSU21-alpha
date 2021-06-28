@@ -7,6 +7,7 @@ const updateInterval = 20 // Update the graph every 20 seconds
 let dataPoints = [] // An array of the data points to be plotted on the chart
 let chartXAxisTickers = [] // An array of the x-axis tickers
 let mostRecentTimeTicker = {} // The rightmost time ticker on the chart x-axis represented as a date object (e.g. 05:25:17 PM)
+let intervalID;
 
 /**
  * Creates a chart which plots the value of a cryptocurrency over time (every 20 seconds)
@@ -58,7 +59,7 @@ function createChart(coinID, divElementID) {
     // Add the first data point to the chart
     updateChart(chart, dataPoints)
     // Continue adding data points to the chart every 20 seconds
-    setInterval(() => updateChart(chart, dataPoints), updateInterval * 1000)
+    intervalID = setInterval(() => updateChart(chart, dataPoints), updateInterval * 1000)
 
     return chart
 }
@@ -98,6 +99,7 @@ function incrementTimeByXSeconds(time, seconds) {
 }
 
 function updateChart() {
+    console.log("setInterval function called")
     if (dataPoints.length > 8) {
         incrementTimeByXSeconds(mostRecentTimeTicker, updateInterval)
         chartXAxisTickers.push(convertTimeToString(mostRecentTimeTicker))

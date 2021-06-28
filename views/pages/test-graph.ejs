@@ -1,24 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"
-        integrity="sha512-VCHVc5miKoln972iJPvkQrUYYq7XpxXzvqNfiul1H4aZDwGBGC0lq373KNleaB2LpnC2a/iNfE5zoRYmB4TRDQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="/data/cryptoAPI.js"></script>
-    <script src="helpers/chartHelper.js"></script>
+    <%- include("../partials/header.ejs") %>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"
+            integrity="sha512-VCHVc5miKoln972iJPvkQrUYYq7XpxXzvqNfiul1H4aZDwGBGC0lq373KNleaB2LpnC2a/iNfE5zoRYmB4TRDQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="/data/cryptoAPI.js"></script>
+        <script src="helpers/chartHelper.js"></script>
 </head>
 
 <body>
-    <div>
-        <canvas id="chart" width="700" height="500"></canvas>
-    </div>
-    <script>
-        let chart = createChart("bitcoin", "chart")
-    </script>
-
+    <%- include ("../partials/chart/dropdown-cryptocurrencies-test.ejs") %>
+        <div class="justify-content-center align-items-center">
+            <h2 class="my-4" id="chart-title">Bitcoin Value</h2>
+            <div>
+                <canvas id="chart" width="700" height="500"></canvas>
+            </div>
+        </div>
+        <script>
+            let chart = createChart("bitcoin", "chart")
+        </script>
 </body>
+<%- include("../partials/footer.ejs") %>
 
-</html>
+    </html>

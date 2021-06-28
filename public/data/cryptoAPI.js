@@ -6,6 +6,7 @@ const base = `https://api.coingecko.com/api/v3/`
  * @param coinID The ID of a cryptocurrency from the CoinGecko API
  */
 async function getValue(coinID) {
+    coinID = coinID.toLowerCase()
     const coin = await getCoin(coinID)
     return coin[coinID].usd.toFixed(2)
 }
@@ -89,11 +90,13 @@ async function fetchPopularCoins() {
 function formatPopularCoins(response) {
     let coins = []
     response.forEach(coin => {
+        const name = coin.name
         const tickerSymbol = coin["symbol"].toUpperCase()
         const price = coin.current_price.toFixed(2)
         const priceChange = coin.price_change_24h
 
         coins.push({
+            "name" : name,
             "tickerSymbol" : tickerSymbol,
             "price" : price,
             "priceChange" : priceChange
