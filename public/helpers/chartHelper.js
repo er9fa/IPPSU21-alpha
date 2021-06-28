@@ -82,6 +82,11 @@ function convertTimeToString(time) {
     minutes = time.getMinutes()
     seconds = time.getSeconds()
 
+    if (hour > 12) {
+        hour -= 12
+    }
+
+    if (hour > 12) hour -= 12
     if (minutes < 10) minutes = "0" + minutes
     if (seconds < 10) seconds = "0" + seconds
 
