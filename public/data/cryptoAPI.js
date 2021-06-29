@@ -8,7 +8,8 @@ const base = `https://api.coingecko.com/api/v3/`
 async function getValue(coinID) {
     coinID = coinID.toLowerCase()
     const coin = await getCoin(coinID)
-    return Number(coin.price).toFixed(2)
+    // Note: JS objects store only strings, so the price must first be converted to a number before adding decimal places
+    return Number(coin.price)
 }
 
 /**
@@ -17,7 +18,7 @@ async function getValue(coinID) {
  */
 async function getCoin(coinID) {
     coinID = coinID.toLowerCase()
-    coin = (await getCoins([coinID]))[0]
+    coin = (await getCoins([coinID]))[0] // The first coin in the response is the only coin, so return [0]
     return coin
 }
 
@@ -31,13 +32,14 @@ async function getCoins(coinIDs) {
 }
 
 async function fetchCoins(coinIDs) {
+    // Begin creating the query to send to the CoinGecko API
     const url = new URL(base + 'coins/markets')
     const params = {
         'vs_currency': 'usd',
         'price_change_percentage': '24h'
     }
     // If an array of coin IDs has been provided, add it to the query
-    // If no coin IDs are specified, 
+    // If no coin IDs are specified, then a list of popular coins ranked by market cap in descending order are returned instead
     if (coinIDs) params["ids"] = coinIDs.join(",")
 
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
@@ -60,7 +62,6 @@ async function getPopularCoins() {
  * Returns a list with 100 of the most popular cryptocurrencies, sorted by market cap in descending order
  */
 async function fetchPopularCoins() {
-    // Return the coins as a JSON object
     const response = await fetchCoins()
     return response
 }
@@ -83,7 +84,6 @@ function formatCoins(response) {
             "price" : price,
             "priceChange" : priceChange
         })
-
     })
     return coins
 }

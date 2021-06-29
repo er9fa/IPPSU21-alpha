@@ -28,12 +28,13 @@
     // Append the popular cryptocurrencies to the scrolling bar
     // Retrieve popular coins using cryptoAPI.js method
     getPopularCoins().then(coins => {
+        // Create a div for the price scrolling bar to populate
         const $result = document.createElement("div")
         $result.setAttribute('display', 'inline')
-        console.log(coins)
+
         coins.forEach(coin => {
             const tickerSymbol = coin.tickerSymbol
-            const price = coin.price
+            const price = Number(coin.price)
             const priceChange = coin.priceChange
             const hasPriceIncreased = (priceChange >= 0) ? true : false
             const priceChangeSymbol = (hasPriceIncreased) ? 

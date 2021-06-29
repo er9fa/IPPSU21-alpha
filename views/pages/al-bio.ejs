@@ -86,7 +86,7 @@
             let popularCoins = ""
             coins.forEach(coin => {
                 const tickerSymbol = coin["symbol"]
-                const price = coin.current_price.toFixed(2)
+                const price = coin.current_price
                 const priceChange = coin.price_change_24h
                 const hasPriceIncreased = (priceChange >= 0) ? "↑" : "↓"
 
