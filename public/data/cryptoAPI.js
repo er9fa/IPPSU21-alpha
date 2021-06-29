@@ -53,6 +53,7 @@ async function fetchCoins(coinIDs) {
     return response
 }
 
+
 async function getPopularCoins() {
     const response = await fetchPopularCoins()
     return formatCoins(response)

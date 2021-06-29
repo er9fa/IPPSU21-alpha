@@ -30,49 +30,6 @@ body {
 .button:hover {
   background-color: black;
 }
-a:link {
-  color: yellow;
-  background-color: transparent;
-  text-decoration: none;
-}
-a:visited {
-  color: magenta;
-  background-color: transparent;
-  text-decoration: italic;
-}
-a:hover {
-  color: black;
-  background-color: transparent;
-  text-decoration: underline;
-}
-a:active {
-  color: yellow;
-  background-color: transparent;
-  text-decoration: underline;
-}
-
-
-a:link {
-  color: yellow;
-  background-color: transparent;
-  text-decoration: none;
-}
-a:visited {
-  color: magenta;
-  background-color: transparent;
-  text-decoration: italic;
-}
-a:hover {
-  color: black;
-  background-color: transparent;
-  text-decoration: underline;
-}
-a:active {
-  color: yellow;
-  background-color: transparent;
-  text-decoration: underline;
-}
-
 </style>
 <body>
 
@@ -96,16 +53,9 @@ a:active {
     <button id="the_button" type="button"; class="button"; onclick="getClicked()">Hard to Read? Click Me!</button>
     <div id="counter" style="font-size: 2em"></div>
     <image id="the_gif" src="https://images.squarespace-cdn.com/content/v1/57b1fe4ef7e0ab588bc6d3bb/1508870226296-NXNQ08KQ9T4OZXP57KWM/ke17ZwdGBToddI8pDm48kBZN12O5nsk_xgZgkr0pi4JZw-zPPgdn4jUwVcJE1ZvWhcwhEtWJXoshNdA9f1qD7UlsW9OX_ZneFwBCDVKxw6WL3LlpY_tVQNqjc6o4Ku0NTW9HNOVPdrPupPn-Lyp4xQ/1080-surf.gif">
-    <h3 id="crypto_value">Crypto Value:</h3>
-    <p id="value">N/A</p>
-    <h3 id="crypto_cap">Market Cap:</h3>
-    <p id="cap">N/A</p>
-    <h3 id="crypto_volume">Crypto Volume:</h3>
-    <p id="volume">N/A</p>
-
   </div>
-
-
+  <script>
+  function getClicked() {
     if (document.body.style.background !== "black") {
       document.getElementById("counter").innerHTML = i.toFixed(1) + " seconds spent hoverboarding";
       i += .1;
@@ -116,50 +66,20 @@ a:active {
     }
 
   }
-
     var i = 0;
     var j = 0;
     setInterval(() => {
       if (document.body.style.background !== "black") {
+        console.log(i.toFixed(1) + " seconds spent stylilshly");
         document.getElementById("counter").innerHTML = i.toFixed(1) + " seconds spent hoverboarding";
-        i += 1;
+        i += .1;
       }
       else {
+        console.log(j.toFixed(1) + " seconds spent on the simple side");
         document.getElementById("counter").innerHTML = j.toFixed(1) + " seconds spent waving";
-        j += 1;
+        j += .1;
       }
-      fetch(window.origin + "/testcoin").then(r => r.json()).then(data => {
-        console.log("Price: " + data.data[0].quote.USD.price);
-        document.getElementById("value").innerHTML = data.data[0].quote.USD.price;
-        console.log("Price: " + data.data[0].quote.USD.market_cap);
-        document.getElementById("cap").innerHTML = data.data[0].quote.USD.market_cap;
-        console.log("Price: " + data.data[0].quote.USD.volume_24h);
-        document.getElementById("volume").innerHTML = data.data[0].quote.USD.volume_24h;
-      })
-    }, 1000);
-
-  const rp = require('request-promise');
-  const requestOptions = {
-    method: 'GET',
-    uri: 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest',
-    qs: {
-      'start': '1',
-      'limit': '5000',
-      'convert': 'USD'
-    },
-    headers: {
-      'X-CMC_PRO_API_KEY': 'b54bcf4d-1bca-4e8e-9a24-22ff2c3d462c'
-    },
-    json: true,
-    gzip: true
-  };
-
-  rp(requestOptions).then(response => {
-    console.log('API call response:', response);
-  }).catch((err) => {
-    console.log('API call error:', err.message);
-  });
-
+    }, 100);
   </script>
 
 </body>
