@@ -2,25 +2,37 @@
 
 <head>
     <%- include("../partials/header.ejs") %>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"
-            integrity="sha512-VCHVc5miKoln972iJPvkQrUYYq7XpxXzvqNfiul1H4aZDwGBGC0lq373KNleaB2LpnC2a/iNfE5zoRYmB4TRDQ=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="/data/cryptoAPI.js"></script>
-        <script src="helpers/chartHelper.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"
+        integrity="sha512-VCHVc5miKoln972iJPvkQrUYYq7XpxXzvqNfiul1H4aZDwGBGC0lq373KNleaB2LpnC2a/iNfE5zoRYmB4TRDQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/data/cryptoAPI.js"></script>
+    <script src="helpers/chartHelper.js"></script>
 </head>
 
 <body>
-    <%- include ("../partials/chart/dropdown-cryptocurrencies-test.ejs") %>
-        <div class="justify-content-center align-items-center">
-            <h2 class="my-4" id="chart-title">Bitcoin Value</h2>
-            <div>
-                <canvas id="chart" width="700" height="500"></canvas>
+    <div class="container">
+        <div class="row my-4 align-items-center">
+            <div class="col">
+                <h2 id="chart-title">Bitcoin Value</h2>
+            </div>
+            <div class="col">
+                <%- include("../partials/chart/dropdown-cryptocurrencies-test.ejs") %>
             </div>
         </div>
-        <script>
-            let chart = createChart("bitcoin", "chart")
-        </script>
+        <div>
+            <canvas id="chart" width="700" height="500"></canvas>
+        </div>
+    </div>
 </body>
+<script>
+    let chart = createChart("bitcoin", "chart")
+    $(document).ready(() => {
+        convertPopularCoinsToDropdownOptions().then(options => {
+            bindOptionsToDropdown(options)
+            setOnChangeListenerForDropdown(changeCoinOfGraph)
+        })
+    })
+</script>
 <%- include("../partials/footer.ejs") %>
 
-    </html>
+</html>
