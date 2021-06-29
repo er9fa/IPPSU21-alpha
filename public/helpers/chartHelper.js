@@ -135,9 +135,36 @@ function updateChart() {
     })
 }
 
+function changeCoinOfGraph(coin) {
+    const temp = coin.split(" ")
+    const coinName = temp[1]
+
+    resetChart()
+
+    const chartTitle = document.getElementById("chart-title")
+    chartTitle.textContent = coinName + " Value"
+    chart = createChart(coinName, "chart")
+}
+
 function generateTickerAndPriceChangeElement() {
     // Get ticker and coin name
     let result = coin 
     // Get index 0 and last
     // Calculate percentage change
+}
+
+/**
+ * After the chart has been created, it can be reset so that it tracks a new coin
+ */
+function resetChart() {
+    // Clears the chart library's data
+    chart.destroy()
+
+    // Clear the global variables storing chart datapoints and etc.
+    dataPoints = []
+    chartXAxisTickers = []
+    mostRecentTimeTicker = []
+
+    // Stop the chart updating interval
+    clearInterval(intervalID) // TODO: Why is the chart updating with 2 datapoints at a time when selecting a new coin from the dropdown menu?
 }
