@@ -77,7 +77,7 @@ function createChart(coinID, divElementID) {
         // Continue adding data points to the chart every 20 seconds
         intervalID = setInterval(() => updateChart(chart, dataPoints), updateInterval * 1000)
     })
-    
+
     return chart
 }
 
@@ -122,6 +122,8 @@ function updateChart() {
         chart.update()
     }
     getValue(coin.name).then(value => {
+        generateTickerAndPriceChangeElement(coin.name, document.getElementById("chart-title"), document.getElementById("price-change-image"))
+
         dataPoints.push(value)
         if (value < dataPoints[0]) {
             chart.data.datasets[0].backgroundColor = "rgb(234, 67, 53)"
@@ -131,6 +133,7 @@ function updateChart() {
             chart.data.datasets[0].borderColor = "rgb(52, 168, 83)"
 
         }
+
         chart.update()
     })
 }
@@ -141,16 +144,33 @@ function changeCoinOfGraph(coin) {
 
     resetChart()
 
-    const chartTitle = document.getElementById("chart-title")
-    chartTitle.textContent = coinName + " Value"
+    generateTickerAndPriceChangeElement(coinName, document.getElementById("chart-title"), document.getElementById("price-change-image"))
+
     chart = createChart(coinName, "chart")
 }
 
-function generateTickerAndPriceChangeElement() {
-    // Get ticker and coin name
-    let result = coin 
-    // Get index 0 and last
-    // Calculate percentage change
+function generateTickerAndPriceChangeElement(coinName, titleTextElement, priceChangeImageElement) {
+    lastDatapoint = dataPoints[dataPoints.length - 1]
+
+    let result = ""
+    
+    let percentChange
+    if (dataPoints.length <= 1) {
+        percentChange = 0.000
+    } else {
+        percentChange = 10 * ((lastDatapoint - dataPoints[0]) / dataPoints[0])
+        percentChange = percentChange.toPrecision(3)
+    }
+
+    hasPriceIncreased = (percentChange >= 0)
+    const priceChangeSymbolImage = (hasPriceIncreased) ?
+        "/images/scrolling-bar-green-triangle.png" : "/images/scrolling-bar-red-triangle.png"
+    const plusOrMinus = hasPriceIncreased ? "+" : "-"
+
+    result = coinName + " $" + lastDatapoint + " (" + plusOrMinus + "%" + percentChange + ")"
+
+    titleTextElement.textContent = result
+    priceChangeImageElement.src = priceChangeSymbolImage
 }
 
 /**
