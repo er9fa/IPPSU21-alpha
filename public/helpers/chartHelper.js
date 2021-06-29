@@ -2,7 +2,7 @@
 
 // Requires the following to first be imported: CryptoAPI.js 
 
-let coin = "" // The coin to be tracked on the graph
+let coin = {} // The coin to be tracked on the graph
 const updateInterval = 20 // Update the graph every 20 seconds
 let dataPoints = [] // An array of the data points to be plotted on the chart
 let chartXAxisTickers = [] // An array of the x-axis tickers
@@ -16,15 +16,18 @@ let intervalID;
  * @returns A chart object (see Chart.js documentation)
  */
 function createChart(coinID, divElementID) {
-    coin = coinID
     chartXAxisTickers = getStartingXAxisTickers()
     const data = {
         labels: chartXAxisTickers,
         datasets: [{
-            label: `${coinID} value`,
-            backgroundColor: 'rgb(0, 102, 204)',
-            borderColor: 'rgb(0, 153, 255)',
-            data: dataPoints
+            label: coinID + " value",
+            data: dataPoints,
+            backgroundColor: [
+                "rgb(63, 191, 127)"
+            ],
+            borderColor: [
+                "rgb(63, 191, 127)"
+            ],
         }]
     };
     const config = {
@@ -41,6 +44,16 @@ function createChart(coinID, divElementID) {
                             return '$' + value.toFixed(2);
                         }
                     },
+                },
+                x: {
+                    grid: {
+                        drawOnChartArea: false,
+                    }
+                }
+            },
+            elements: {
+                point: {
+                    radius: 3
                 }
             },
             plugins: {
@@ -50,17 +63,21 @@ function createChart(coinID, divElementID) {
                 }
             }
         }
-    };
+    }
+
     var chart = new Chart(
         document.getElementById(divElementID),
         config
     );
 
-    // Add the first data point to the chart
-    updateChart(chart, dataPoints)
-    // Continue adding data points to the chart every 20 seconds
-    intervalID = setInterval(() => updateChart(chart, dataPoints), updateInterval * 1000)
-
+    getCoin(coinID).then(gc_coin => {
+        // Add the first data point to the chart
+        coin = gc_coin
+        updateChart(chart, dataPoints)
+        // Continue adding data points to the chart every 20 seconds
+        intervalID = setInterval(() => updateChart(chart, dataPoints), updateInterval * 1000)
+    })
+    
     return chart
 }
 
@@ -99,14 +116,28 @@ function incrementTimeByXSeconds(time, seconds) {
 }
 
 function updateChart() {
-    console.log("setInterval function called")
     if (dataPoints.length > 8) {
         incrementTimeByXSeconds(mostRecentTimeTicker, updateInterval)
         chartXAxisTickers.push(convertTimeToString(mostRecentTimeTicker))
         chart.update()
     }
-    getValue(coin).then(value => {
+    getValue(coin.name).then(value => {
         dataPoints.push(value)
+        if (value < dataPoints[0]) {
+            chart.data.datasets[0].backgroundColor = "rgb(234, 67, 53)"
+            chart.data.datasets[0].borderColor = "rgb(234, 67, 53)"
+        } else {
+            chart.data.datasets[0].backgroundColor = "rgb(52, 168, 83)"
+            chart.data.datasets[0].borderColor = "rgb(52, 168, 83)"
+
+        }
         chart.update()
     })
+}
+
+function generateTickerAndPriceChangeElement() {
+    // Get ticker and coin name
+    let result = coin 
+    // Get index 0 and last
+    // Calculate percentage change
 }
