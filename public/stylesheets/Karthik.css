@@ -114,6 +114,8 @@ h1:focus {
     position: fixed;
     top: 55%;
     left: 19.5%;
+    border: 1px solid magenta;
+
   }
   th{
     font-size: 20px;
@@ -126,14 +128,18 @@ h1:focus {
     0 0 8rem var(--neon-border-color),
     0 0 10rem var(--neon-border-color);
     color: yellow;
+    border: 1px solid white;
+    background-color: transparent;
+
   }
   td{
   font-size: 20px;
   text-align: center;
   color: yellow;
   border: 1px solid magenta;
-  background-color: gray;
 }
+tr:nth-child(even) {background-color: #A9A9A9;}
+tr:nth-child(odd) {background-color: #696969;}
 .dropbtn {
   background-color: var(--neon-border-color);
   color: var(--neon-text-color);
@@ -185,7 +191,6 @@ h1:focus {
   color: #fff;
   padding: 4rem 6rem 5.5rem;
   border: 0.4rem solid #fff;
-  border-radius: 2rem;
   text-transform: uppercase;
   position: fixed;
   top: 39%;
