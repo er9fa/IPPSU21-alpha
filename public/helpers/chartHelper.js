@@ -122,8 +122,6 @@ function updateChart() {
         chart.update()
     }
     getValue(coin.name).then(value => {
-        generateTickerAndPriceChangeElement(coin.name, document.getElementById("chart-title"), document.getElementById("price-change-image"))
-
         dataPoints.push(value)
         if (value < dataPoints[0]) {
             chart.data.datasets[0].backgroundColor = "rgb(234, 67, 53)"
@@ -131,8 +129,9 @@ function updateChart() {
         } else {
             chart.data.datasets[0].backgroundColor = "rgb(52, 168, 83)"
             chart.data.datasets[0].borderColor = "rgb(52, 168, 83)"
-
         }
+        
+        updateElementChartTitleAndCoinPrice(coin.name, document.getElementById("chart-title"), document.getElementById("price-change-image"))
 
         chart.update()
     })
@@ -144,12 +143,12 @@ function changeCoinOfGraph(coin) {
 
     resetChart()
 
-    generateTickerAndPriceChangeElement(coinName, document.getElementById("chart-title"), document.getElementById("price-change-image"))
+    updateElementChartTitleAndCoinPrice(coinName, document.getElementById("chart-title"), document.getElementById("price-change-image"))
 
     chart = createChart(coinName, "chart")
 }
 
-function generateTickerAndPriceChangeElement(coinName, titleTextElement, priceChangeImageElement) {
+function updateElementChartTitleAndCoinPrice(coinName, titleTextElement, priceChangeImageElement) {
     lastDatapoint = dataPoints[dataPoints.length - 1]
 
     let result = ""
@@ -158,16 +157,17 @@ function generateTickerAndPriceChangeElement(coinName, titleTextElement, priceCh
     if (dataPoints.length <= 1) {
         percentChange = 0.000
     } else {
-        percentChange = 10 * ((lastDatapoint - dataPoints[0]) / dataPoints[0])
-        percentChange = percentChange.toPrecision(3)
+        percentChange = (lastDatapoint - dataPoints[0]) / dataPoints[0]
     }
+    percentChange = numeral(percentChange).format("0,0.000")
+    lastDatapoint = numeral(lastDatapoint).format("0.00")
 
     hasPriceIncreased = (percentChange >= 0)
     const priceChangeSymbolImage = (hasPriceIncreased) ?
         "/images/scrolling-bar-green-triangle.png" : "/images/scrolling-bar-red-triangle.png"
     const plusOrMinus = hasPriceIncreased ? "+" : "-"
 
-    result = coinName + " $" + lastDatapoint + " (" + plusOrMinus + "%" + percentChange + ")"
+    result = coinName + " $" + lastDatapoint + " (" + plusOrMinus + percentChange + "%)"
 
     titleTextElement.textContent = result
     priceChangeImageElement.src = priceChangeSymbolImage
