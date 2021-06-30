@@ -127,10 +127,13 @@ h1:focus {
     0 0 6rem var(--neon-border-color),
     0 0 8rem var(--neon-border-color),
     0 0 10rem var(--neon-border-color);
+<<<<<<< HEAD
     color: yellow;
     border: 1px solid white;
     background-color: transparent;
 
+=======
+>>>>>>> 1cced4e1e31b4f72e5f5b01fe0e727a92cb2caf1
   }
   td{
   font-size: 20px;
