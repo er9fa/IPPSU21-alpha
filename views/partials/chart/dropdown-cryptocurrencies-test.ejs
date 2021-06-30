@@ -14,22 +14,6 @@
         document.querySelector('.select2-search__field').focus();
     })
 
-    function bindOptionsToDropdown(arrayOfOptions) {
-        $(".js-example-basic-single").select2({
-            data: arrayOfOptions
-        })
-    }
-
-    // Sets a listener for whenever the user selects an option from the dropdown
-    // Passes through the selected option's text as a parameter
-    function setOnChangeListenerForDropdown(listener) {
-        // Bind an event
-        $('.js-example-basic-single').on('change', () => {
-            value = $('.js-example-basic-single').select2('data')[0].text // Retrieves the text of the selected option
-            listener(value) // Executes the listener and passes through the selected option as a parameter
-        });
-    }
-
     // TODO: Maybe place this function in a helper file
     async function convertPopularCoinsToDropdownOptions() {
         // Bind popular coins to the drop down menu
@@ -46,6 +30,24 @@
             return formattedCoins
         })
         return popularCoinsFormatted
+    }
+
+    // Binds an array of options to the dropdown menu
+    // To bind a list of popular coins to the dropdown, call convertPopularCoins to obtain a list of coins in the proper format, and then call this function
+    function bindOptionsToDropdown(arrayOfOptions) {
+        $(".js-example-basic-single").select2({
+            data: arrayOfOptions
+        })
+    }
+
+    // Sets a listener for whenever the user selects an option from the dropdown
+    // Passes through the selected option's text as a parameter
+    function setOnChangeListenerForDropdown(listener) {
+        // Bind an event
+        $('.js-example-basic-single').on('change', () => {
+            value = $('.js-example-basic-single').select2('data')[0].text // Retrieves the text of the selected option
+            listener(value) // Executes the listener and passes through the selected option as a parameter
+        });
     }
 
 </script>
