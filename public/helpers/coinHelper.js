@@ -74,16 +74,18 @@ async function fetchPopularCoins() {
 function formatCoins(response) {
     let coins = []
     response.forEach(coin => {
+        const id = coin.id
         const name = coin.name
         const tickerSymbol = coin.symbol.toUpperCase()
         const price = coin.current_price.toFixed(2)
         const priceChange = coin.price_change_24h
 
         coins.push({
+            "id" : id,
             "name" : name,
             "tickerSymbol" : tickerSymbol,
             "price" : price,
-            "priceChange" : priceChange
+            "priceChange" : priceChange,
         })
     })
     return coins

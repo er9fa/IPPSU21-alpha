@@ -1,9 +1,9 @@
-// TODO: How do you import cryptoAPI.js inside of this file, instead of in the HTML page template?
+// TODO: How do you import coinHelper.js inside of this file, instead of in the HTML page template?
 
-// Requires the following to first be imported: CryptoAPI.js 
+// Requires the following to first be imported: coinHelper.js 
 
-let coin = {} // The coin to be tracked on the graph
-const updateInterval = 20 // Update the graph every 20 seconds
+let chartCoin = {} // The coin to be tracked on the chart
+const updateInterval = 20 // Update the chart every 20 seconds
 let dataPoints = [] // An array of the data points to be plotted on the chart
 let chartXAxisTickers = [] // An array of the x-axis tickers
 let mostRecentTimeTicker = {} // The rightmost time ticker on the chart x-axis represented as a date object (e.g. 05:25:17 PM)
@@ -42,8 +42,9 @@ function createChart(coinID, divElementID) {
                         // Append a dollar sign to the tickers
                         callback: function (value, index, values) {
                             return '$' + value.toFixed(2);
-                        }
+                        },
                     },
+                    grace: 30
                 },
                 x: {
                     grid: {
@@ -57,7 +58,7 @@ function createChart(coinID, divElementID) {
                 }
             },
             plugins: {
-                // Remove the legend displaying the meaning of the line on the graph
+                // Remove the legend displaying the meaning of the line on the chart
                 legend: {
                     display: false
                 }
@@ -72,7 +73,7 @@ function createChart(coinID, divElementID) {
 
     getCoin(coinID).then(gc_coin => {
         // Add the first data point to the chart
-        coin = gc_coin
+        chartCoin = gc_coin
         updateChart(chart, dataPoints)
         // Continue adding data points to the chart every 20 seconds
         intervalID = setInterval(() => updateChart(chart, dataPoints), updateInterval * 1000)
@@ -121,7 +122,7 @@ function updateChart() {
         chartXAxisTickers.push(convertTimeToString(mostRecentTimeTicker))
         chart.update()
     }
-    getValue(coin.name).then(value => {
+    getValue(chartCoin.id).then(value => {
         dataPoints.push(value)
         if (value < dataPoints[0]) {
             chart.data.datasets[0].backgroundColor = "rgb(234, 67, 53)"
@@ -131,21 +132,24 @@ function updateChart() {
             chart.data.datasets[0].borderColor = "rgb(52, 168, 83)"
         }
         
-        updateElementChartTitleAndCoinPrice(coin.name, document.getElementById("chart-title"), document.getElementById("price-change-image"))
+        updateElementChartTitleAndCoinPrice(chartCoin.name, document.getElementById("chart-title"), document.getElementById("price-change-image"))
 
         chart.update()
     })
 }
 
-function changeCoinOfGraph(coin) {
-    const temp = coin.split(" ")
-    const coinName = temp[1]
+function changeChartCoin(coinOptionObject) {
+    // See convertPopularCoinsToDropdownOptions() for how the options are formatted
+    console.log("next:", coinOptionObject)
+
+    const index = coinOptionObject.id
+    const pc_coin = popularCoins[index]
 
     resetChart()
 
-    updateElementChartTitleAndCoinPrice(coinName, document.getElementById("chart-title"), document.getElementById("price-change-image"))
+    updateElementChartTitleAndCoinPrice(pc_coin.name, document.getElementById("chart-title"), document.getElementById("price-change-image"))
 
-    chart = createChart(coinName, "chart")
+    chart = createChart(pc_coin.id, "chart")
 }
 
 function updateElementChartTitleAndCoinPrice(coinName, titleTextElement, priceChangeImageElement) {
@@ -157,7 +161,7 @@ function updateElementChartTitleAndCoinPrice(coinName, titleTextElement, priceCh
     if (dataPoints.length <= 1) {
         percentChange = 0.000
     } else {
-        percentChange = (lastDatapoint - dataPoints[0]) / dataPoints[0]
+        percentChange = 100 * (lastDatapoint - dataPoints[0]) / dataPoints[0]
     }
     percentChange = numeral(percentChange).format("0,0.000")
     lastDatapoint = numeral(lastDatapoint).format("0.00")
@@ -165,7 +169,7 @@ function updateElementChartTitleAndCoinPrice(coinName, titleTextElement, priceCh
     hasPriceIncreased = (percentChange >= 0)
     const priceChangeSymbolImage = (hasPriceIncreased) ?
         "/images/scrolling-bar-green-triangle.png" : "/images/scrolling-bar-red-triangle.png"
-    const plusOrMinus = hasPriceIncreased ? "+" : "-"
+    const plusOrMinus = hasPriceIncreased ? "+" : ""
 
     result = coinName + " $" + lastDatapoint + " (" + plusOrMinus + percentChange + "%)"
 

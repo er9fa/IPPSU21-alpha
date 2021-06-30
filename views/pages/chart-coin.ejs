@@ -5,7 +5,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"
         integrity="sha512-VCHVc5miKoln972iJPvkQrUYYq7XpxXzvqNfiul1H4aZDwGBGC0lq373KNleaB2LpnC2a/iNfE5zoRYmB4TRDQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="/data/cryptoAPI.js"></script>
+    <script src="/helpers/coinHelper.js"></script>
     <script src="helpers/chartHelper.js"></script>
 </head>
 
@@ -17,7 +17,7 @@
                 <h3 id="chart-title" class="my-auto" style="">Bitcoin Value</h2>
             </div>
             <div class="col">
-                <%- include("../partials/chart/dropdown-cryptocurrencies-test.ejs") %>
+                <%- include("../partials/dropdown/dropdown-coin.ejs") %>
             </div>
         </div>
         <div class="row">
@@ -27,10 +27,14 @@
 </body>
 <script>
     let chart = createChart("bitcoin", "chart")
+    var popularCoins
+
     $(document).ready(() => {
-        convertPopularCoinsToDropdownOptions().then(options => {
+        getPopularCoins().then(coins => {
+            popularCoins = coins
+            options = convertPopularCoinsToDropdownOptions(coins)
             bindOptionsToDropdown(options)
-            setOnChangeListenerForDropdown(changeCoinOfGraph)
+            setOnChangeListenerForDropdown(changeChartCoin)
         })
     })
 </script>
