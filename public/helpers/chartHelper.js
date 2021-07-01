@@ -1,13 +1,17 @@
 // TODO: How do you import coinHelper.js inside of this file, instead of in the HTML page template?
 
-// Requires the following to first be imported: coinHelper.js 
+/* 
+Dependencies: 
+coinHelper.js
+numeral.js
+*/
 
-let chartCoin = {} // The coin to be tracked on the chart
 const updateInterval = 20 // Update the chart every 20 seconds
+let chartCoin = {} // The coin to be tracked on the chart
 let dataPoints = [] // An array of the data points to be plotted on the chart
 let chartXAxisTickers = [] // An array of the x-axis tickers
 let mostRecentTimeTicker = {} // The rightmost time ticker on the chart x-axis represented as a date object (e.g. 05:25:17 PM)
-let intervalID;
+let setIntervalID_updateChart // The ID of the setInterval for updating the chart
 
 /**
  * Creates a chart which plots the value of a cryptocurrency over time (every 20 seconds)
@@ -76,13 +80,16 @@ function createChart(coinID, divElementID) {
         chartCoin = gc_coin
         updateChart(chart, dataPoints)
         // Continue adding data points to the chart every 20 seconds
-        intervalID = setInterval(() => updateChart(chart, dataPoints), updateInterval * 1000)
+        setIntervalID_updateChart = setInterval(() => updateChart(chart, dataPoints), updateInterval * 1000)
     })
 
     return chart
 }
 
-function getStartingXAxisTickers(array) {
+/**
+ * Creates an array of strings representing intervals of times (intervals specified by global var at top of file)
+ */
+function getStartingXAxisTickers() {
     mostRecentTimeTicker = new Date()
 
     let tickers = []
@@ -96,6 +103,10 @@ function getStartingXAxisTickers(array) {
     return tickers
 }
 
+/**
+ * Converts a date object into a string representing time in HH:MM:SS format
+ * @param {Date} time Date object to be parsed
+ */
 function convertTimeToString(time) {
     hour = time.getHours()
     minutes = time.getMinutes()
@@ -112,10 +123,18 @@ function convertTimeToString(time) {
     return hour + ":" + minutes + ":" + seconds
 }
 
+/**
+ * Increments the time of a Date object by a specified number of seconds
+ * @param {Date} time Date object to increment
+ * @param {Number} seconds Number of seconds to increment the time by
+ */
 function incrementTimeByXSeconds(time, seconds) {
     time.setSeconds(mostRecentTimeTicker.getSeconds() + seconds)
 }
 
+/**
+ * Updates the chart by adding the latest value of a coin as a datapoint on the line
+ */
 function updateChart() {
     if (dataPoints.length > 8) {
         incrementTimeByXSeconds(mostRecentTimeTicker, updateInterval)
@@ -138,8 +157,11 @@ function updateChart() {
     })
 }
 
+/**
+ * Changes the coin being tracked by the chart. Meant to be used only with a dropdown menu's on select option listener.
+ * @param {Object} coinOptionObject The selected option object from the dropdown menu to be parsed
+ */
 function changeChartCoin(coinOptionObject) {
-    // See convertPopularCoinsToDropdownOptions() for how the options are formatted
     console.log("next:", coinOptionObject)
 
     const index = coinOptionObject.id
@@ -152,6 +174,12 @@ function changeChartCoin(coinOptionObject) {
     chart = createChart(pc_coin.id, "chart")
 }
 
+/**
+ * Updates the chart title elements. Use whenever the value of a coin has changed, or the coin being tracked on the chart is changed
+ * @param {String} coinName The name of a coin to be displayed in the title
+ * @param {String} titleTextElement The ID of a \<h\> element to bind the text to
+ * @param {*} priceChangeImageElement The ID of a \<img\> element to bind the price change triangle image to
+ */
 function updateElementChartTitleAndCoinPrice(coinName, titleTextElement, priceChangeImageElement) {
     lastDatapoint = dataPoints[dataPoints.length - 1]
 
@@ -190,5 +218,5 @@ function resetChart() {
     mostRecentTimeTicker = []
 
     // Stop the chart updating interval
-    clearInterval(intervalID) // TODO: Why is the chart updating with 2 datapoints at a time when selecting a new coin from the dropdown menu?
+    clearInterval(setIntervalID_updateChart) // TODO: Why is the chart updating with 2 datapoints at a time when selecting a new coin from the dropdown menu?
 }

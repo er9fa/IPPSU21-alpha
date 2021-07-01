@@ -5,19 +5,25 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"
         integrity="sha512-VCHVc5miKoln972iJPvkQrUYYq7XpxXzvqNfiul1H4aZDwGBGC0lq373KNleaB2LpnC2a/iNfE5zoRYmB4TRDQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="/helpers/coinHelper.js"></script>
+    <script src="helpers/coinHelper.js"></script>
     <script src="helpers/chartHelper.js"></script>
+    <!-- Dropdown menu dependencies -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="helpers/dropdown/dropdownHelper.js"></script>
+    <script src="helpers/dropdown/dropdownCoinHelper.js"></script>
 </head>
 
 <body>
     <div class="container">
         <div class="row my-4 align-items-center">
             <div class="col d-flex">
-                <img id="price-change-image" class="my-auto mt-2" style="margin-right: 0.5rem; height: 20px; width: 20px;">
+                <img id="price-change-image" class="my-auto"
+                    style="margin-right: 0.5rem; height: 20px; width: 20px;">
                 <h3 id="chart-title" class="my-auto" style="">Bitcoin Value</h2>
             </div>
             <div class="col">
-                <%- include("../partials/dropdown/dropdown-coin.ejs") %>
+                <div id="dropdown"></select>
             </div>
         </div>
         <div class="row">
@@ -30,11 +36,12 @@
     var popularCoins
 
     $(document).ready(() => {
+        createDropdown("dropdown")
         getPopularCoins().then(coins => {
             popularCoins = coins
-            options = convertPopularCoinsToDropdownOptions(coins)
-            bindOptionsToDropdown(options)
-            setOnChangeListenerForDropdown(changeChartCoin)
+            options = convertCoinsToDropdownOptions(coins)
+            bindOptionsToDropdown(options, "dropdown")
+            setOnChangeListenerForDropdown(changeChartCoin, "dropdown")
         })
     })
 </script>
