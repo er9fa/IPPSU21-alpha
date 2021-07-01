@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <%- include("../partials/header.ejs") %>
     <title>Crypto Calc</title>
     <link rel="stylesheet" type="text/css" href="stylesheets/Karthik.css">
     <link rel="stylesheet" type="text/css" href="stylesheets/mainpage.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="/helpers/convertHelper.js"></script>
+
   </head>
   <body>
       <h1 contenteditable spellcheck="false">Crypto Calc</h1>
@@ -24,76 +27,38 @@
         <th> Output: </th>
       </tr>
     </table>
-    <audio id="mysound" src="C:\Users\karth\Downloads\ka-ching.mp3" preload="auto"></audio>
-    <button class= "button button1" onclick="convert(); playsound()">ENTER</button>
-
-    <div class="dropdown v1" style="position: fixed; top: 47%; left: 23%;">
-      <label for="currency"> Choose an input: </label>
-      <select name="input currency" id="inputCurrency">
-        <option value="btc">Bitcoin</option>
-        <option value="ltc">Litecoin</option>
-        <option value="bch">Bitcoin Cash</option>
-        <option value="dot">Polkadot</option>
-        <option value="usd">US Dollar</option>
-        <option value="aed">United Arab Emirates Dirham</option>
-        <option value="ars">Argentine Peso</option>
-        <option value="aud">Australian Dollar</option>
-
-      </select>
-    </div>
-
-<div class="dropdown v2" style="position: fixed; top: 47%; left: 52%;">
-  <label for="coins"> Choose a coin: </label>
-  <select id= "coin_value">
-    <option value="blank" >Choose a coin</option>
-    <option value="ltc">Litecoin</option>
-    <option value="eth">Ethereum</option>
-    <option value="bch">Bitcoin Cash</option>
-    <option value="bnb">Binance Coin</option>
-    <option value="eos">EOS</option>
-    <option value="xrp">XRP</option>
-    <option value="dot">Polkadot</option>
-    <option value="xlm">Lumens</option>
-    <option value="link">Chainlink</option>
-    <option value="yfi">Yearn.finance</option>
-
-
-
-  </select>
-</div>
-
-
+    <button class= "button button1" onclick="convertCoins(); kaching.play()">ENTER</button>
+    <%- include("../partials/dropdown/dropdown.ejs") %>
   </body>
-  <script>
+  <%- include("../partials/footer.ejs") %>
 
+  <script>
   var factor1;
-  var factor2;
   var date;
   var inputVal;
   var outputVal;
-  var inputTick = "";
-  var coinTick = "";
+  var inputName;
 
-
-
-  function convert(){
+  var kaching = new Audio();
+  kaching.src = "https://www.myinstants.com/media/sounds/ka-ching.mp3";
+  function convertCoins(){
     inputVal = document.getElementById("txtInput");
     outputVal = document.getElementById("txtOutput");
     var currency = inputVal.value;
 
-    inputTick = document.getElementById("inputCurrency").value;
-    coinTick = document.getElementById("coin_value").value;
+    // put conversion math here
 
-
-    fetch("http://api.coingecko.com/api/v3/exchange_rates").then(r => r.json()).then(exch_data => {
-      factor1 = exch_data.rates[inputTick].value;
-      factor2 = exch_data.rates[coinTick].value;
-
-      var num = currency / factor1 * factor2;
-      outputVal.value = num.toPrecision(4);
-      history()
-
-    })
+    history()
+  }
+  function convertListener(index){ //index is the index of the selected option
+//This function simply gets the exchange rate from BTC to "selected coin here"
+// I still need a way to get a second dropdown, I will need to use that here too
+    const symbol = index.id;
+    const inputCoin = exchangeCoins[symbol];
+    inputName = inputCoin.name
+    factor1 = inputCoin.exchangeRate
+    console.log("index:", index);
+    console.log("factor", factor1);
   }
 
   function history(){
@@ -108,8 +73,7 @@
     var cell3 = row.insertCell(2);
 
     cell1.innerHTML = date;
-    cell2.innerHTML = inputVal.value + " " + document.getElementById("inputCurrency").value;
-    cell3.innerHTML = outputVal.value + " " + document.getElementById("coin_value").value;
+    cell2.innerHTML = inputVal.value + " " + inputName;
   }
   function playsound() {
     var mysound = document.getElementById("mysound");
@@ -117,6 +81,17 @@
     mysound.load();
   }
 
+  var exchangeCoins;
+  $(document).ready(() => {
+      getExchangeRates().then(coins => {
+          exchangeCoins = coins //format coins into the array that I need
+          console.log(exchangeCoins)
+          options1 = convertExchangeCoinsToDropdownOptions(exchangeCoins) //Instead of converting popularcoins, convert exchange rates into dropdown options
+          bindOptionsToDropdown(options1)
+          setOnChangeListenerForDropdown(convertListener) //dropdown menu will return the index of the selected option, use this index to figure out what coin was selected
+      })
+  })
 
   </script>
+
 </html>

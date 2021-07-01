@@ -15,7 +15,8 @@ body {
   align-items: center;
   background: #000;
   min-height: 20vh;
-  background-image: url('https://i.imgur.com/WJFzrOG.png');
+  background-image: url('https://i.ibb.co/HGj2hcd/bg.png');
+  background-size: cover;
   }
 h1 {
   font-size: 13rem;
