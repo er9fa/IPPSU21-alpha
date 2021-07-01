@@ -15,7 +15,8 @@ body {
   align-items: center;
   background: #000;
   min-height: 20vh;
-  background-image: url('https://i.imgur.com/WJFzrOG.png');
+  background-image: url('https://i.ibb.co/HGj2hcd/bg.png');
+  background-size: cover;
   }
 h1 {
   font-size: 13rem;
@@ -114,6 +115,8 @@ h1:focus {
     position: fixed;
     top: 55%;
     left: 19.5%;
+    border: 1px solid magenta;
+
   }
   th{
     font-size: 20px;
@@ -125,14 +128,22 @@ h1:focus {
     0 0 6rem var(--neon-border-color),
     0 0 8rem var(--neon-border-color),
     0 0 10rem var(--neon-border-color);
+<<<<<<< HEAD
+    color: yellow;
+    border: 1px solid white;
+    background-color: transparent;
+
+=======
+>>>>>>> 1cced4e1e31b4f72e5f5b01fe0e727a92cb2caf1
   }
   td{
   font-size: 20px;
   text-align: center;
   color: yellow;
   border: 1px solid magenta;
-  background-color: gray;
 }
+tr:nth-child(even) {background-color: #A9A9A9;}
+tr:nth-child(odd) {background-color: #696969;}
 .dropbtn {
   background-color: var(--neon-border-color);
   color: var(--neon-text-color);
@@ -184,7 +195,6 @@ h1:focus {
   color: #fff;
   padding: 4rem 6rem 5.5rem;
   border: 0.4rem solid #fff;
-  border-radius: 2rem;
   text-transform: uppercase;
   position: fixed;
   top: 39%;
