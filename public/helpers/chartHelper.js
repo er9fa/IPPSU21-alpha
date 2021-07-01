@@ -188,6 +188,8 @@ function updateElementChartTitleAndCoinPrice(coinName, titleElementID, priceChan
     priceChangeImageElement.src = priceChangeSymbolImage
 }
 
+// TODO: Fix the value displayed when hovering your mouse over a datapoint so it looks like a dollar value
+// TODO: Fix the y-axis labels for when a coin has a value <$1.00. The y-axis shouldn't be displaying negative values.
 function getChartConfig() {
     chartXAxisTickers = getStartingXAxisTickers()
     const data = {
@@ -217,7 +219,7 @@ function getChartConfig() {
                             return '$' + value.toFixed(2);
                         },
                     },
-                    grace: 30
+                    grace: "20%"
                 },
                 x: {
                     grid: {
