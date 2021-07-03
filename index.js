@@ -43,4 +43,11 @@ express()
       res.status(500).send({error: err.message});
     });
   })
+  .get('/main', (req, res) => res.render('pages/main'))
+  .get('/calculator', (req, res) => res.render('pages/calculator'))
+  .get('/news', (req, res) => res.render('pages/news'))
+  .get('/database', (req, res) => res.render('pages/database'))
+  .get('/game', (req, res) => res.render('pages/game'))
+  .get('/scrolling-bar', (req, res) => res.render('pages/scrolling-bar'))
+  .get('/chart', (req, res) => res.render('pages/chart-coin'))
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))

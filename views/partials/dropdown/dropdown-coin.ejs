@@ -1,0 +1,16 @@
+<%- include("dropdown.ejs") %>
+<script>
+    // TODO: Maybe place this function in a helper file
+    function convertPopularCoinsToDropdownOptions(coins) {
+        const formattedCoins = []
+        // Convert the retrieved coins into the format the dropdown menu library requires to display them (see Select2 library for more details)
+        coins.forEach((coin, index) => {
+            coinFormatted = {
+                id: index,
+                text: coin.tickerSymbol + " " + coin.name
+            }
+            formattedCoins.push(coinFormatted)
+        })
+        return formattedCoins
+    }
+</script>

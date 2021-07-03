@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<head>
+    <%- include("../partials/header.ejs") %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"
+        integrity="sha512-VCHVc5miKoln972iJPvkQrUYYq7XpxXzvqNfiul1H4aZDwGBGC0lq373KNleaB2LpnC2a/iNfE5zoRYmB4TRDQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/helpers/coinHelper.js"></script>
+    <script src="helpers/chartHelper.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row my-4 align-items-center">
+            <div class="col d-flex">
+                <img id="price-change-image" class="my-auto mt-2" style="margin-right: 0.5rem; height: 20px; width: 20px;">
+                <h3 id="chart-title" class="my-auto" style="">Bitcoin Value</h2>
+            </div>
+            <div class="col">
+                <%- include("../partials/dropdown/dropdown-coin.ejs") %>
+            </div>
+        </div>
+        <div class="row">
+            <canvas id="chart" width="700" height="500"></canvas>
+        </div>
+    </div>
+</body>
+<script>
+    let chart = createChart("bitcoin", "chart")
+    var popularCoins
+
+    $(document).ready(() => {
+        getPopularCoins().then(coins => {
+            popularCoins = coins
+            options = convertPopularCoinsToDropdownOptions(coins)
+            bindOptionsToDropdown(options)
+            setOnChangeListenerForDropdown(changeChartCoin)
+        })
+    })
+</script>
+<%- include("../partials/footer.ejs") %>
+
+</html>

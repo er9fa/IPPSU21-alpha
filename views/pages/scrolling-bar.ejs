@@ -1,0 +1,50 @@
+<!-- Scrolling bar stylesheet -->
+<link rel="stylesheet" href="stylesheets/scrolling-bar.css">
+<!-- Scrolling bar library; Source: https://github.com/tjenkinson/dynamic-marquee -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/dynamic-marquee@2"></script>
+<!-- My coin API to connect with CoinGecko -->
+<script src="/helpers/coinHelper.js"></script>
+<div id="scrolling-bar"></div>
+<script>
+    // Initialize scrolling bar from library
+    const Marquee = dynamicMarquee.Marquee;
+    const marquee = new Marquee(document.getElementById('scrolling-bar'), {
+        // Move words 100px/s to the left
+        rate: -100
+    })
+
+    // Append the popular cryptocurrencies to the scrolling bar
+    // Retrieve popular coins using coinHelper.js method
+    getPopularCoins().then(coins => {
+        // Create a div for the price scrolling bar to populate
+        const $result = document.createElement("div")
+        $result.setAttribute('display', 'inline')
+
+        coins.forEach(coin => {
+            const tickerSymbol = coin.tickerSymbol
+            const price = Number(coin.price)
+            const priceChange = coin.priceChange
+            const hasPriceIncreased = (priceChange >= 0) ? true : false
+            const priceChangeSymbolImage = (hasPriceIncreased) ?
+                "/images/scrolling-bar-green-triangle.png" : "/images/scrolling-bar-red-triangle.png"
+
+            const result = "\xa0\xa0" + tickerSymbol + " $" + price + "\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0"
+
+            // Create text element to store ticker
+            const $coinText = document.createElement("div"); $coinText.className = "sb-coin-text"
+            $coinText.textContent = result
+
+            // Create image element for the coin price change triangle image
+            const $priceChangeSymbolImage = document.createElement("img"); $priceChangeSymbolImage.className = "sb-price-change-symbol"
+            $priceChangeSymbolImage.src = priceChangeSymbolImage
+
+            // Append ticker and image elements to the result DOM object
+            $result.appendChild($priceChangeSymbolImage)
+            $result.appendChild($coinText)
+        })
+        // Add result DOM object with all the tickers and images to the scrollbar
+        marquee.appendItem($result)
+    })
+</script>
+<!-- Formats numbers with abbreviations (e.g. 1000 -> 1k) -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>

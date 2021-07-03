@@ -1,95 +1,52 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Mate+SC&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="stylesheets/al-bio-css.css">
-  <!-- Scrolling bar library; Source: https://github.com/tjenkinson/dynamic-marquee -->
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/dynamic-marquee@2"></script>
-  <!-- My crypto API -->
-  <script src="/data/cryptoAPI.js"></script>
-
-  <link rel="stylesheet" type="text/css" href="stylesheets/header.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="stylesheets/mainpage.css">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 
+
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">Disabled</a>
-        </li>
-      </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
+
+  <input type="checkbox" id="check">
+  <header>
+    <label for="check">
+      <i class="fas fa-bars" id="sidebar_btn"></i>
+    </label>
+    <div class="left_area">
+      <h3>Main</h3>
     </div>
-  </nav>
+    <div class="right_area">
+    <div>
+  </header>
 
-  <div id="marquee"></div>
+  <div class="sidebar">
+    <center>
+      <img src = "https://i.ibb.co/G9CVPYh/bitcoin-dd8a16.png" class="profile_image" alt = "">
+      <h4>Crypto Calc</h4>
+    </center>
+    <a href="/main"><i class="fas fa-coins"><span> Main</span></i></a>
+    <a href="/calculator"><i class="fas fa-calculator"><span> Calculator</span></i></a>
+    <a href="/news"><i class="fas fa-newspaper"><span> News</span></i></a>
+    <a href="/database"><i class="fas fa-database"><span> Database</span></i></a>
+    <a href="/game"><i class="fas fa-gamepad"><span> Game</span></i></a>
+  </div>
+
+  <div class="history_chart">
+    <table>
+      <tr>
+        <th>Currency 1</th>
+        <th>Value 1</th>
+        <th>Currency 2</th>
+        <th>Value 2</th>
+        <th>Date and time</th>
+      </tr>
+  </div>
+
 
   <script>
-    // Initialize scrolling bar
-    const Marquee = dynamicMarquee.Marquee;
-    const marquee = new Marquee(document.getElementById('marquee'), {
-        // Move words 100px/s to the left
-        rate: -100
-    })
 
-    // Concat popular coins to scrolling bar
-    getPopularCoins().then(coins => {
-        let popularCoins = ""
-        coins.forEach(coin => {
-            const tickerSymbol = coin["symbol"]
-            const price = coin.current_price.toFixed(2)
-            const priceChange = coin.price_change_24h
-            const hasPriceIncreased = (priceChange >= 0) ? "↑" : "↓"
-
-            const result = hasPriceIncreased + " " + tickerSymbol + " $" + price + "\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0"
-
-            popularCoins += result
-        })
-
-        // Add popular coins to scrolling bar
-        // For looping infinitely, the dynamicMarquee library
-        //      uses an array of functions which return strings or elements to iterate through
-        // TODO: What is "window.l"?
-        window.l = dynamicMarquee.loop(marquee, [
-        () => popularCoins
-      ])
-    })
   </script>
-
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>

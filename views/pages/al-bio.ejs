@@ -18,11 +18,11 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/dynamic-marquee@2"></script>
 
     <!-- My crypto API -->
-    <script src="/data/cryptoAPI.js"></script>
+    <script src="/helpers/coinHelper.js"></script>
 </head>
 
 <body>
-
+    <%- include ("scrolling-bar.ejs") %>
     <nav class="navbar navbar-expand-lg navbar-dark uva-orange">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Navbar</a>
@@ -86,7 +86,7 @@
             let popularCoins = ""
             coins.forEach(coin => {
                 const tickerSymbol = coin["symbol"]
-                const price = coin.current_price.toFixed(2)
+                const price = coin.current_price
                 const priceChange = coin.price_change_24h
                 const hasPriceIncreased = (priceChange >= 0) ? "↑" : "↓"
 
@@ -100,8 +100,8 @@
             //      uses an array of functions which return strings or elements to iterate through
             // TODO: What is "window.l"?
             window.l = dynamicMarquee.loop(marquee, [
-            () => popularCoins
-        ])
+                () => popularCoins
+            ])
         })
 
         // Timer
