@@ -3,18 +3,19 @@
   <head>
     <%- include('../partials/header.ejs') %>
     <link rel="stylesheet" type="text/css" href="stylesheets/newstest.css">
+
   </head>
   <body>
     <div  style="text-align: center">
       <h1 contenteditable spellcheck="false">Crypto News</h1>
 
-      <form onsubmit="return updateSearch()">
+      <form onsubmit="return updateSearch()" autocomplete="off">
         <input type="text" id="search_bar" placeholder="Search for news...">
-        <input class="button" type="submit" value="Search">
+        <input class="submitButton" type="submit" value="Search">
       </form>
 
         <aside>
-          <a class="twitter-timeline" data-lang="en" data-height="1940" data-chrome="transparent" data-theme="dark" href="https://twitter.com/BartenfeldPaul/lists/1406779800317005829?ref_src=twsrc%5Etfw">
+          <a class="twitter-timeline" data-lang="en" data-height="1840" data-chrome="transparent" data-theme="dark" href="https://twitter.com/BartenfeldPaul/lists/1406779800317005829?ref_src=twsrc%5Etfw">
             Tweets by Crypto People
           </a>
           <script async src="https://platform.twitter.com/widgets.js" charset="utf-8">
@@ -23,7 +24,7 @@
 
       <ul>
         <li>
-          <article>
+          <article class="first-article">
             <h4><a id="title_0" href="" target="_blank"></a></h4>
             <p><img id="image_0" src="" onerror="this.src='https://www.flexx.co/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png'" width="auto" height="100"/></p>
             <p id="preview_0"></p>
@@ -86,7 +87,7 @@
           </article>
         </li>
         <li>
-          <article>
+          <article class="last-article">
             <h4><a id="title_9" href="" target="_blank"></a></h4>
             <p><img id="image_9" src="" onerror="this.src='https://www.flexx.co/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png'" width="auto" height="100"/></p>
             <p id="preview_9"></p>
@@ -99,7 +100,7 @@
         <button id="thirdButton" onclick="threeClicked()" class= "button">3</button>
         <button id="fourthButton" onclick="fourClicked()" class= "button" disabled>...</button>
         <button id="fifthButton" onclick="tenClicked()" class= "button">10</button>
-        <button id="nextButton" onclick="twoClicked()" class= "button last-button">Next</button>
+        <button id="nextButton" onclick="twoClicked()" class= "button">Next</button>
     </div>
     <script src='/scripts/newstest.js' type='text/javascript'></script>
 
