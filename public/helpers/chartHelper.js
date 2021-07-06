@@ -43,7 +43,7 @@ function createChart(coinID, divElementID) {
  * @param {Object} selectedOption The selected option object from the dropdown menu to be parsed (see dropdownHelper for info on what format the options must be in before binding)
  */
 function changeChartCoin(selectedOption, arrayOfCoinsThatWereBindedToDropdown) {
-    console.log("changeChartCoin, selected option:", selectedOption)
+    console.log("next:", selectedOption)
 
     const index = selectedOption.id
     const pc_coin = arrayOfCoinsThatWereBindedToDropdown[index]
@@ -214,6 +214,7 @@ function getChartConfig() {
             scales: {
                 y: {
                     ticks: {
+                        color: "white",
                         // Changes the y-axis ticker values
                         // Append a dollar sign to the tickers
                         callback: function (value, index, values) {
@@ -223,6 +224,9 @@ function getChartConfig() {
                     grace: "20%"
                 },
                 x: {
+                    ticks: {
+                        color: "white",
+                    },
                     grid: {
                         drawOnChartArea: false,
                     }
@@ -241,6 +245,7 @@ function getChartConfig() {
             }
         }
     }
+
     return config
 }
 
