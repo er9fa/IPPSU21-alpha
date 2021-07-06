@@ -30,6 +30,7 @@
             </div>
             <div class="col">
                 <div id="dropdown"></div>
+                <div id="dropdown2"></div>
                 </div>
             </div>
             <div class="row mt-3">
@@ -43,11 +44,14 @@
     let popularCoins
     $(document).ready(() => {
         createDropdown("dropdown")
+        createDropdown("dropdown2")
         getPopularCoins().then(coins => {
             popularCoins = coins
             options = convertCoinsToDropdownOptions(coins)
             bindOptionsToDropdown(options, "dropdown")
             setOnChangeListenerForDropdown((selectedOption) => changeChartCoin(selectedOption, popularCoins), "dropdown")
+            bindOptionsToDropdown(options, "dropdown2")
+            setOnChangeListenerForDropdown((selectedOption) => changeChartCoin(selectedOption, popularCoins), "dropdown2")
         })
     })
 </script>

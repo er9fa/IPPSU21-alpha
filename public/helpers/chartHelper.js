@@ -43,7 +43,7 @@ function createChart(coinID, divElementID) {
  * @param {Object} selectedOption The selected option object from the dropdown menu to be parsed (see dropdownHelper for info on what format the options must be in before binding)
  */
 function changeChartCoin(selectedOption, arrayOfCoinsThatWereBindedToDropdown) {
-    console.log("next:", selectedOption)
+    console.log("changeChartCoin, selected option:", selectedOption)
 
     const index = selectedOption.id
     const pc_coin = arrayOfCoinsThatWereBindedToDropdown[index]
