@@ -1,0 +1,42 @@
+svg{
+  color: white;
+}
+
+.calc{
+  position: absolute;
+  top: 35%;
+  left: 20%;
+}
+
+.news{
+  position: absolute;
+  top: 35%;
+  left: 35%;
+}
+
+.data{
+  position: absolute;
+  top: 35%;
+  left: 50%;
+}
+
+.game{
+  position: absolute;
+  top: 35%;
+  left: 65%;
+}
+
+.title {
+  font-size: 80px;
+  color: #fff;
+  text-align: center;
+  text-shadow:
+  0 0 5px #fff,
+  0 0 10px #fff,
+  0 0 20px #fff,
+  0 0 40px #00f,
+  0 0 80px #00f,
+  0 0 90px #00f,
+  0 0 100px #00f,
+  0 0 150px #00f;
+}

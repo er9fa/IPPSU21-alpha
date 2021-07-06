@@ -1,45 +1,98 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
+    <title>Crypto Calc</title>
+    <link rel="stylesheet" type="text/css" href="stylesheets/Karthik.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/mainpage.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="/helpers/convertHelper.js"></script>
 
-  <%- include('../partials/header.ejs') %>
-  <link rel="stylesheet" type="text/css" href="stylesheets/mainpage.css">
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-</head>
+  </head>
+  <body>
+    <%- include('../partials/navbar.ejs') %>
+    <%- include('../pages/scrolling-bar.ejs') %>
+    <h1 class="calctitle" contenteditable spellcheck="false">Crypto Calc</h1>
+    <form class="input">
+    Input :
+      <input type="text" name="Input" id="txtInput">
+    </form>
+    <form class="output">
+    Output :
+      <input type = "text" name "output" id= "txtOutput">
+    </form>
 
-
-<body>
-
-  <%- include('../partials/nav.ejs') %>
-
-  <input type="checkbox" id="check">
-  <header>
-    <label for="check">
-      <i class="fas fa-bars" id="sidebar_btn"></i>
-    </label>
-    <div class="left_area">
-      <h3>Calculator</h3>
-    </div>
-    <div class="right_area">
-    <div>
-  </header>
-
-  <div class = "sidebar">
-    <center>
-      <img src = "https://i.ibb.co/G9CVPYh/bitcoin-dd8a16.png" class="profile_image" alt = "">
-      <h4>Crypto Calc</h4>
-    </center>
-    <a href="/main"><i class="fas fa-coins"><span> Main</span></i></a>
-    <a href="/calculator"><i class="fas fa-calculator"><span> Calculator</span></i></a>
-    <a href="/news"><i class="fas fa-newspaper"><span> News</span></i></a>
-    <a href="/database"><i class="fas fa-database"><span> Database</span></i></a>
-    <a href="/game"><i class="fas fa-gamepad"><span> Game</span></i></a>
-  <div>
-
+    <table id = "myTable">
+      <tr>
+        <th> Date and Time: </th>
+        <th> Input: </th>
+        <th> Output: </th>
+      </tr>
+    </table>
+    <button class= "button button1" onclick="convertCoins(); kaching.play()">ENTER</button>
+    <%- include("../partials/dropdown/dropdown.ejs") %>
+  </body>
+  <%- include("../partials/footer.ejs") %>
 
   <script>
+  var factor1;
+  var date;
+  var inputVal;
+  var outputVal;
+  var inputName;
+
+  var kaching = new Audio();
+  kaching.src = "https://www.myinstants.com/media/sounds/ka-ching.mp3";
+  function convertCoins(){
+    inputVal = document.getElementById("txtInput");
+    outputVal = document.getElementById("txtOutput");
+    var currency = inputVal.value;
+
+    // put conversion math here
+
+    history()
+  }
+  function convertListener(index){ //index is the index of the selected option
+//This function simply gets the exchange rate from BTC to "selected coin here"
+// I still need a way to get a second dropdown, I will need to use that here too
+    const symbol = index.id;
+    const inputCoin = exchangeCoins[symbol];
+    inputName = inputCoin.name
+    factor1 = inputCoin.exchangeRate
+    console.log("index:", index);
+    console.log("factor", factor1);
+  }
+
+  function history(){
+    var dt = new Date();
+    date = (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) +" "+ (("0"+dt.getHours()).slice(-2))
+     +":"+ (("0"+dt.getMinutes()).slice(-2));
+
+    var table = document.getElementById("myTable");
+    var row = table.insertRow(1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+
+    cell1.innerHTML = date;
+    cell2.innerHTML = inputVal.value + " " + inputName;
+  }
+  function playsound() {
+    var mysound = document.getElementById("mysound");
+    mysound.autoplay = 'true';
+    mysound.load();
+  }
+
+  var exchangeCoins;
+  $(document).ready(() => {
+      getExchangeRates().then(coins => {
+          exchangeCoins = coins //format coins into the array that I need
+          console.log(exchangeCoins)
+          options1 = convertExchangeCoinsToDropdownOptions(exchangeCoins) //Instead of converting popularcoins, convert exchange rates into dropdown options
+          bindOptionsToDropdown(options1)
+          setOnChangeListenerForDropdown(convertListener) //dropdown menu will return the index of the selected option, use this index to figure out what coin was selected
+      })
+  })
 
   </script>
 
-</body>
 </html>

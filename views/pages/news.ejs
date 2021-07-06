@@ -3,6 +3,7 @@
   <head>
     <%- include('../partials/header.ejs') %>
     <title>Crypto Calc</title>
+    
     <!-- Scrolling bar library; Source: https://github.com/tjenkinson/dynamic-marquee -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/dynamic-marquee@2"></script>
     <!-- My crypto API -->
@@ -21,9 +22,10 @@
   <body>
     <%- include('../partials/navbar.ejs') %>
     <%- include('../pages/scrolling-bar.ejs') %>
+    
     <h1 class="newscalc"> Crypto News</h1>
     <div class="paulswrapper" style="text-align: center">
-
+    
       <form onsubmit="return updateSearch()" autocomplete="off">
         <input type="text" id="search_bar" placeholder="Search for news...">
         <input class="submitButton" type="submit" value="Search">

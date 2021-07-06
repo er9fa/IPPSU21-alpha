@@ -3,7 +3,7 @@ const base = `https://api.coingecko.com/api/v3/`
 
 /**
  * Gets the current value of a cryptocurrency in USD
- * @param coinID The ID of a cryptocurrency from the CoinGecko API
+ * @param {String} coinID The ID of a cryptocurrency from the CoinGecko API
  */
 async function getValue(coinID) {
     coinID = coinID.toLowerCase()
@@ -14,7 +14,7 @@ async function getValue(coinID) {
 
 /**
  * Gets the current value, market cap, and 24hr change for a cryptocurrency
- * @param coinID The ID of a cryptocurrency to look up in the CoinGecko API
+ * @param {String} coinID The ID of a cryptocurrency to look up in the CoinGecko API
  */
 async function getCoin(coinID) {
     coinID = coinID.toLowerCase()
@@ -24,13 +24,17 @@ async function getCoin(coinID) {
 
 /**
  * Gets the current value, market cap, and 24hr change for every cryptocurrency in an array
- * @param coinIDs An array of cryptocurrency ids from the CoinGecko API
+ * @param {Array} coinIDs An array of cryptocurrency ids from the CoinGecko API
  */
 async function getCoins(coinIDs) {
     const response = await fetchCoins(coinIDs)
     return formatCoins(response)
 }
 
+/**
+ * Gets a JSON object from a CoinGecko API coin/markets call
+ * @param {Array} coinIDs 
+ */
 async function fetchCoins(coinIDs) {
     // Begin creating the query to send to the CoinGecko API
     const url = new URL(base + 'coins/markets')
@@ -53,14 +57,17 @@ async function fetchCoins(coinIDs) {
     return response
 }
 
-
+/**
+ * Gets an array of coin objects
+ * @returns {Array} An array of coin objects
+ */
 async function getPopularCoins() {
     const response = await fetchPopularCoins()
     return formatCoins(response)
 }
 
 /**
- * Returns a list with 100 of the most popular cryptocurrencies, sorted by market cap in descending order
+ * Calls the fetchCoins() method with no parameter, since popular coins will be returned by default if no coins are specified in the query
  */
 async function fetchPopularCoins() {
     const response = await fetchCoins()
@@ -69,7 +76,7 @@ async function fetchPopularCoins() {
 
 /**
  * Formats the response from the CoinGecko API for popular coins 
- * @param response The JSON object returned from the CoinGecko API
+ * @param {Object} response The JSON object returned from the CoinGecko API
  */
 function formatCoins(response) {
     let coins = []

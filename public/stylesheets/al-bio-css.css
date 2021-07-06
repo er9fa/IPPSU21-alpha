@@ -6,12 +6,6 @@
     background-color: rgb(6, 35, 111);
 }
 
-body {
-    font-family: 'Mate SC', serif;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-}
 
 #marquee {
     position: fixed;
