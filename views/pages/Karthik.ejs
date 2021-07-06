@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <%- include("../partials/header.ejs") %>
+
     <title>Crypto Calc</title>
     <link rel="stylesheet" type="text/css" href="stylesheets/Karthik.css">
     <link rel="stylesheet" type="text/css" href="stylesheets/mainpage.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="/helpers/convertHelper.js"></script>
-
+    <script src="/helpers/dropdown/dropdownHelper.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   </head>
   <body>
       <h1 contenteditable spellcheck="false">Crypto Calc</h1>
@@ -27,16 +31,27 @@
       </tr>
     </table>
     <button class= "button button1" onclick="convertCoins(); kaching.play()">ENTER</button>
-    <%- include("../partials/dropdown/dropdown.ejs") %>
+    <div id = "dropdown1"></div>
+    <div id = "dropdown2"></div>
+
+
+
   </body>
   <%- include("../partials/footer.ejs") %>
 
   <script>
-  var factor1;
+  createDropdown("dropdown1");
+  createDropdown("dropdown2");
+
+  var dropdown1Selection;
+  var dropdown2Selection;
+
+  var factors = [];
   var date;
   var inputVal;
   var outputVal;
   var inputName;
+  var outputName;
 
   var kaching = new Audio();
   kaching.src = "https://www.myinstants.com/media/sounds/ka-ching.mp3";
@@ -46,18 +61,27 @@
     var currency = inputVal.value;
 
     // put conversion math here
-
+    num = currency * factors[0] / factors[1];
+    outputVal.value = num.toPrecision(4);
     history()
   }
-  function convertListener(index){ //index is the index of the selected option
+  function convertListener(index, variableName){ //index is the index of the selected option
 //This function simply gets the exchange rate from BTC to "selected coin here"
 // I still need a way to get a second dropdown, I will need to use that here too
     const symbol = index.id;
     const inputCoin = exchangeCoins[symbol];
-    inputName = inputCoin.name
-    factor1 = inputCoin.exchangeRate
+    if (factors.length == 0){
+      factors[0] = inputCoin.exchangeRate;
+      inputName = inputCoin.name;
+    }
+    else {
+      factors[1] = inputCoin.exchangeRate;
+      outputName = inputCoin.name;
+    }
     console.log("index:", index);
-    console.log("factor", factor1);
+    console.log("factor 1", factors[0])
+    console.log("factor 2", factors[1])
+
   }
 
   function history(){
@@ -73,6 +97,7 @@
 
     cell1.innerHTML = date;
     cell2.innerHTML = inputVal.value + " " + inputName;
+    cell3.innerHTML = outputVal.value + " " + outputName;
   }
   function playsound() {
     var mysound = document.getElementById("mysound");
@@ -86,8 +111,11 @@
           exchangeCoins = coins //format coins into the array that I need
           console.log(exchangeCoins)
           options1 = convertExchangeCoinsToDropdownOptions(exchangeCoins) //Instead of converting popularcoins, convert exchange rates into dropdown options
-          bindOptionsToDropdown(options1)
-          setOnChangeListenerForDropdown(convertListener) //dropdown menu will return the index of the selected option, use this index to figure out what coin was selected
+          bindOptionsToDropdown(options1, "dropdown1")
+          setOnChangeListenerForDropdown(convertListener, "dropdown1") //dropdown menu will return the index of the selected option, use this index to figure out what coin was selected
+
+          bindOptionsToDropdown(options1, "dropdown2")
+          setOnChangeListenerForDropdown(convertListener, "dropdown2")
       })
   })
 

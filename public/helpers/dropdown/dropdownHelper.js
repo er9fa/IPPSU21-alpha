@@ -1,4 +1,4 @@
-/* 
+/*
 Dependencies:
 
 Select2 Libraries:
