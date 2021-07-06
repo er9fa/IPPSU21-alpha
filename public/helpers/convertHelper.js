@@ -48,6 +48,6 @@ function convertExchangeCoinsToDropdownOptions(exchangeCoins) {
     formattedCoins.push(coinFormatted)
     index += 1
   }
-
+  console.log(formattedCoins)
   return formattedCoins
 }
