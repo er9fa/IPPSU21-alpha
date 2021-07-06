@@ -58,7 +58,7 @@ function setOnChangeListenerForDropdown(listener, divElementID) {
     // Set on change listener
     $(divElementID).on('change', () => {
         // Retrieve the selected option object
-        value = $('.js-example-basic-single').select2('data')[0]
+        value = $(divElementID).select2('data')[0]
         // Executes the listener, with the option object passed as a parameter
         listener(value)
     });
