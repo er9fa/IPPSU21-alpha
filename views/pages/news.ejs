@@ -1,45 +1,125 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
+    <%- include('../partials/header.ejs') %>
+    <title>Crypto Calc</title>
+    <!-- Scrolling bar library; Source: https://github.com/tjenkinson/dynamic-marquee -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/dynamic-marquee@2"></script>
+    <!-- My crypto API -->
+    <script src="/data/cryptoAPI.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <meta charset="utf-8">
 
-  <%- include('../partials/header.ejs') %>
-  <link rel="stylesheet" type="text/css" href="stylesheets/mainpage.css">
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-</head>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="stylesheets/navbar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
 
+    <!--Page Specific CSS -->
+    <link rel="stylesheet" type="text/css" href="stylesheets/news.css">
+  </head>\
+  <body>
+    <%- include('../partials/navbar.ejs') %>
+    <%- include('../pages/scrolling-bar.ejs') %>
+    <h1 class="newscalc"> Crypto News</h1>
+    <div class="paulswrapper" style="text-align: center">
 
-<body>
+      <form onsubmit="return updateSearch()" autocomplete="off">
+        <input type="text" id="search_bar" placeholder="Search for news...">
+        <input class="submitButton" type="submit" value="Search">
+      </form>
 
-  <%- include('../partials/nav.ejs') %>
+        <aside>
+          <a class="twitter-timeline" data-lang="en" data-height="2300" data-chrome="transparent" data-theme="dark" href="https://twitter.com/BartenfeldPaul/lists/1406779800317005829?ref_src=twsrc%5Etfw">
+            Tweets by Crypto People
+          </a>
+          <script async src="https://platform.twitter.com/widgets.js" charset="utf-8">
+          </script>
+        </aside>
 
-  <input type="checkbox" id="check">
-  <header>
-    <label for="check">
-      <i class="fas fa-bars" id="sidebar_btn"></i>
-    </label>
-    <div class="left_area">
-      <h3>News</h3>
+      <ul class="newstable">
+        <li>
+          <article class="newsArticle first-article">
+            <h4><a id="title_0" href="" target="_blank"></a></h4>
+            <p><img id="image_0" src="" onerror="this.src='https://www.flexx.co/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png'" width="auto" height="100"/></p>
+            <p id="preview_0"></p>
+          </article>
+        </li>
+        <li>
+          <article class="newsArticle">
+            <h4><a id="title_1" href="" target="_blank"></a></h4>
+            <p><img id="image_1" src="" onerror="this.src='https://www.flexx.co/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png'" width="auto" height="100"/></p>
+            <p id="preview_1"></p>
+          </article>
+        </li>
+        <li>
+          <article class="newsArticle">
+            <h4><a id="title_2" href="" target="_blank"></a></h4>
+            <p><img id="image_2" src="" onerror="this.src='https://www.flexx.co/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png'" width="auto" height="100"/></p>
+            <p id="preview_2"></p>
+          </article>
+        </li>
+        <li>
+          <article class="newsArticle">
+            <h4><a id="title_3" href="" target="_blank"></a></h4>
+            <p><img id="image_3" src="" onerror="this.src='https://www.flexx.co/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png'" width="auto" height="100"/></p>
+            <p id="preview_3"></p>
+          </article>
+        </li>
+        <li>
+          <article class="newsArticle">
+            <h4><a id="title_4" href="" target="_blank"></a></h4>
+            <p><img id="image_4" src="" onerror="this.src='https://www.flexx.co/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png'" width="auto" height="100"/></p>
+            <p id="preview_4"></p>
+          </article>
+        </li>
+        <li>
+          <article class="newsArticle">
+            <h4><a id="title_5" href="" target="_blank"></a></h4>
+            <p><img id="image_5" src="" onerror="this.src='https://www.flexx.co/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png'" width="auto" height="100"/></p>
+            <p id="preview_5"></p>
+          </article>
+        </li>
+        <li>
+          <article class="newsArticle">
+            <h4><a id="title_6" href="" target="_blank"></a></h4>
+            <p><img id="image_6" src="" onerror="this.src='https://www.flexx.co/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png'" width="auto" height="100"/></p>
+            <p id="preview_6"></p>
+          </article>
+        </li>
+        <li>
+          <article class="newsArticle">
+            <h4><a id="title_7" href="" target="_blank"></a></h4>
+            <p><img id="image_7" src="" onerror="this.src='https://www.flexx.co/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png'" width="auto" height="100"/></p>
+            <p id="preview_7"></p>
+          </article>
+        </li>
+        <li>
+          <article class="newsArticle">
+            <h4><a id="title_8" href="" target="_blank"></a></h4>
+            <p><img id="image_8" src="" onerror="this.src='https://www.flexx.co/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png'" width="auto" height="100"/></p>
+            <p id="preview_8"></p>
+          </article>
+        </li>
+        <li>
+          <article class="newsArticle last-article">
+            <h4><a id="title_9" href="" target="_blank"></a></h4>
+            <p><img id="image_9" src="" onerror="this.src='https://www.flexx.co/assets/camaleon_cms/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef.png'" width="auto" height="100"/></p>
+            <p id="preview_9"></p>
+          </article>
+        </li>
+      </ul>
+      <button id="prevButton" style="background-color: #2980B9" onclick="oneClicked()" class= "button prev-button" disabled>Prev.</button>
+      <button id="firstButton" style="background-color: #2980B9" onclick="oneClicked()" class= "button" disabled>1</button>
+      <button id="secondButton" onclick="twoClicked()" class= "button">2</button>
+      <button id="thirdButton" onclick="threeClicked()" class= "button">3</button>
+      <button id="fourthButton" onclick="fourClicked()" class= "button" disabled>...</button>
+      <button id="fifthButton" onclick="tenClicked()" class= "button">10</button>
+      <button id="nextButton" onclick="twoClicked()" class= "button">Next</button>
     </div>
-    <div class="right_area">
-    <div>
-  </header>
 
-  <div class = "sidebar">
-    <center>
-      <img src = "https://i.ibb.co/G9CVPYh/bitcoin-dd8a16.png" class="profile_image" alt = "">
-      <h4>Crypto Calc</h4>
-    </center>
-    <a href="/main"><i class="fas fa-coins"><span> Main</span></i></a>
-    <a href="/calculator"><i class="fas fa-calculator"><span> Calculator</span></i></a>
-    <a href="/news"><i class="fas fa-newspaper"><span> News</span></i></a>
-    <a href="/database"><i class="fas fa-database"><span> Database</span></i></a>
-    <a href="/game"><i class="fas fa-gamepad"><span> Game</span></i></a>
-  <div>
+  </body>
 
+  <script src='/scripts/news.js' type='text/javascript'></script>
 
-  <script>
-
-  </script>
-
-</body>
 </html>
