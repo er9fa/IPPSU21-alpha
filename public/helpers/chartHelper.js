@@ -214,6 +214,7 @@ function getChartConfig() {
             scales: {
                 y: {
                     ticks: {
+                        color: "white",
                         // Changes the y-axis ticker values
                         // Append a dollar sign to the tickers
                         callback: function (value, index, values) {
@@ -223,6 +224,9 @@ function getChartConfig() {
                     grace: "20%"
                 },
                 x: {
+                    ticks: {
+                        color: "white",
+                    },
                     grid: {
                         drawOnChartArea: false,
                     }
@@ -241,6 +245,7 @@ function getChartConfig() {
             }
         }
     }
+
     return config
 }
 
