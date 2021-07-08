@@ -18,27 +18,27 @@
 </head>
 
 <body>
-    <%- include('../partials/navbar-altin.ejs') %>
     <div class="container">
         <div class="row my-4 align-items-center">
             <div class="col">
                 <h3 id="chart-title" class="my-auto" style=""></h3>
                 <div class="flex-row align-items-end">
                     <img id="price-change-image" class="float-start"
-                        style="margin-right: 0.25rem; margin-top: 0.4rem; height: 15px; width: 15px;">
+                        style="margin-right: 0.25rem; margin-top: 0.2rem; height: 15px; width: 15px;">
                     <h5 id="chart-price" class="my-auto" style=""></h5>
                 </div>
             </div>
             <div class="col">
                 <div id="dropdown" style="width: 16rem"></div>
-                </div>
             </div>
-            <div class="row mt-3">
-                <canvas id="chart" width="700" height="500"></canvas>
-            </div>
+        </div>
+        <div class="row mt-3">
+            <canvas id="chart" width="700" height="500"></canvas>
+        </div>
         <div class="row">
             <%- include("../partials/digital-clock.ejs") %>
         </div>
+    </div>
 </body>
 <script>
     let chart = createChart("bitcoin", "chart")
