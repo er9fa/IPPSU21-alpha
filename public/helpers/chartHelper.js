@@ -112,7 +112,7 @@ function getStartingXAxisTickers() {
     let seconds = 0
     let tickers = []
 
-    for (i = 0; i <= 10; i++) {
+    for (i = 0; i <= 14; i++) {
         // The next time ticker on the x-axis should be +20s ahead
         const isMinuteMark = !(seconds % 60)
 
@@ -225,6 +225,7 @@ function getChartConfig() {
         }]
     };
     
+    const lineColor = "#5D788E"
     const config = {
         type: 'line',
         data,
@@ -233,8 +234,8 @@ function getChartConfig() {
             scales: {
                 y: {
                     ticks: {
+                        color: lineColor,
                         padding: 10,
-                        color: "white",
                         // Changes the y-axis ticker values
                         // Append a dollar sign to the tickers
                         callback: function (value, index, values) {
@@ -243,27 +244,24 @@ function getChartConfig() {
                     },
                     grace: "20%",
                     grid: {
-                        drawTicks: false,
+                        // drawTicks: false,
                         
-                        borderColor: "#2A2A2A",
-                        borderWidth: 2,
-
-                        lineWidth: 1,
-                        color: "#2A2A2A",
+                        borderColor: lineColor,
+                        color: lineColor
                     }
                 },
                 x: {
                     ticks: {
+                        color: lineColor,
                         padding: 10,
-                        color: "white",
                     },
                     grid: {
-                        drawTicks: false,
-                        
-                        borderColor: "#2A2A2A",
-                        borderWidth: 2,
+                        //drawTicks: false,
                         
                         drawOnChartArea: false,
+                        borderColor: lineColor,
+                        color: lineColor
+
                     },
                 }
             },
