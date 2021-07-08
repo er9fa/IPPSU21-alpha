@@ -17,6 +17,10 @@ const requestOptions = {
   gzip: true
 };
 
+var search_string = "bitcoin";
+
+var newsURL = `https://newsapi.org/v2/everything?apiKey=a791d1a1c2674ac8914503c53d9a1e8b&language=en&q=${search_string}`;
+
 var CoinMarketCap = require("node-coinmarketcap");
 exports.index = function(req, res) {
     // send moment to your ejs
@@ -36,6 +40,15 @@ express()
   .get('/serhiispage', (req, res) => res.render('pages/serhiispage'))
   .get('/testcoin', (req, res) => {
     rp(requestOptions).then(response => {
+      console.log('API call response:', response);
+      res.status(200).send(response);
+    }).catch((err) => {
+      console.log('API call error:', err.message);
+      res.status(500).send({error: err.message});
+    });
+  })
+  .get('/newsdata', (req, res) => {
+    rp(newsURL).then(response => {
       console.log('API call response:', response);
       res.status(200).send(response);
     }).catch((err) => {
