@@ -1,4 +1,7 @@
-
+:root{
+  --neon-text-color: #08f;
+  --neon-border-color: #f40;
+}
 
 body {
   font-family: 'Exo 2', sans-serif;
@@ -12,11 +15,11 @@ body {
   }
 
 h1:not(.title):not(.calctitle):not(.newscalc){
-  font-size: 2rem;
+  font-size: 4rem;
   font-weight: 200;
   font-style: italic;
   color: #fff;
-  padding: 2rem 2rem 2rem;
+  padding: 2rem 4rem 2rem;
   border: .2rem solid #fff;
   border-radius: 2rem;
   text-transform: uppercase;
@@ -89,7 +92,9 @@ h1:focus {
     }
 }
   .input{
-    font-size: 20px;
+    border: 0.1rem solid white;
+    border-radius: 7px;
+    padding: .5em;
     text-shadow:
     0 0 5px #0000ff,
     0 0 10px #0000ff,
@@ -99,13 +104,24 @@ h1:focus {
     0 0 90px #00f,
     0 0 100px #00f,
     0 0 150px #00f;
-    color: white;
+    box-shadow: 0 0 .5rem #fff,
+    inset 0 0 .5rem #fff,
+    0 0 0rem var(--neon-border-color),
+    inset 0 0 0rem var(--neon-border-color),
+    0 0 4rem var(--neon-border-color),
+    inset 0 0 0rem var(--neon-border-color);
+    background-color: #141d26;
+    color: #fff;
+    font-size: 20px;
     position: fixed;
     top: 40%;
     left: 23%;
-  }
+    }
 
   .output{
+    border: 0.1rem solid white;
+    border-radius: 7px;
+    padding: .5em;
     font-size: 20px;
     text-shadow:
     0 0 5px #0000ff,
@@ -116,10 +132,77 @@ h1:focus {
     0 0 90px #00f,
     0 0 100px #00f,
     0 0 150px #00f;
+    box-shadow: 0 0 .5rem #fff,
+    inset 0 0 .5rem #fff,
+    0 0 0rem var(--neon-border-color),
+    inset 0 0 0rem var(--neon-border-color),
+    0 0 4rem var(--neon-border-color),
+    inset 0 0 0rem var(--neon-border-color);
+    background-color: #141d26;
     color: white;
     position: fixed;
     top: 40%;
     left: 57%;
+  }
+  .inputCoinDropdown{
+    background-color: #141d26;
+    color: var(--neon-text-color);
+    font-size: 1.25rem;
+    font-style: italic;
+    text-shadow:
+      0 0 5px #0000ff,
+      0 0 10px #0000ff,
+      0 0 20px #0000ff,
+      0 0 40px #00f,
+      0 0 80px #00f,
+      0 0 90px #00f,
+      0 0 100px #00f,
+      0 0 150px #00f;
+    color: #fff;
+    margin: 0em 1em 2em 1em;
+    padding: 1.25rem 2rem 1.25rem;
+    border: 0.1rem solid #fff;
+    border-radius: 2rem;
+    box-shadow: 0 0 .5rem #fff,
+    inset 0 0 .5rem #fff,
+    0 0 .5rem var(--neon-border-color),
+    inset 0 0 .5rem var(--neon-border-color),
+    0 0 1rem var(--neon-border-color),
+    inset 0 0 2rem var(--neon-border-color);
+    text-transform: uppercase;
+    position: fixed;
+    top: 50%;
+    left: 22%;
+  }
+  .outputCoinDropdown{
+    background-color: #141d26;
+  color: var(--neon-text-color);
+  font-size: 1.25rem;
+  font-style: italic;
+  text-shadow:
+    0 0 5px #0000ff,
+    0 0 10px #0000ff,
+    0 0 20px #0000ff,
+    0 0 40px #00f,
+    0 0 80px #00f,
+    0 0 90px #00f,
+    0 0 100px #00f,
+    0 0 150px #00f;
+  color: #fff;
+  margin: 0em 1em 2em 1em;
+  padding: 1.25rem 2rem 1.25rem;
+  border: 0.1rem solid #fff;
+  border-radius: 2rem;
+  box-shadow: 0 0 .5rem #fff,
+  inset 0 0 .5rem #fff,
+  0 0 .5rem var(--neon-border-color),
+  inset 0 0 .5rem var(--neon-border-color),
+  0 0 1rem var(--neon-border-color),
+  inset 0 0 2rem var(--neon-border-color);
+  text-transform: uppercase;
+    position: fixed;
+    top: 50%;
+    left: 56%
   }
 
   input[type = text]{
@@ -129,8 +212,16 @@ h1:focus {
     width: 60%;
     color: white;
     position: fixed;
-    top: 55%;
+    top: 65%;
     left: 19.5%;
+    border: 1px solid red;
+    box-shadow: 0 0 .5rem #fff,
+    inset 0 0 .5rem #fff,
+    0 0 0rem var(--neon-border-color),
+    inset 0 0 0rem var(--neon-border-color),
+    0 0 4rem var(--neon-border-color),
+    inset 0 0 0rem var(--neon-border-color);
+    background-color: #141d26;
   }
   th{
     font-size: 20px;
@@ -144,15 +235,23 @@ h1:focus {
     0 0 90px #00f,
     0 0 100px #00f,
     0 0 150px #00f;
-    border: 1px solid white;
+    box-shadow: 0 0 .5rem #fff,
+    inset 0 0 .5rem #f40,
+    0 0 0rem var(--neon-border-color),
+    inset 0 0 0rem var(--neon-border-color),
+    inset 0 0 0rem var(--neon-border-color);
   }
   td{
   font-size: 20px;
   text-align: center;
-  color: black;
-  background-color: white;
+  color: white;
+  background-color: #141d26;
+  box-shadow: 0 0 .5rem #fff,
+  inset 0 0 .5rem #f40,
+  0 0 0rem var(--neon-border-color),
+  inset 0 0 0rem var(--neon-border-color),
+  inset 0 0 0rem var(--neon-border-color);
   }
-tr:nth-child(even) {background: #696969;}
 .dropbtn {
   --neon-text-color: #08f;
   --neon-border-color: #f40;
@@ -200,19 +299,26 @@ tr:nth-child(even) {background: #696969;}
 .button{
   --neon-text-color: #08f;
   --neon-border-color: #f40;
-  background-color: var(--neon-text-color);
   color: var(--neon-border-color);
-  font-size: 1rem;
+  font-size: 2rem;
   font-weight: 200;
   font-style: italic;
   color: #fff;
   padding: 1rem 1.5rem 1rem;
   border: 0.4rem solid #fff;
-  border-radius: 2rem;
+  border-radius: 1rem;
   text-transform: uppercase;
   position: fixed;
   top: 40%;
-  left: 47%;
+  left: 85%;
+
+  box-shadow: 0 0 .5rem #fff,
+    inset 0 0 .5rem #fff,
+    0 0 0rem var(--neon-border-color),
+    inset 0 0 0rem var(--neon-border-color),
+    0 0 4rem var(--neon-border-color),
+    inset 0 0 0rem var(--neon-border-color);
+    background-color: #141d26;
 }
 .button:hover, .button:focus {
   background-color: #2980B9;
