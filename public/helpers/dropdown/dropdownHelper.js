@@ -61,6 +61,17 @@ function setOnChangeListenerForDropdown(listener, divElementID) {
     });
 }
 
+function changeInputFieldPlaceholderText(text, divID) {
+    const jqueryID = "#" + divID
+
+    $(jqueryID).on("select2:open", function () {
+        $(".select2-search__field").attr("placeholder", text);
+    })
+    $(jqueryID).on("select2:close", function () {
+        $(".select2-search__field").attr("placeholder", null);
+    })
+}
+
 /**
  * Converts an element ID into JQuery selector format (it's just boilerplate code)
  * @param {String} elementID The ID of an element

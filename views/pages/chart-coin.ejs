@@ -51,6 +51,7 @@
             options = convertCoinsToDropdownOptions(coins)
             bindOptionsToDropdown(options, "dropdown")
             setOnChangeListenerForDropdown((selectedOption) => changeChartCoin(selectedOption, popularCoins), "dropdown")
+            changeInputFieldPlaceholderText("Search for a coin...", "dropdown")
         })
     })
 </script>
