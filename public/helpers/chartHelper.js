@@ -109,6 +109,24 @@ function resetChart() {
  * Creates an array of strings representing intervals of times (intervals specified by global var at top of file)
  */
 function getStartingXAxisTickers() {
+    let seconds = 0
+    let tickers = []
+
+    for (i = 0; i <= 10; i++) {
+        // The next time ticker on the x-axis should be +20s ahead
+        const isMinuteMark = !(seconds % 60)
+
+        minutesString = (isMinuteMark && seconds != 0) ? (seconds/60 + " min ") : ""
+        secondsString = (!isMinuteMark || seconds == 0) ? seconds + "s" : ""
+
+        tickers[i] = "+" + minutesString + secondsString
+        seconds += 20
+    }
+
+    return tickers
+}
+
+function old_getStartingXAxisTickers() {
     mostRecentTimeTicker = new Date()
 
     let tickers = []
@@ -206,6 +224,7 @@ function getChartConfig() {
             ],
         }]
     };
+    
     const config = {
         type: 'line',
         data,
@@ -214,6 +233,7 @@ function getChartConfig() {
             scales: {
                 y: {
                     ticks: {
+                        padding: 10,
                         color: "white",
                         // Changes the y-axis ticker values
                         // Append a dollar sign to the tickers
@@ -221,15 +241,30 @@ function getChartConfig() {
                             return '$' + value.toFixed(2);
                         },
                     },
-                    grace: "20%"
+                    grace: "20%",
+                    grid: {
+                        drawTicks: false,
+                        
+                        borderColor: "#2A2A2A",
+                        borderWidth: 2,
+
+                        lineWidth: 1,
+                        color: "#2A2A2A",
+                    }
                 },
                 x: {
                     ticks: {
+                        padding: 10,
                         color: "white",
                     },
                     grid: {
+                        drawTicks: false,
+                        
+                        borderColor: "#2A2A2A",
+                        borderWidth: 2,
+                        
                         drawOnChartArea: false,
-                    }
+                    },
                 }
             },
             elements: {
