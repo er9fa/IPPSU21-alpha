@@ -4,6 +4,7 @@ Dependencies:
 Select2 Libraries:
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<link rel="stylesheet" type="text/css" href="stylesheets/dropdown"
 */
 
 /**
@@ -15,11 +16,7 @@ function createDropdown(divElementID) {
     divElementID = convertElementIDToJQueryFormat(divElementID)  // Some jQuery boilerplate
 
     $(divElementID).addClass("js-example-basic-single") // This class is from the Select2 library and required to initialize the div as a dropdown menu
-    $(divElementID).css({ "width": "16rem" })
-    $(divElementID).select2({
-        // Initialize div as dropdown
-        placeholder: 'Select an option'
-    })
+    $(divElementID).select2() // Initialize the element as a select2 dropdown
     // Fix for dropdown menu not focusing on the search bar instantly
     $(document).on('select2:open', () => {
         document.querySelector('.select2-search__field').focus();
