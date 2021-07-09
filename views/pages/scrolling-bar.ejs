@@ -28,7 +28,7 @@
             const priceChangeSymbolImage = (hasPriceIncreased) ?
                 "/images/scrolling-bar-green-triangle.png" : "/images/scrolling-bar-red-triangle.png"
 
-            const result = "\xa0\xa0" + tickerSymbol + " $" + price + "\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0"
+            const result = "\xa0\xa0" + tickerSymbol + " " + numeral(price).format("$0.00") + "\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0"
 
             // Create text element to store ticker
             const $coinText = document.createElement("div"); $coinText.className = "sb-coin-text"

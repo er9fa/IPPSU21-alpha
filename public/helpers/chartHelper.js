@@ -109,6 +109,24 @@ function resetChart() {
  * Creates an array of strings representing intervals of times (intervals specified by global var at top of file)
  */
 function getStartingXAxisTickers() {
+    let seconds = 0
+    let tickers = []
+
+    for (i = 0; i <= 14; i++) {
+        // The next time ticker on the x-axis should be +20s ahead
+        const isMinuteMark = !(seconds % 60)
+
+        minutesString = (isMinuteMark && seconds != 0) ? (seconds/60 + " min ") : ""
+        secondsString = (!isMinuteMark || seconds == 0) ? seconds + "s" : ""
+
+        tickers[i] = "+" + minutesString + secondsString
+        seconds += 20
+    }
+
+    return tickers
+}
+
+function old_getStartingXAxisTickers() {
     mostRecentTimeTicker = new Date()
 
     let tickers = []
@@ -206,6 +224,8 @@ function getChartConfig() {
             ],
         }]
     };
+    
+    const lineColor = "#5D788E"
     const config = {
         type: 'line',
         data,
@@ -214,22 +234,35 @@ function getChartConfig() {
             scales: {
                 y: {
                     ticks: {
-                        color: "white",
+                        color: lineColor,
+                        padding: 10,
                         // Changes the y-axis ticker values
                         // Append a dollar sign to the tickers
                         callback: function (value, index, values) {
                             return '$' + value.toFixed(2);
                         },
                     },
-                    grace: "20%"
+                    grace: "20%",
+                    grid: {
+                        // drawTicks: false,
+                        
+                        borderColor: lineColor,
+                        color: lineColor
+                    }
                 },
                 x: {
                     ticks: {
-                        color: "white",
+                        color: lineColor,
+                        padding: 10,
                     },
                     grid: {
+                        //drawTicks: false,
+                        
                         drawOnChartArea: false,
-                    }
+                        borderColor: lineColor,
+                        color: lineColor
+
+                    },
                 }
             },
             elements: {
