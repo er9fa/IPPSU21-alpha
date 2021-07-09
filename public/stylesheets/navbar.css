@@ -35,12 +35,18 @@
 		text-align: center;
 		position: fixed;
 		top: 8%;
-		left: -15%;
+		left: -17%;
 		border-radius: 5px;
+		border: 5px solid white;
+		box-shadow:
+		0 0 5px #fff,
+		0 0 10px #fff,
+		0 0 20px #fff,
+		0 0 40px #00f;
 }
 
 #sidebar.active{
-	margin-left: +15%;
+	margin-left: +17%;
 }
 
 #sidebar .sidebar-header{
@@ -48,7 +54,7 @@
 	background: none;
 }
 #sidebar ul.components{
-	padding: 20px 0px;
+
 }
 
 #sidebar ul p{
@@ -113,7 +119,7 @@
 #content {
     width: 100%;
     padding: 20px;
-    min-height: 100vh;
+    min-height: 80vh;
     transition: all 0.3s;
 }
 

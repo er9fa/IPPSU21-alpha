@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 
 <head>
-    <%- include("../partials/header.ejs") %>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"
         integrity="sha512-VCHVc5miKoln972iJPvkQrUYYq7XpxXzvqNfiul1H4aZDwGBGC0lq373KNleaB2LpnC2a/iNfE5zoRYmB4TRDQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -35,6 +34,9 @@
                 <canvas id="chart" width="700" height="500"></canvas>
             </div>
         </div>
+
+        <%- include('../partials/navbar.ejs') %>
+        <%- include('../pages/scrolling-bar.ejs') %>
 </body>
 <script>
     let chart = createChart("bitcoin", "chart")
@@ -50,6 +52,5 @@
         })
     })
 </script>
-<%- include("../partials/footer.ejs") %>
 
 </html>

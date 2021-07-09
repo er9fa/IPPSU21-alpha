@@ -2,7 +2,6 @@
 <html>
 
 <head>
-  <%- include("../partials/header.ejs") %>
 
     <title>Crypto Calc</title>
     <link rel="stylesheet" type="text/css" href="stylesheets/Karthik.css">
@@ -41,10 +40,10 @@
   <div id="dropdown1"></div>
   <div id="dropdown2"></div>
 
-
+  <%- include('../partials/navbar.ejs') %>
+  <%- include('../pages/scrolling-bar.ejs') %>
 
 </body>
-<%- include("../partials/footer.ejs") %>
 
   <script>
     createDropdown("dropdown1");
