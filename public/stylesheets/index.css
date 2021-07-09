@@ -1,68 +1,77 @@
+*{
+  font-family: Georgia, Times, "Times New Roman", serif;
+}
+
 svg{
   color: white;
 }
 
 .img1{
-  width: 25%;
+  width: 21%;
   height: 40%;
   position: fixed;
   top:35%;
-  left: 0;
+  left: 2%;
   opacity: 0.3;
+  border-radius: 7%;
 }
 
 .img2{
-  width: 25%;
+  width: 21%;
   height: 40%;
   position: fixed;
   top:35%;
-  left: 25%;
+  left: 27%;
   opacity: 0.3;
+  border-radius: 7%;
 }
 
 .img3{
-  width: 25%;
+  width: 21%;
   height: 40%;
   position: fixed;
   top:35%;
-  left: 50%;
+  left: 52%;
   opacity: 0.3;
+  border-radius: 7%;
 }
 
 .img4{
-  width: 25%;
+  width: 21%;
   height: 40%;
   position: fixed;
   top:35%;
-  left: 75%;
+  left: 77%;
   opacity: 0.3;
+  border-radius: 7%;
 }
 
 .calc{
   position: absolute;
-  top: 42.5%;
+  top: 44%;
   left: 7.5%;
 }
 
 .news{
   position: absolute;
-  top: 42.5%;
+  top: 44%;
   left: 32.5%;
 }
 
 .graph{
   position: absolute;
-  top: 42.5%;
+  top: 44%;
   left: 57.5%;
 }
 
 .about{
   position: absolute;
-  top: 42.5%;
+  top: 44%;
   left: 82.5%;
 }
 
 .title {
+  font-family: Georgia, Times, "Times New Roman", serif;
   font-size: 80px;
   color: #fff;
   text-align: center;
@@ -78,14 +87,15 @@ svg{
 }
 
 .overlay1 {
-  width: 25%;
+  width: 21%;
   height: 40%;
   position: fixed;
   top:35%;
-  left: 0%;
+  left: 2%;
   opacity: 0;
   transition: .5s ease;
   background-color: #182E76;
+  border-radius: 7%;
 }
 
 .container1:hover .overlay1 {
@@ -116,14 +126,15 @@ svg{
 }
 
 .overlay2 {
-  width: 25%;
+  width: 21%;
   height: 40%;
   position: fixed;
   top:35%;
-  left: 25%;
+  left: 27%;
   opacity: 0;
   transition: .5s ease;
   background-color: #1B368D;
+  border-radius: 7%;
 }
 
 .container2:hover .overlay2 {
@@ -154,14 +165,15 @@ svg{
 }
 
 .overlay3 {
-  width: 25%;
+  width: 21%;
   height: 40%;
   position: fixed;
   top:35%;
-  left: 50%;
+  left: 52%;
   opacity: 0;
   transition: .5s ease;
   background-color: #1F3EA4;
+  border-radius: 7%;
 }
 
 .container3:hover .overlay3 {
@@ -192,14 +204,15 @@ svg{
 }
 
 .overlay4 {
-  width: 25%;
+  width: 21%;
   height: 40%;
   position: fixed;
   top:35%;
-  left: 75%;
+  left: 77%;
   opacity: 0;
   transition: .5s ease;
   background-color: #1D44C6;
+  border-radius: 7%;
 }
 
 .container4:hover .overlay4 {
