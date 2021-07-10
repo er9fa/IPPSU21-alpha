@@ -2,38 +2,38 @@
 <html>
 
 <head>
+  <%- include('../partials/header.ejs') %>
+  <title>Crypto Calc</title>
+  <link rel="stylesheet" type="text/css" href="stylesheets/Karthik.css">
+  <link rel="stylesheet" type="text/css" href="stylesheets/mainpage.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
-    <title>Crypto Calc</title>
-    <link rel="stylesheet" type="text/css" href="stylesheets/Karthik.css">
-    <link rel="stylesheet" type="text/css" href="stylesheets/mainpage.css">
-    <link rel="stylesheet" type="text/css"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="stylesheets/navbar.css">
+  <!-- Scrolling-bar dependencies -->
+  <script src="/helpers/convertHelper.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/dynamic-marquee@2"></script>
 
-    <script src="/helpers/convertHelper.js"></script>
-    <script src="/helpers/dropdown/dropdownHelper.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/dynamic-marquee@2"></script>
-
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <!-- Dropdown dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <script src="/helpers/dropdown/dropdownHelper.js"></script>
+  <link rel="stylesheet" type="text/css" href="stylesheets/dropdown.css">
 </head>
 
 <body>
-  <%- include('../partials/navbar.ejs') %>
   <%- include('../pages/scrolling-bar.ejs') %>
-
   <h1 contenteditable spellcheck="false">Crypto Calc</h1>
   <form class="input">
     Input :
-    <input type="text" name="Input" id="txtInput"style = "background-color: gray; color: white;">
+    <input type="text" name="Input" id="txtInput" style="background-color: gray; color: white;">
   </form>
   <form class="output">
     Output :
-    <input type="text" name= "output" id="txtOutput" style = "background-color: gray; color: white;">
+    <input type="text" name="output" id="txtOutput" style="background-color: gray; color: white;">
   </form>
 
-  <h2 class = "inputCoinDropdown">Input Coin</h2>
-  <h2 class = "outputCoinDropdown">Output Coin</h2>
+  <h2 class="inputCoinDropdown">Input Coin</h2>
+  <h2 class="outputCoinDropdown">Output Coin</h2>
 
 
   <table id="myTable">
@@ -44,106 +44,103 @@
     </tr>
   </table>
   <button class="button button1" onclick="convertCoins(); kaching.play()">ENTER</button>
-  <div id="dropdown1"></div>
-  <div id="dropdown2"></div>
-
-  <%- include('../partials/navbar.ejs') %>
-  <%- include('../pages/scrolling-bar.ejs') %>
-
+  <div id="dropdown1" style="width: 13rem"></div>
+  <div id="dropdown2" style="width: 13rem"></div>
 </body>
 
 
-  <script>
-    createDropdown("dropdown1");
-    createDropdown("dropdown2");
+<script>
+  createDropdown("dropdown1");
+  createDropdown("dropdown2");
 
-    var dropdown1Selection;
-    var dropdown2Selection;
+  var dropdown1Selection;
+  var dropdown2Selection;
 
-    let factor1 = {
-      exchangeRate: 0
-    };
-    let factor2 = {
-      exchangeRate: 0
-    };
-    var date;
-    var inputVal;
-    var outputVal;
-    let inputCoinName = {
-      coinName: ""
-    };
-    let outputCoinName = {
-      coinName: ""
-    };
-    var kaching = new Audio();
-    kaching.src = "https://www.myinstants.com/media/sounds/ka-ching.mp3";
-    function convertCoins() {
-      inputVal = document.getElementById("txtInput");
-      outputVal = document.getElementById("txtOutput");
-      var currency = inputVal.value;
+  let factor1 = {
+    exchangeRate: 0
+  };
+  let factor2 = {
+    exchangeRate: 0
+  };
+  var date;
+  var inputVal;
+  var outputVal;
+  let inputCoinName = {
+    coinName: ""
+  };
+  let outputCoinName = {
+    coinName: ""
+  };
+  var kaching = new Audio();
+  kaching.src = "https://www.myinstants.com/media/sounds/ka-ching.mp3";
+  function convertCoins() {
+    inputVal = document.getElementById("txtInput");
+    outputVal = document.getElementById("txtOutput");
+    var currency = inputVal.value;
 
-      // put conversion math here
-      num = currency / factor1.exchangeRate * factor2.exchangeRate;
-      outputVal.value = num.toPrecision(4);
-      history()
-    }
-    function convertCoinListener(index, valObject, coinNameObject) { //index is the index of the selected option
-      //This function simply gets the exchange rate from BTC to "selected coin here"
-      // I still need a way to get a second dropdown, I will need to use that here too
-      const symbol = index.id;
-      const coin = exchangeCoins[symbol];
+    // put conversion math here
+    num = currency / factor1.exchangeRate * factor2.exchangeRate;
+    outputVal.value = num.toPrecision(4);
+    history()
+  }
+  function convertCoinListener(index, valObject, coinNameObject) { //index is the index of the selected option
+    //This function simply gets the exchange rate from BTC to "selected coin here"
+    // I still need a way to get a second dropdown, I will need to use that here too
+    const symbol = index.id;
+    const coin = exchangeCoins[symbol];
 
-      valObject.exchangeRate = coin.exchangeRate;
+    valObject.exchangeRate = coin.exchangeRate;
 
-      coinNameObject.coinName = coin.name;
+    coinNameObject.coinName = coin.name;
 
-      console.log("index:", index);
-      console.log("factor 1", factor1);
-      console.log("factor 2", factor2);
-      console.log("input coin", inputCoinName);
-      console.log("output coin", outputCoinName);
+    console.log("index:", index);
+    console.log("factor 1", factor1);
+    console.log("factor 2", factor2);
+    console.log("input coin", inputCoinName);
+    console.log("output coin", outputCoinName);
 
 
 
-    }
+  }
 
-    function history() {
-      var dt = new Date();
-      date = (("0" + dt.getDate()).slice(-2)) + "/" + (("0" + (dt.getMonth() + 1)).slice(-2)) + "/" + (dt.getFullYear()) + " " + (("0" + dt.getHours()).slice(-2))
-        + ":" + (("0" + dt.getMinutes()).slice(-2));
+  function history() {
+    var dt = new Date();
+    date = (("0" + dt.getDate()).slice(-2)) + "/" + (("0" + (dt.getMonth() + 1)).slice(-2)) + "/" + (dt.getFullYear()) + " " + (("0" + dt.getHours()).slice(-2))
+      + ":" + (("0" + dt.getMinutes()).slice(-2));
 
-      var table = document.getElementById("myTable");
-      var row = table.insertRow(1);
-      var cell1 = row.insertCell(0);
-      var cell2 = row.insertCell(1);
-      var cell3 = row.insertCell(2);
+    var table = document.getElementById("myTable");
+    var row = table.insertRow(1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
 
-      cell1.innerHTML = date;
-      cell2.innerHTML = inputVal.value + " " + inputCoinName.coinName;
-      cell3.innerHTML = outputVal.value + " " + outputCoinName.coinName;
-    }
-    function playsound() {
-      var mysound = document.getElementById("mysound");
-      mysound.autoplay = 'true';
-      mysound.load();
-    }
+    cell1.innerHTML = date;
+    cell2.innerHTML = inputVal.value + " " + inputCoinName.coinName;
+    cell3.innerHTML = outputVal.value + " " + outputCoinName.coinName;
+  }
+  function playsound() {
+    var mysound = document.getElementById("mysound");
+    mysound.autoplay = 'true';
+    mysound.load();
+  }
 
-    var exchangeCoins;
-    $(document).ready(() => {
-      getExchangeRates().then(coins => {
-        exchangeCoins = coins //format coins into the array that I need
-        console.log(exchangeCoins)
-        options1 = convertExchangeCoinsToDropdownOptions(exchangeCoins) //Instead of converting popularcoins, convert exchange rates into dropdown options
-        bindOptionsToDropdown(options1, "dropdown1")
-        setOnChangeListenerForDropdown((selectedOption) => convertCoinListener(selectedOption, factor1, inputCoinName), "dropdown1") //dropdown menu will return the index of the selected option, use this index to figure out what coin was selected
+  var exchangeCoins;
+  $(document).ready(() => {
+    getExchangeRates().then(coins => {
+      exchangeCoins = coins //format coins into the array that I need
+      console.log(exchangeCoins)
+      options1 = convertExchangeCoinsToDropdownOptions(exchangeCoins) //Instead of converting popularcoins, convert exchange rates into dropdown options
+      bindOptionsToDropdown(options1, "dropdown1")
+      setOnChangeListenerForDropdown((selectedOption) => convertCoinListener(selectedOption, factor1, inputCoinName), "dropdown1") //dropdown menu will return the index of the selected option, use this index to figure out what coin was selected
 
-        bindOptionsToDropdown(options1, "dropdown2")
-        setOnChangeListenerForDropdown((selectedOption) => convertCoinListener(selectedOption, factor2, outputCoinName), "dropdown2")
+      bindOptionsToDropdown(options1, "dropdown2")
+      setOnChangeListenerForDropdown((selectedOption) => convertCoinListener(selectedOption, factor2, outputCoinName), "dropdown2")
 
-        $("#dropdown").val(11).trigger('change');
-      })
+      $("#dropdown").val(11).trigger('change');
     })
+  })
 
-  </script>
+</script>
+<%- include("../partials/footer.ejs") %>
 
 </html>
