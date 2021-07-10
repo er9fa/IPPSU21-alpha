@@ -184,7 +184,7 @@ h1:focus {
     position: fixed;
     top: 65%;
     left: 19.5%;
-    border: 1px solid red;
+    border: 1px solid white;
     box-shadow: 0 0 .5rem #fff,
     inset 0 0 .5rem #fff,
     0 0 0rem var(--neon-border-color),
