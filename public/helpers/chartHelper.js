@@ -54,7 +54,7 @@ function changeChartCoin(selectedOption, arrayOfCoinsThatWereBindedToDropdown) {
 
     resetChart()
 
-    updateElementChartTitleAndCoinPrice(pc_coin.name, "chart-title", "chart-price", "price-change-image")
+    updateElementChartTitleAndCoinPrice(pc_coin.name, "chart-price", "price-change-image")
 
     chart = createChart(pc_coin.id, "chart")
 }
@@ -88,7 +88,7 @@ function updateChart() {
 
         // TODO: Get rid of these hard-coded ID's
         // Updates the chart's HTML title and price <h> elements
-        updateElementChartTitleAndCoinPrice(chartCoin.name, "chart-title", "chart-price", "price-change-image")
+        updateElementChartTitleAndCoinPrice(chartCoin.name, "chart-price", "price-change-image")
 
         // Chart.js method to refresh chart
         chart.update()
@@ -186,8 +186,7 @@ function incrementTimeByXSeconds(time, seconds) {
  * @param {String} priceChangeElementID The ID of a \<h\> element to bind the coin's price and percent change text to
  * @param {String} priceChangeImageElementID The ID of a \<img\> element to bind the price change triangle image to
  */
-function updateElementChartTitleAndCoinPrice(coinName, titleElementID, priceChangeElementID, priceChangeImageElementID) {
-    titleElement = document.getElementById(titleElementID)
+function updateElementChartTitleAndCoinPrice(coinName, priceChangeElementID, priceChangeImageElementID) {
     priceChangeElement = document.getElementById(priceChangeElementID)
     priceChangeImageElement = document.getElementById(priceChangeImageElementID)
 
@@ -211,7 +210,6 @@ function updateElementChartTitleAndCoinPrice(coinName, titleElementID, priceChan
     priceChangeResult = "$" + lastDatapoint + " (" + plusOrMinus + percentChange + "%)"
     priceChangeImageElementResult = priceChangeSymbolImage
 
-    titleElement.textContent = titleResult
     priceChangeElement.textContent = priceChangeResult
     priceChangeImageElement.src = priceChangeSymbolImage
 }
