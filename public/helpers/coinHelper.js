@@ -1,5 +1,5 @@
 // The base url for the CoinGecko API
-const base = `https://api.coingecko.com/api/v3/`
+const baseUrl = `https://api.coingecko.com/api/v3/`
 
 /**
  * Gets the current value of a cryptocurrency in USD
@@ -37,7 +37,7 @@ async function getCoins(coinIDs) {
  */
 async function fetchCoins(coinIDs) {
     // Begin creating the query to send to the CoinGecko API
-    const url = new URL(base + 'coins/markets')
+    const url = new URL(baseUrl + 'coins/markets')
     const params = {
         'vs_currency': 'usd',
         'price_change_percentage': '24h'

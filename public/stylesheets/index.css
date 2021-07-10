@@ -1,35 +1,236 @@
+*{
+  font-family: Georgia, Times, "Times New Roman", serif;
+}
+
 svg{
   color: white;
 }
 
+.img1{
+  width: 21%;
+  height: 40%;
+  position: fixed;
+  top:35%;
+  left: 2%;
+  opacity: 0.3;
+  border-radius: 7%;
+}
+
+.img2{
+  width: 21%;
+  height: 40%;
+  position: fixed;
+  top:35%;
+  left: 27%;
+  opacity: 0.3;
+  border-radius: 7%;
+}
+
+.img3{
+  width: 21%;
+  height: 40%;
+  position: fixed;
+  top:35%;
+  left: 52%;
+  opacity: 0.3;
+  border-radius: 7%;
+}
+
+.img4{
+  width: 21%;
+  height: 40%;
+  position: fixed;
+  top:35%;
+  left: 77%;
+  opacity: 0.3;
+  border-radius: 7%;
+}
+
 .calc{
   position: absolute;
-  top: 35%;
-  left: 20%;
+  top: 44%;
+  left: 7.5%;
 }
 
 .news{
   position: absolute;
-  top: 35%;
-  left: 35%;
+  top: 44%;
+  left: 32.5%;
 }
 
-.data{
+.graph{
   position: absolute;
-  top: 35%;
-  left: 50%;
+  top: 44%;
+  left: 57.5%;
 }
 
-.game{
+.about{
   position: absolute;
-  top: 35%;
-  left: 65%;
+  top: 44%;
+  left: 82.5%;
 }
 
 .title {
+  font-family: Georgia, Times, "Times New Roman", serif;
   font-size: 80px;
   color: #fff;
   text-align: center;
+  text-shadow:
+  0 0 5px #fff,
+  0 0 10px #fff,
+  0 0 20px #fff,
+  0 0 40px #00f,
+  0 0 80px #00f,
+  0 0 90px #00f,
+  0 0 100px #00f,
+  0 0 150px #00f;
+}
+
+.overlay1 {
+  width: 21%;
+  height: 40%;
+  position: fixed;
+  top:35%;
+  left: 2%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #182E76;
+  border-radius: 7%;
+}
+
+.container1:hover .overlay1 {
+  opacity: 1;
+}
+
+.text1 {
+  color: white;
+  font-size: 3rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+.text1:hover{
+  text-decoration: none;
+  text-shadow:
+  0 0 5px #fff,
+  0 0 10px #fff,
+  0 0 20px #fff,
+  0 0 40px #00f,
+  0 0 80px #00f,
+  0 0 90px #00f,
+  0 0 100px #00f,
+  0 0 150px #00f;
+}
+
+.overlay2 {
+  width: 21%;
+  height: 40%;
+  position: fixed;
+  top:35%;
+  left: 27%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #1B368D;
+  border-radius: 7%;
+}
+
+.container2:hover .overlay2 {
+  opacity: 1;
+}
+
+.text2 {
+  color: white;
+  font-size: 3rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+.text2:hover{
+  text-decoration: none;
+  text-shadow:
+  0 0 5px #fff,
+  0 0 10px #fff,
+  0 0 20px #fff,
+  0 0 40px #00f,
+  0 0 80px #00f,
+  0 0 90px #00f,
+  0 0 100px #00f,
+  0 0 150px #00f;
+}
+
+.overlay3 {
+  width: 21%;
+  height: 40%;
+  position: fixed;
+  top:35%;
+  left: 52%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #1F3EA4;
+  border-radius: 7%;
+}
+
+.container3:hover .overlay3 {
+  opacity: 1;
+}
+
+.text3 {
+  color: white;
+  font-size: 3rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+.text3:hover{
+  text-decoration: none;
+  text-shadow:
+  0 0 5px #fff,
+  0 0 10px #fff,
+  0 0 20px #fff,
+  0 0 40px #00f,
+  0 0 80px #00f,
+  0 0 90px #00f,
+  0 0 100px #00f,
+  0 0 150px #00f;
+}
+
+.overlay4 {
+  width: 21%;
+  height: 40%;
+  position: fixed;
+  top:35%;
+  left: 77%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #1D44C6;
+  border-radius: 7%;
+}
+
+.container4:hover .overlay4 {
+  opacity: 1;
+}
+
+.text4 {
+  color: white;
+  font-size: 3rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+.text4:hover{
+  text-decoration: none;
   text-shadow:
   0 0 5px #fff,
   0 0 10px #fff,

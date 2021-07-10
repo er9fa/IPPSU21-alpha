@@ -19,4 +19,8 @@
 .sb-price-change-symbol {
     height: 15px;
     width: 15px;
+
+    /* Unsets the img styling using in news.ejs */
+    float: unset;
+    margin-right: unset;
 }
