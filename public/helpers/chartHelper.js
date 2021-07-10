@@ -6,11 +6,15 @@ coinHelper.js
 numeral.js
 */
 
-const updateInterval = 20 // Update the chart every 20 seconds
 let chartCoin = {} // The coin to be tracked on the chart
-let dataPoints = [] // An array of the data points to be plotted on the chart
-let chartXAxisTickers = [] // An array of the x-axis tickers
-let mostRecentTimeTicker = {} // The rightmost time ticker on the chart x-axis represented as a date object (e.g. 05:25:17 PM)
+
+let dataPoints = [] // An array of the values to be plotted on the chart
+let chartXAxisTickers = [] // An array of the x-axis ticker labels
+let tooltipTitles = [] // Changes the text of the popup when hovering mouse over a chart datapoint
+
+const UPDATE_INTERVAL = 20 // Update the chart every 20 seconds
+let intervalsElapsed = 0
+let latestTrackedTime = {} // {Date} Tracks the latest registered time on the chart (i.e. the current rightmost ticker on the x-axis).
 let setIntervalID_updateChart // The ID of the setInterval for updating the chart
 
 /**
@@ -32,7 +36,7 @@ function createChart(coinID, divElementID) {
         chartCoin = gc_coin
         updateChart(chart, dataPoints)
         // Continue adding data points to the chart every 20 seconds
-        setIntervalID_updateChart = setInterval(() => updateChart(chart, dataPoints), updateInterval * 1000)
+        setIntervalID_updateChart = setInterval(() => updateChart(chart, dataPoints), UPDATE_INTERVAL * 1000)
     })
 
     return chart
@@ -50,7 +54,7 @@ function changeChartCoin(selectedOption, arrayOfCoinsThatWereBindedToDropdown) {
 
     resetChart()
 
-    updateElementChartTitleAndCoinPrice(pc_coin.name, "chart-title", "chart-price", "price-change-image")
+    updateElementChartTitleAndCoinPrice(pc_coin.name, "chart-price", "price-change-image")
 
     chart = createChart(pc_coin.id, "chart")
 }
@@ -59,9 +63,11 @@ function changeChartCoin(selectedOption, arrayOfCoinsThatWereBindedToDropdown) {
  * Updates the chart by adding the latest value of a coin as a datapoint on the line
  */
 function updateChart() {
-    if (dataPoints.length > 8) {
-        incrementTimeByXSeconds(mostRecentTimeTicker, updateInterval)
-        chartXAxisTickers.push(convertTimeToString(mostRecentTimeTicker))
+    console.log(tooltipTitles)
+    if (dataPoints.length > 12) {
+        incrementTimeByXSeconds(latestTrackedTime, UPDATE_INTERVAL)
+        chartXAxisTickers.push(convertTimeToString(latestTrackedTime)) // TODO: Fix this to create ticker in format 20s instead of 00:00:00
+        tooltipTitles.push(convertTimeToString(latestTrackedTime))
         chart.update()
     }
     // Get most recent value of coin
@@ -82,7 +88,7 @@ function updateChart() {
 
         // TODO: Get rid of these hard-coded ID's
         // Updates the chart's HTML title and price <h> elements
-        updateElementChartTitleAndCoinPrice(chartCoin.name, "chart-title", "chart-price", "price-change-image")
+        updateElementChartTitleAndCoinPrice(chartCoin.name, "chart-price", "price-change-image")
 
         // Chart.js method to refresh chart
         chart.update()
@@ -99,10 +105,10 @@ function resetChart() {
     // Clear the global variables storing chart datapoints and etc.
     dataPoints = []
     chartXAxisTickers = []
-    mostRecentTimeTicker = []
+    latestTrackedTime = []
 
     // Stop the chart updating interval
-    clearInterval(setIntervalID_updateChart) // TODO: Why is the chart updating with 2 datapoints at a time when selecting a new coin from the dropdown menu?
+    clearInterval(setIntervalID_updateChart)
 }
 
 /**
@@ -116,7 +122,7 @@ function getStartingXAxisTickers() {
         // The next time ticker on the x-axis should be +20s ahead
         const isMinuteMark = !(seconds % 60)
 
-        minutesString = (isMinuteMark && seconds != 0) ? (seconds/60 + " min ") : ""
+        minutesString = (isMinuteMark && seconds != 0) ? (seconds/60 + "min ") : ""
         secondsString = (!isMinuteMark || seconds == 0) ? seconds + "s" : ""
 
         tickers[i] = "+" + minutesString + secondsString
@@ -126,18 +132,22 @@ function getStartingXAxisTickers() {
     return tickers
 }
 
-function old_getStartingXAxisTickers() {
-    mostRecentTimeTicker = new Date()
+function getArrayOfTimesIncrementedByInterval() {
+    latestTrackedTime = new Date()
 
     let tickers = []
-    tickers[0] = convertTimeToString(mostRecentTimeTicker)
-    for (i = 1; i < 10; i++) {
+    tickers[0] = convertTimeToString(latestTrackedTime)
+    for (i = 1; i <= 14; i++) {
         // The next time ticker on the x-axis should be +20s ahead
-        incrementTimeByXSeconds(mostRecentTimeTicker, updateInterval)
-        tickers[i] = convertTimeToString(mostRecentTimeTicker)
+        incrementTimeByXSeconds(latestTrackedTime, UPDATE_INTERVAL)
+        tickers[i] = convertTimeToString(latestTrackedTime)
     }
 
     return tickers
+}
+
+function getStartingTooltipTitles() {
+    return getArrayOfTimesIncrementedByInterval()
 }
 
 /**
@@ -145,19 +155,19 @@ function old_getStartingXAxisTickers() {
  * @param {Date} time Date object to be parsed
  */
 function convertTimeToString(time) {
-    hour = time.getHours()
-    minutes = time.getMinutes()
-    seconds = time.getSeconds()
+    let hour = time.getHours()
+    let minutes = time.getMinutes()
+    let seconds = time.getSeconds()
 
-    if (hour > 12) {
-        hour -= 12
-    }
+    let isAM = hour <= 12 
+    let amOrPMString = (isAM) ? "AM" : "PM"
 
-    if (hour > 12) hour -= 12
+    if (!isAM) hour -= 12
+    if (hour == 0) hour = 12
     if (minutes < 10) minutes = "0" + minutes
     if (seconds < 10) seconds = "0" + seconds
 
-    return hour + ":" + minutes + ":" + seconds
+    return hour + ":" + minutes + ":" + seconds + " " + amOrPMString
 }
 
 /**
@@ -166,7 +176,7 @@ function convertTimeToString(time) {
  * @param {Number} seconds Number of seconds to increment the time by
  */
 function incrementTimeByXSeconds(time, seconds) {
-    time.setSeconds(mostRecentTimeTicker.getSeconds() + seconds)
+    time.setSeconds(latestTrackedTime.getSeconds() + seconds)
 }
 
 /**
@@ -176,8 +186,7 @@ function incrementTimeByXSeconds(time, seconds) {
  * @param {String} priceChangeElementID The ID of a \<h\> element to bind the coin's price and percent change text to
  * @param {String} priceChangeImageElementID The ID of a \<img\> element to bind the price change triangle image to
  */
-function updateElementChartTitleAndCoinPrice(coinName, titleElementID, priceChangeElementID, priceChangeImageElementID) {
-    titleElement = document.getElementById(titleElementID)
+function updateElementChartTitleAndCoinPrice(coinName, priceChangeElementID, priceChangeImageElementID) {
     priceChangeElement = document.getElementById(priceChangeElementID)
     priceChangeImageElement = document.getElementById(priceChangeImageElementID)
 
@@ -201,7 +210,6 @@ function updateElementChartTitleAndCoinPrice(coinName, titleElementID, priceChan
     priceChangeResult = "$" + lastDatapoint + " (" + plusOrMinus + percentChange + "%)"
     priceChangeImageElementResult = priceChangeSymbolImage
 
-    titleElement.textContent = titleResult
     priceChangeElement.textContent = priceChangeResult
     priceChangeImageElement.src = priceChangeSymbolImage
 }
@@ -211,6 +219,7 @@ function updateElementChartTitleAndCoinPrice(coinName, titleElementID, priceChan
 // TODO: Fix the scaling of the y-axis. Some charts show steep changes for small price differences, while some other charts barely change the position on the y-axis for new datapoints.
 function getChartConfig() {
     chartXAxisTickers = getStartingXAxisTickers()
+    tooltipTitles = getStartingTooltipTitles()
     const data = {
         labels: chartXAxisTickers,
         datasets: [{
@@ -242,7 +251,7 @@ function getChartConfig() {
                             return '$' + value.toFixed(2);
                         },
                     },
-                    grace: "20%",
+                    grace: "5%",
                     grid: {
                         // drawTicks: false,
                         
@@ -274,6 +283,14 @@ function getChartConfig() {
                 // Remove the legend displaying the meaning of the line on the chart
                 legend: {
                     display: false
+                },
+                tooltip: {
+                    callbacks: {
+                        title: (context) => {
+                            console.log(context)
+                            return tooltipTitles[context[0].dataIndex]
+                        }
+                    }
                 }
             }
         }

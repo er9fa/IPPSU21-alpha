@@ -18,21 +18,21 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="row my-4 align-items-center">
+    <%- include('../partials/navbar-altin.ejs') %>
+    <div class="container mt-5">
+        <div class="row mb-3">
             <div class="col">
-                <h3 id="chart-title" class="my-auto" style=""></h3>
-                <div class="flex-row align-items-end">
+                <div id="dropdown" class="float-end" style="width: 13rem"></div>
+                <div class="flex-row align-items-end pt-2">
                     <img id="price-change-image" class="float-start"
-                        style="margin-right: 0.25rem; margin-top: 0.2rem; height: 15px; width: 15px;">
+                        style="margin-top: 0.25rem; margin-right: 0.25rem; height: 15px; width: 15px;">
                     <h5 id="chart-price" class="my-auto" style=""></h5>
                 </div>
             </div>
             <div class="col">
-                <div id="dropdown" class="float-end" style="width: 16rem"></div>
             </div>
         </div>
-        <div class="row mt-3">
+        <div class="row">
             <canvas id="chart" width="900" height="500" style="background-color: #19242e; border-radius: 5px;"></canvas>
         </div>
         <div class="row">
@@ -56,4 +56,5 @@
     })
 </script>
 <%- include("../partials/footer-altin.ejs") %>
+
 </html>
