@@ -94,3 +94,12 @@ function convertDivElementToSelect(divElementID) {
     resultSelectElement.innerHTML = divElement.innerHTML
     divElement.replaceWith(resultSelectElement)
 }
+
+/**
+ * Selects a default option for the dropdown menu
+ * @param {Number} index The index of the option to select
+ */
+function setDefaultOption(index, divElementID) {
+    divElementID = convertElementIDToJQueryFormat(divElementID)
+    $(divElementID).val(index).trigger('change');
+}
