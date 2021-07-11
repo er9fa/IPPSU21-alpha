@@ -25,12 +25,13 @@
     /* 0.5 second transition effect to slide in the sidenav */
     transition: 0.5s;
     box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #00f;
+    text-align: center;
 }
 
 /* The navigation menu links */
 
 .side-navbar a {
-    padding: 8px 8px 8px 32px;
+    padding: 8px 8px 8px 6px;
     text-decoration: none;
     font-size: 25px;
     color: #fff;
@@ -45,18 +46,7 @@
     background: #fff;
 }
 
-/* Position and style the close button (X) inside the navbar menu (top right corner) */
-
-.side-navbar .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-}
-
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-
 @media screen and (max-height: 450px) {
     .side-navbar {
         padding-top: 15px;
