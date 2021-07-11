@@ -1,8 +1,7 @@
 <link rel="stylesheet" type="text/css" href="stylesheets/navbar-altin.css">
 
-<button id="side-navbar-toggle" onClick="openNav()"><img src="images/menu-hamburger-icon-white.png"></button>
+<button id="side-navbar-toggle" onClick="toggleNavbar()"><img src="images/menu-hamburger-icon-white.png"></button>
 <div id="side-nav" class="side-navbar">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="/">Home</a>
     <a href="/calculator">Calculator</a>
     <a href="/news">News</a>
@@ -11,13 +10,14 @@
 </div>
 
 <script>
-    /* Set the width of the side navigation to 250px (i.e. open it) */
-    function openNav() {
-        document.getElementById("side-nav").style.width = "250px";
-    }
-
-    /* Set the width of the side navigation to 0 (i.e. close it) */
-    function closeNav() {
-        document.getElementById("side-nav").style.width = "0";
+    let isNavbarOpen = false
+    const toggleNavbar = () => {
+        if (isNavbarOpen) {
+            document.getElementById("side-nav").style.width = "0";
+            isNavbarOpen = false
+        } else {
+            document.getElementById("side-nav").style.width = "250px";
+            isNavbarOpen = true
+        }
     }
 </script>
