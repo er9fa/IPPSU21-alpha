@@ -137,7 +137,18 @@
       bindOptionsToDropdown(options1, "dropdown2")
       setOnChangeListenerForDropdown((selectedOption) => convertCoinListener(selectedOption, factor2, outputCoinName), "dropdown2")
 
-      $("#dropdown").val(11).trigger('change');
+      // Checks if a coin's ticker symbol matches the one being searched for
+      function findCoin(coin, ticker) {
+        return coin.tickerSymbol == ticker
+      }
+      
+      // Find the indices of the default dropdown currencies
+      indexBTC = exchangeCoins.findIndex((coin) => findCoin(coin, "BTC"))
+      indexUSD = exchangeCoins.findIndex((coin) => findCoin(coin, "USD"))
+
+      // Set the default dropdown currencies
+      setDefaultOption(indexBTC, "dropdown1")
+      setDefaultOption(indexUSD, "dropdown2")
     })
   })
 
