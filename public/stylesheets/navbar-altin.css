@@ -1,0 +1,74 @@
+/* The side navigation menu */
+
+.side-navbar {
+    /* Prevents words from wrapping while opening navbar */
+    white-space: nowrap;
+    /* Smooth top and bottom right edges of navbar */
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    /* Height of navbar */
+    height: 50%;
+    /* Width is not constantly 0. It changes when executing the navbar button listener */
+    width: 0;
+    /* Stay in place */
+    position: fixed;
+    /* Stay on top of other elements */
+    z-index: 1;
+    /* Stay at the middle-left of the page */
+    top: 10rem;
+    left: 0rem;
+    /* Disable horizontal scroll */
+    overflow-x: hidden;
+    /* Place buttons 60px from the top of the navbar */
+    padding-top: 5rem;
+    background-image: linear-gradient(#2f2159, #4000ff);
+    /* 0.5 second transition effect to slide in the sidenav */
+    transition: 0.5s;
+    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #00f;
+    text-align: center;
+}
+
+/* The navigation menu links */
+
+.side-navbar a {
+    padding: 8px 8px 8px 6px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #fff;
+    display: block;
+    transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+
+.side-navbar a:hover {
+    color: #7386D5;
+    background: #fff;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .side-navbar {
+        padding-top: 15px;
+    }
+    .side-navbar a {
+        font-size: 18px;
+    }
+}
+
+/* Customize the toggle button */
+
+#side-navbar-toggle {
+    border: none;
+    background-color: transparent;
+    margin-top: 1rem;
+    margin-left: 0.75rem;
+    margin-bottom: 0;
+}
+
+/* Change size of button img element */
+
+#side-navbar-toggle img {
+    height: 32px;
+    width: 32px;
+}

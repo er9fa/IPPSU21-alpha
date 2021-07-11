@@ -1,80 +1,7 @@
-<style>
-    /* The side navigation menu */
-    .side-navbar {
-        /* Prevents words from wrapping while opening navbar */
-        white-space: nowrap; 
+<link rel="stylesheet" type="text/css" href="stylesheets/navbar-altin.css">
 
-        /* Smooth top and bottom right edges of navbar */
-        border-top-right-radius: 15px; 
-        border-bottom-right-radius: 15px;
-
-        /* Height of navbar */
-        height: 50%;
-
-        /* Width changes when executing the navbar button listener */
-        width: 0;
-
-
-        /* Stay in place */
-        position: fixed;
-        /* Stay on top */
-        z-index: 1;
-        /* Stay at the top */
-        top: 10rem;
-        left: 0rem;
-        overflow-x: hidden;
-        /* Place buttons 60px from the top of the navbar */
-        padding-top: 5rem;
-        background-color: #111;
-        /* Disable horizontal scroll */
-        transition: 0.5s;
-        /* 0.5 second transition effect to slide in the sidenav */
-    }
-
-    /* The navigation menu links */
-    .side-navbar a {
-        padding: 8px 8px 8px 32px;
-        text-decoration: none;
-        font-size: 25px;
-        color: #818181;
-        display: block;
-        transition: 0.3s;
-    }
-
-    /* When you mouse over the navigation links, change their color */
-    .side-navbar a:hover {
-        color: #f1f1f1;
-    }
-
-    /* Position and style the close button (top right corner) */
-    .side-navbar .closebtn {
-        position: absolute;
-        top: 0;
-        right: 25px;
-        font-size: 36px;
-        margin-left: 50px;
-    }
-
-    /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
-    #main {
-        transition: margin-left .5s;
-        padding: 20px;
-    }
-
-    /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-    @media screen and (max-height: 450px) {
-        .side-navbar {
-            padding-top: 15px;
-        }
-
-        .side-navbar a {
-            font-size: 18px;
-        }
-    }
-</style>
-
+<button id="side-navbar-toggle" onClick="toggleNavbar()"><img src="images/menu-hamburger-icon-white.png"></button>
 <div id="side-nav" class="side-navbar">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="/">Home</a>
     <a href="/calculator">Calculator</a>
     <a href="/news">News</a>
@@ -82,18 +9,15 @@
     <a href="/about">About</a>
 </div>
 
-<!-- Use any element to open the sidenav -->
-<span onclick="openNav()">open</span>
-
-<!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
 <script>
-    /* Set the width of the side navigation to 250px (i.e. open it) */
-    function openNav() {
-        document.getElementById("side-nav").style.width = "250px";
-    }
-
-    /* Set the width of the side navigation to 0 (i.e. close it) */
-    function closeNav() {
-        document.getElementById("side-nav").style.width = "0";
+    let isNavbarOpen = false
+    const toggleNavbar = () => {
+        if (isNavbarOpen) {
+            document.getElementById("side-nav").style.width = "0";
+            isNavbarOpen = false
+        } else {
+            document.getElementById("side-nav").style.width = "250px";
+            isNavbarOpen = true
+        }
     }
 </script>
