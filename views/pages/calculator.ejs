@@ -137,6 +137,8 @@
       bindOptionsToDropdown(options1, "dropdown2")
       setOnChangeListenerForDropdown((selectedOption) => convertCoinListener(selectedOption, factor2, outputCoinName), "dropdown2")
 
+      setOnChangeListenerForDropdown((selectedOption) => setChartCoin(selectedOption), "dropdown1")
+
       // Checks if a coin's ticker symbol matches the one being searched for
       function findCoin(coin, ticker) {
         return coin.tickerSymbol == ticker
@@ -151,6 +153,20 @@
       setDefaultOption(indexUSD, "dropdown2")
     })
   })
+
+  // This function is executed every time a currency is selected in the first dropdown menu
+  function setChartCoin(selectedOption) {
+    const index = selectedOption.id
+    selectedCoin = exchangeCoins[index]
+    tickerSymbol = selectedCoin.tickerSymbol
+    
+    console.log("setChartCoin(), param selectedOption:", selectedOption)
+    console.log("setChartCoin(), selectedCoin:", selectedCoin)
+    console.log("setChartCoin(), tickerSymbol: " + tickerSymbol)
+
+    // TODO: Create a history chart for the selectedCoin using the tickerSymbol
+
+  }
 
 </script>
 <%- include("../partials/footer.ejs") %>
