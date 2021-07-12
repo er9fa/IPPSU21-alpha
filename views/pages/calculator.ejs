@@ -8,6 +8,8 @@
   <link rel="stylesheet" type="text/css" href="stylesheets/mainpage.css">
   <link rel="stylesheet" type="text/css"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap">
 
   <!-- Scrolling-bar dependencies -->
   <script src="/helpers/convertHelper.js"></script>
@@ -24,18 +26,18 @@
   <%- include('../pages/scrolling-bar.ejs') %>
   <%- include('../partials/navbar-altin.ejs') %>
   <h1 contenteditable spellcheck="false">Crypto Calc</h1>
+  <div class = "background-box">
   <form class="input">
-    Input :
+    Input :  
     <input type="text" name="Input" id="txtInput" style="background-color: gray; color: white;">
   </form>
   <form class="output">
     Output :
     <input type="text" name="output" id="txtOutput" style="background-color: gray; color: white;">
   </form>
-
   <h2 class="inputCoinDropdown">Input Coin</h2>
   <h2 class="outputCoinDropdown">Output Coin</h2>
-
+  </div>
 
   <table id="myTable">
     <tr>
