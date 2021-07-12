@@ -1,25 +1,34 @@
 body {
     font-family: 'Roboto', sans-serif;
     color: white;
-    justify-content: center;
-    align-items: center;
     background: #000;
     background-image: url('https://i.ibb.co/HGj2hcd/bg.png');
     background-size: cover;
+}
+
+#container-page-top {
+    justify-content: center;
+}
+
+#container-chart {
+    background-color: #242b33;
+    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #00f;
+    border-radius: 10px;
+    padding-block: 1rem;
 }
 
 #dropdown {
     width: 13rem;
 }
 
-#price-change-image {
-    width: 0.75rem;
-    height: 0.75rem;
-}
-
 #chart {
     background-color: #19242e;
     border-radius: 5px;
+}
+
+#price-change-image {
+    width: 0.75rem;
+    height: 0.75rem;
 }
 
 .clock {
