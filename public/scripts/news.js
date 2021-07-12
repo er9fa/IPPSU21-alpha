@@ -3,9 +3,8 @@ var i = 0;
 var search_string = "bitcoin";
 
 function updateNews() {
-  newsURL = `https://newsapi.org/v2/everything?apiKey=a791d1a1c2674ac8914503c53d9a1e8b&language=en&q=${search_string}&page=${page_num}`;
-  console.log(newsURL);
-  fetch('/newsdata').then(r => r.json()).then(data => {
+  console.log(`https://newsapi.org/v2/everything?apiKey=a791d1a1c2674ac8914503c53d9a1e8b&language=en&q=${search_string}&page=${page_num}`);
+  fetch(`/newsdata?search_string=${search_string}&page_num=${page_num}`).then(r => r.json()).then(data => {
       var num_articles = data.totalResults;
       console.log(num_articles + " articles found");
       var news_descript = data.articles[i].content.substring(0, 200);
@@ -183,7 +182,7 @@ function updateNews() {
 
 function updateSearch() {
     console.log("Success!");
-    search_string = search_string + "+" + document.getElementById("search_bar").value;
+    search_string = "bitcoin+" + document.getElementById("search_bar").value;
     updateNews();
     return false;
 }
