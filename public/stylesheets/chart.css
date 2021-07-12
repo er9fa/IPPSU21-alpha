@@ -7,3 +7,12 @@ body {
     background-image: url('https://i.ibb.co/HGj2hcd/bg.png');
     background-size: cover;
 }
+
+#dropdown {
+    width: 13rem;
+}
+
+#price-change-image {
+    width: 0.75rem;
+    height: 0.75rem;
+}
