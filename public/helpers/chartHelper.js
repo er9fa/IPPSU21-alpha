@@ -239,7 +239,7 @@ function getChartConfig() {
         type: 'line',
         data,
         options: {
-            responsive: false,
+            responsive: true,
             scales: {
                 y: {
                     ticks: {

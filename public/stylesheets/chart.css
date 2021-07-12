@@ -7,3 +7,25 @@ body {
     background-image: url('https://i.ibb.co/HGj2hcd/bg.png');
     background-size: cover;
 }
+
+#dropdown {
+    width: 13rem;
+}
+
+#price-change-image {
+    width: 0.75rem;
+    height: 0.75rem;
+}
+
+#chart {
+    background-color: #19242e;
+    border-radius: 5px;
+}
+
+.clock {
+    position: absolute;
+    top: 2%;
+    right: 5%;
+    font-size: 3rem;
+    letter-spacing: 0.2rem;
+}

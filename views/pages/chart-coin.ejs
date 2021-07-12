@@ -2,6 +2,7 @@
 
 <head>
     <%- include("../partials/header-altin.ejs") %>
+    <!-- Chart dependencies -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"
         integrity="sha512-VCHVc5miKoln972iJPvkQrUYYq7XpxXzvqNfiul1H4aZDwGBGC0lq373KNleaB2LpnC2a/iNfE5zoRYmB4TRDQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -20,23 +21,29 @@
 <body>
     <%- include('../partials/navbar-altin.ejs') %>
     <div class="container mt-5">
-        <div class="row mb-3">
+        <div class="row">
             <div class="col">
-                <div id="dropdown" class="float-end" style="width: 13rem"></div>
-                <div class="flex-row align-items-end pt-2">
-                    <img id="price-change-image" class="float-start"
-                        style="margin-top: 0.25rem; margin-right: 0.25rem; height: 15px; width: 15px;">
-                    <h5 id="chart-price" class="my-auto" style=""></h5>
-                </div>
+                <div id="dropdown"></div>
+            </div>
+        </div>
+        <div class="row my-2 gx-1">
+            <div class="col-auto">
+                <img id="price-change-image">
             </div>
             <div class="col">
+                <h5 id="chart-price"></h5>
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <!-- TODO: Adding position: relative looks like a hacky fix for adding the digital clock to the top right -->
+            <div class="col" style="position: relative">
+                <canvas id="chart"></canvas>
+                <%- include("../partials/digital-clock.ejs") %>
             </div>
         </div>
         <div class="row">
-            <canvas id="chart" width="900" height="500" style="background-color: #19242e; border-radius: 5px;"></canvas>
-        </div>
-        <div class="row">
-            <%- include("../partials/digital-clock.ejs") %>
+            <div class="col">
+            </div>
         </div>
     </div>
 </body>

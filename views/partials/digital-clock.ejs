@@ -3,21 +3,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
 <style>
     .clock {
-        background: rgb(38, 38, 38);
-        position: relative;
-        top: 50%;
-        left: 50%;
         width: max-content;
-        transform: translateX(-50%) translateY(-50%);
-        color: #17D4FE;
-        font-size: 60px;
-        font-family: Orbitron !important;
-        letter-spacing: 7px;
-        margin-top: 4rem;
         border-radius: 5px;
+        color: #17D4FE;
+        font-family: Orbitron;
     }
 </style>
-<div id="digitalClock" class="clock" onload="showTime()"></div>
+<div id="digital-clock" class="clock" onload="showTime()"></div>
 <script>
     function showTime() {
         var date = new Date();
@@ -40,8 +32,8 @@
         s = (s < 10) ? "0" + s : s;
 
         var time = h + ":" + m + ":" + s + " " + session;
-        document.getElementById("digitalClock").innerText = time;
-        document.getElementById("digitalClock").textContent = time;
+        document.getElementById("digital-clock").innerText = time;
+        document.getElementById("digital-clock").textContent = time;
 
         setTimeout(showTime, 1000);
 
