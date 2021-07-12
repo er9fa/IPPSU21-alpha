@@ -2,93 +2,63 @@
 <html>
 <head>
 
-  <%- include('../partials/header.ejs') %>
-  <link rel="stylesheet" type="text/css" href="stylesheets/serhiiscss.css">
-
 </head>
-
-
 <body>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-  <%- include('../partials/nav.ejs') %>
+  <button type="button" onclick="drawChart()">
+    Test
+  </button>
 
-  <div class="grid">
-    <div class="column_1">
-      <div class="title">
-        <h1>Serhii Maltsev</h1>
-      </div>
+  <script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
 
-      <div class="text">
-        <p>
-          My name is Serhii Maltsev. I am from Ukraine, but right now, I am living in Brooklyn, NY. I am a third-year student at the University of Virginia.
-          <br>I study computer science. My hobbies are playing soccer and computer games. My favorite computer game is Dark Souls 2.
-          <br>I started coding when I was in the seventh grade. My favorite part about coding was solving complicated mathematical problems with the help of programming.
-          <br>At the same time, I was interested in modeling physical processes. However, later my interest shifted to the development of the software.
-          <br>My favorite part about software development is the fact that I can make someone's life easier. In the future, I am planning to work as a software developer.
-          <br>Additionally, I would like to do academic research related to 3D graphics and virtual reality.
-        </p>
-      </div>
+    function drawChart() {
+      fetch('https://api.coindesk.com/v1/bpi/historical/close.json')
+        .then(response => response.json())
+        .then(data => {
 
-      <div class="counter">
-        <div id="variable_here"></div>
-      </div>
+          var table = [];
 
-      <div class="image">
-        <img src="https://media.giphy.com/media/TH13hqypkyybBrdm6o/giphy.gif">
-      </div>
-    </div>
+          for (let i = 0; i < 30; i++){
+            table.push([]);
+          }
 
-    <div class="column_2">
-      <div class="bitcoin_title">
-        <h1>Bitcoin Info</h1>
-      </div>
+          for (let i = 0; i < 30; i++){
+            var today = new Date();
+            today.setDate(today.getDate()-i);
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            var yyyy = today.getFullYear();
+            today = yyyy + "-" + mm + "-" + dd;
+            table[i].push(today);
+            table[i].push(data["bpi"][today]);
+          }
 
-      <div class="bitcoin_button">
-        <button id="the_button" type="button"; class="button"; onclick="getClicked()">Get Info</button>
-      </div>
+          table = table.reverse();
 
-      <div class="bitcoin_selector">
-        <select id="Currency">
-          <option value="Bitcoin" selected>Bitcoin</option>
-          <option value="Ethereum">Ethereum</option>
-          <option value="Dogecoin">Dogecoin</option>
-        </select>
-      </div>
+          table[0][0] = "Date";
+          table[0][1] = "";
 
-      <div class="bitcoin_info">
-        <textarea id="info" name="info" rows="3" cols="40">
+          console.log(table);
 
-        </textarea>
-      </div>
+          console.log(data["bpi"]["2021-06-11"]);
 
-      <div class="bitcoin_image">
-        <img src="https://media.giphy.com/media/RgxAkfVQWwkjS/giphy.gif" height="400px">
-      </div>
+          var data = google.visualization.arrayToDataTable(table);
 
-  </div>
+          var options = {
+            title: 'BTC price history',
+            curveType: 'function',
+            legend: { position: 'bottom' }
+          };
 
-  <script>
-    function getClicked() {
-      if (document.getElementById("Currency").value == "Bitcoin") {
-        document.getElementById("info").value = "Price: Bitcoin \nMarket Cap: Bitcoin \nVolume: Bitcoin";
-      }
-      if (document.getElementById("Currency").value == "Ethereum") {
-        document.getElementById("info").value = "Price: Ethereum \nMarket Cap: Ethereum \nVolume: Ethereum";
-      }
-      if (document.getElementById("Currency").value == "Dogecoin") {
-        document.getElementById("info").value = "Price: Dogecoin \nMarket Cap: Dogecoin \nVolume: Dogecoin";
-      }
+          var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+          chart.draw(data, options);
+        });
     }
-
-    document.getElementById("info").value = "Price: \nMarket Cap: \nVolume: ";
-
-    var i = 0;
-    setInterval(() => {
-      console.log(i);
-      document.getElementById("variable_here").innerHTML = i;
-      i = i + 2;
-    }, 500);
   </script>
 
+  <div id="curve_chart" style="width: 900px; height: 500px"></div>
 </body>
 </html>
