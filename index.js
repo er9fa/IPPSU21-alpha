@@ -2,6 +2,7 @@ const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5001
 const rp = require('request-promise');
+const fetch = require('node-fetch')
 const requestOptions = {
   method: 'GET',
   uri: 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest',
@@ -16,10 +17,6 @@ const requestOptions = {
   json: true,
   gzip: true
 };
-
-var search_string = "bitcoin";
-
-var newsURL = `https://newsapi.org/v2/everything?apiKey=a791d1a1c2674ac8914503c53d9a1e8b&language=en&q=${search_string}`;
 
 var CoinMarketCap = require("node-coinmarketcap");
 exports.index = function(req, res) {
@@ -47,15 +44,21 @@ express()
       res.status(500).send({error: err.message});
     });
   })
+
   .get('/newsdata', (req, res) => {
-    rp(newsURL).then(response => {
-      console.log('API call response:', response);
-      res.status(200).send(response);
-    }).catch((err) => {
-      console.log('API call error:', err.message);
-      res.status(500).send({error: err.message});
+    search_string = req.query.search_string;
+    page_num = req.query.page_num;
+
+    console.log(`https://newsapi.org/v2/everything?apiKey=a791d1a1c2674ac8914503c53d9a1e8b&language=en&q=${search_string}&page=${page_num}`);
+    fetch(`https://newsapi.org/v2/everything?apiKey=a791d1a1c2674ac8914503c53d9a1e8b&language=en&q=${search_string}&page=${page_num}`)
+    .catch(err => console.log(err))
+    .then(r => r.json()).then(data => {
+      console.log(data);
+      res.header('Access-Control-Allow-Origin', '*');
+      res.send(data);
     });
   })
+
   .get('/main', (req, res) => res.render('pages/main'))
   .get('/calculator', (req, res) => res.render('pages/calculator'))
   .get('/news', (req, res) => res.render('pages/news'))
@@ -63,4 +66,5 @@ express()
   .get('/game', (req, res) => res.render('pages/game'))
   .get('/scrolling-bar', (req, res) => res.render('pages/scrolling-bar'))
   .get('/chart', (req, res) => res.render('pages/chart-coin'))
+  .get('/about', (req, res) => res.render('pages/about'))
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
