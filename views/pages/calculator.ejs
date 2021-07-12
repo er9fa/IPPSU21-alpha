@@ -21,8 +21,8 @@
 </head>
 
 <body>
-  <%- include('../partials/navbar.ejs') %>
   <%- include('../pages/scrolling-bar.ejs') %>
+  <%- include('../partials/navbar-altin.ejs') %>
   <h1 contenteditable spellcheck="false">Crypto Calc</h1>
   <form class="input">
     Input :
@@ -137,9 +137,36 @@
       bindOptionsToDropdown(options1, "dropdown2")
       setOnChangeListenerForDropdown((selectedOption) => convertCoinListener(selectedOption, factor2, outputCoinName), "dropdown2")
 
-      $("#dropdown").val(11).trigger('change');
+      setOnChangeListenerForDropdown((selectedOption) => setChartCoin(selectedOption), "dropdown1")
+
+      // Checks if a coin's ticker symbol matches the one being searched for
+      function findCoin(coin, ticker) {
+        return coin.tickerSymbol == ticker
+      }
+      
+      // Find the indices of the default dropdown currencies
+      indexBTC = exchangeCoins.findIndex((coin) => findCoin(coin, "BTC"))
+      indexUSD = exchangeCoins.findIndex((coin) => findCoin(coin, "USD"))
+
+      // Set the default dropdown currencies
+      setDefaultOption(indexBTC, "dropdown1")
+      setDefaultOption(indexUSD, "dropdown2")
     })
   })
+
+  // This function is executed every time a currency is selected in the first dropdown menu
+  function setChartCoin(selectedOption) {
+    const index = selectedOption.id
+    selectedCoin = exchangeCoins[index]
+    tickerSymbol = selectedCoin.tickerSymbol
+    
+    console.log("setChartCoin(), param selectedOption:", selectedOption)
+    console.log("setChartCoin(), selectedCoin:", selectedCoin)
+    console.log("setChartCoin(), tickerSymbol: " + tickerSymbol)
+
+    // TODO: Create a history chart for the selectedCoin using the tickerSymbol
+
+  }
 
 </script>
 <%- include("../partials/footer.ejs") %>
