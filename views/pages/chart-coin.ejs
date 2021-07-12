@@ -21,24 +21,28 @@
 <body>
     <%- include('../partials/navbar-altin.ejs') %>
     <div class="container mt-5">
-        <div class="row mb-3">
+        <div class="row">
             <div class="col">
                 <div id="dropdown"></div>
-                <div class="row pt-2 gx-1">
-                    <div class="col-auto">
-                        <img id="price-change-image">
-                    </div>
-                    <div class="col">
-                        <h5 id="chart-price"></h5>
-                    </div>
-                </div>
+            </div>
+        </div>
+        <div class="row my-2 gx-1">
+            <div class="col-auto">
+                <img id="price-change-image">
+            </div>
+            <div class="col">
+                <h5 id="chart-price"></h5>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col">
+                <canvas id="chart"></canvas>
             </div>
         </div>
         <div class="row">
-            <canvas id="chart" width="900" height="500" style="background-color: #19242e; border-radius: 5px;"></canvas>
-        </div>
-        <div class="row">
-            <%- include("../partials/digital-clock.ejs") %>
+            <div class="col">
+                <%- include("../partials/digital-clock.ejs") %>
+            </div>
         </div>
     </div>
 </body>

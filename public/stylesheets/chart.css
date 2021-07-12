@@ -16,3 +16,14 @@ body {
     width: 0.75rem;
     height: 0.75rem;
 }
+
+#chart {
+    width: 900px;
+    height: 500px;
+    background-color: #19242e;
+    border-radius: 5px;
+}
+
+.row {
+    
+}
