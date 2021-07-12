@@ -35,13 +35,14 @@
             </div>
         </div>
         <div class="row justify-content-md-center">
-            <div class="col">
+            <!-- TODO: Adding position: relative looks like a hacky fix for adding the digital clock to the top right -->
+            <div class="col" style="position: relative">
                 <canvas id="chart"></canvas>
+                <%- include("../partials/digital-clock.ejs") %>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <%- include("../partials/digital-clock.ejs") %>
             </div>
         </div>
     </div>

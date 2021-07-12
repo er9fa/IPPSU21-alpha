@@ -21,3 +21,11 @@ body {
     background-color: #19242e;
     border-radius: 5px;
 }
+
+.clock {
+    position: absolute;
+    top: 2%;
+    right: 5%;
+    font-size: 3rem;
+    letter-spacing: 0.2rem;
+}
