@@ -247,9 +247,7 @@ function getChartConfig() {
                         padding: 10,
                         // Changes the y-axis ticker values
                         // Append a dollar sign to the tickers
-                        callback: function (value, index, values) {
-                            return '$' + value.toFixed(2);
-                        },
+                        callback: (value) => '$' + value.toFixed(2)
                     },
                     grace: "5%",
                     grid: {
@@ -286,10 +284,7 @@ function getChartConfig() {
                 },
                 tooltip: {
                     callbacks: {
-                        title: (context) => {
-                            console.log(context)
-                            return tooltipTitles[context[0].dataIndex]
-                        }
+                        title: (context) => tooltipTitles[context[0].dataIndex]
                     }
                 }
             }
