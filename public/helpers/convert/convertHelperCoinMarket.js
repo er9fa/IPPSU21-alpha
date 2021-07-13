@@ -33,9 +33,9 @@ function formatCryptocurrencies(response) {
         const tickerSymbol = cryptocurrency.symbol.toUpperCase()
 
         coins.push({
-            "id": id,
-            "name": name,
             "tickerSymbol": tickerSymbol,
+            "name": name,
+            "coinmarketID": id,
         })
     })
     console.log("formatCryptocurrencies(), formatted cryptocurrencies:", coins)
