@@ -18,7 +18,7 @@ async function fetchCryptocurrencies() {
             return data
         })
 
-    console.log("fetchCryptocurrencies(), fetched cryptocurrencies:", response)
+    console.log("fetchCryptocurrencies(), reponse:", response)
 
     // Return the coins as a JSON object
     return response
@@ -35,10 +35,10 @@ function formatCryptocurrencies(response) {
         coins.push({
             "tickerSymbol": tickerSymbol,
             "name": name,
-            "coinmarketID": id,
+            "coinMarketID": id
         })
     })
-    console.log("formatCryptocurrencies(), formatted cryptocurrencies:", coins)
+    console.log("formatCryptocurrencies(), cryptoCurrencies:", coins)
     return coins
 }
 
@@ -48,9 +48,38 @@ async function getFiatCurrencies() {
 }
 
 async function fetchFiatCurrencies() {
-    
+    // Begin creating the query to send to the CoinGecko API
+    const url = new URL(baseUrlConvertHelper + 'fiat/map')
+    const params = {
+        'CMC_PRO_API_KEY': 'bc695b6b-f4b5-438b-9fab-88f108aead7f',
+    }
+    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
+
+    const response = await fetch(url).then(r => r.json())
+        .then(data => {
+            return data
+        })
+
+    console.log("fetchFiatCcurrencies(), response:", response)
+
+    // Return the coins as a JSON object
+    return response
 }
 
 function formatFiatCurrencies(response) {
+    let fiatCurrencies = []
+    fetchedCurrencies = response.data
+    fetchedCurrencies.forEach((fiatCurency) => {
+        const id = fiatCurency.id
+        const name = fiatCurency.name
+        const symbol = fiatCurency.symbol.toUpperCase()
 
+        fiatCurrencies.push({
+            "symbol": symbol,
+            "name": name,
+            "coinMarketID": id
+        })
+    })
+    console.log("formatFiatCurrencies(), fiatCurrencies:", fiatCurrencies)
+    return fiatCurrencies
 }
