@@ -3,55 +3,53 @@
 
 <head>
   <%- include('../partials/header.ejs') %>
-    <title>Crypto Calc</title>
-    <link rel="stylesheet" type="text/css" href="stylesheets/Karthik.css">
-    <link rel="stylesheet" type="text/css" href="stylesheets/mainpage.css">
-    <link rel="stylesheet" type="text/css"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>Crypto Calc</title>
+  <link rel="stylesheet" type="text/css" href="stylesheets/Karthik.css">
+  <link rel="stylesheet" type="text/css" href="stylesheets/mainpage.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap">
 
-    <!-- Scrolling-bar dependencies -->
-    <script src="/helpers/convertHelper.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/dynamic-marquee@2"></script>
+  <!-- Scrolling-bar dependencies -->
+  <script src="/helpers/convertHelper.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/dynamic-marquee@2"></script>
 
-    <!-- Dropdown dependencies -->
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="/helpers/dropdown/dropdownHelper.js"></script>
-    <link rel="stylesheet" type="text/css" href="stylesheets/dropdown.css">
+  <!-- Dropdown dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <script src="/helpers/dropdown/dropdownHelper.js"></script>
+  <link rel="stylesheet" type="text/css" href="stylesheets/dropdown.css">
   <!-- Coinmarket API helper -->
   <script src="/helpers/convert/convertHelperCoinMarket.js"></script>
-
 </head>
 
 <body>
   <%- include('../pages/scrolling-bar.ejs') %>
-    <%- include('../partials/navbar-altin.ejs') %>
-      <h1 contenteditable spellcheck="false">Crypto Calc</h1>
-      <div class="background-box">
-        <form class="input">
-          Input :
-          <input type="text" name="Input" id="txtInput" style="background-color: gray; color: white;">
-        </form>
-        <form class="output">
-          Output :
-          <input type="text" name="output" id="txtOutput" style="background-color: gray; color: white;">
-        </form>
-        <h2 class="inputCoinDropdown">Input Coin</h2>
-        <h2 class="outputCoinDropdown">Output Coin</h2>
-      </div>
-
-      <table id="myTable">
-        <tr>
-          <th> Date and Time: </th>
-          <th> Input: </th>
-          <th> Output: </th>
-        </tr>
-      </table>
-      <button class="button button1" onclick="convertCoins(); kaching.play()">ENTER</button>
-      <div id="dropdown1" style="width: 13rem"></div>
-      <div id="dropdown2" style="width: 13rem"></div>
+  <%- include('../partials/navbar-altin.ejs') %>
+  <h1 contenteditable spellcheck="false">Crypto Calc</h1>
+  <div class="background-box">
+    <form class="input">
+      Input :
+      <input type="text" name="Input" id="txtInput" style="background-color: gray; color: white;">
+    </form>
+    <form class="output">
+      Output :
+      <input type="text" name="output" id="txtOutput" style="background-color: gray; color: white;">
+    </form>
+    <h2 class="inputCoinDropdown">Input Coin</h2>
+    <h2 class="outputCoinDropdown">Output Coin</h2>
+  </div>
+  <table id="myTable">
+    <tr>
+      <th> Date and Time: </th>
+      <th> Input: </th>
+      <th> Output: </th>
+    </tr>
+  </table>
+  <button class="button button1" onclick="convertCoins(); kaching.play()">ENTER</button>
+  <div id="dropdown1" style="width: 13rem"></div>
+  <div id="dropdown2" style="width: 13rem"></div>
 </body>
 
 
@@ -94,12 +92,12 @@
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
 
     fetch(url).then(r => r.json()).then(data => {
-        console.log("Retrieved Converted Value", data)
-        num = data.quote.xtz.price; //Here symbol is the symbol of coin 2
-        return num
-      })
+      console.log("Retrieved Converted Value", data)
+      num = data.quote.xtz.price; //Here symbol is the symbol of coin 2
+      return num
+    })
 
-    outputVal.value = num; 
+    outputVal.value = num;
 
     // Return the coins as a JSON object
 
