@@ -105,28 +105,21 @@
     //outputVal.value = num.toPrecision(4);
     history()
   }
-  const symbol = "";
-  function convertCoinListener(selectedOption, valObject, coinNameObject) { //index is the index of the selected option
+  let dropdown1Symbol = {
+    value: ""
+  }
+  let dropdown2Symbol = {
+    value: ""
+  }
+  function convertCoinListener(selectedOption, valObject) { //index is the index of the selected option
     //This function simply gets the exchange rate from BTC to "selected coin here"
     // I still need a way to get a second dropdown, I will need to use that here too
     console.log("convertCoinListener() selectedOption", selectedOption)
     const coin = exchangeCoins[selectedOption.id]
     console.log("convertCoinListener() coin", coin)
-        const symbol = selectedOption.id;
-    //const coin = exchangeCoins[symbol];
+    const symbol = coin.tickerSymbol;
 
-    valObject.exchangeRate = coin.exchangeRate;
-
-    coinNameObject.coinName = coin.name;
-
-    console.log("index:", selectedOption);
-    console.log("factor 1", factor1);
-    console.log("factor 2", factor2);
-    console.log("input coin", inputCoinName);
-    console.log("output coin", outputCoinName);
-
-
-
+    valObject.value = symbol
   }
 
   function history() {
@@ -157,10 +150,10 @@
       console.log(exchangeCoins)
       options1 = convertExchangeCoinsToDropdownOptions(exchangeCoins) //Instead of converting popularcoins, convert exchange rates into dropdown options
       bindOptionsToDropdown(options1, "dropdown1")
-      setOnChangeListenerForDropdown((selectedOption) => convertCoinListener(selectedOption, factor1, inputCoinName), "dropdown1") //dropdown menu will return the index of the selected option, use this index to figure out what coin was selected
+      setOnChangeListenerForDropdown((selectedOption) => convertCoinListener(selectedOption, dropdown1Symbol), "dropdown1") //dropdown menu will return the index of the selected option, use this index to figure out what coin was selected
 
       bindOptionsToDropdown(options1, "dropdown2")
-      setOnChangeListenerForDropdown((selectedOption) => convertCoinListener(selectedOption, factor2, outputCoinName), "dropdown2")
+      setOnChangeListenerForDropdown((selectedOption) => convertCoinListener(selectedOption, dropdown1Symbol), "dropdown2")
 
       setOnChangeListenerForDropdown((selectedOption) => setChartCoin(selectedOption), "dropdown1")
 
