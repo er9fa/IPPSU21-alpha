@@ -10,11 +10,29 @@
     Test
   </button>
 
+  <label for="cars">Choose a currency:</label>
+  <select id="currencies" name="currencies">
+    <option value="bitcoin">bitcoin</option>
+    <option value="ethereum">ethereum</option>
+    <option value="dogecoin">dogecoin</option>
+  </select>
+
   <script type="text/javascript">
     google.charts.load('current', {'packages':['corechart']});
 
     function drawChart() {
-      fetch('https://api.coindesk.com/v1/bpi/historical/close.json')
+      var apirequest = "";
+      if (document.getElementById("currencies").value=="bitcoin"){
+        apirequest = 'https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=30&interval=daily';
+      } else if (document.getElementById("currencies").value=="ethereum"){
+        apirequest = 'https://api.coingecko.com/api/v3/coins/ethereum/market_chart?vs_currency=usd&days=30&interval=daily';
+      } else if (document.getElementById("currencies").value=="dogecoin"){
+        apirequest = 'https://api.coingecko.com/api/v3/coins/dogecoin/market_chart?vs_currency=usd&days=30&interval=daily';
+      }
+
+      console.log(document.getElementById("currencies").value);
+
+      fetch(apirequest)
         .then(response => response.json())
         .then(data => {
 
@@ -26,28 +44,24 @@
 
           for (let i = 0; i < 30; i++){
             var today = new Date();
-            today.setDate(today.getDate()-i);
+            today.setDate(today.getDate()-30+i);
             var dd = String(today.getDate()).padStart(2, '0');
             var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
             var yyyy = today.getFullYear();
             today = yyyy + "-" + mm + "-" + dd;
             table[i].push(today);
-            table[i].push(data["bpi"][today]);
+            table[i].push(data["prices"][i][1]);
           }
-
-          table = table.reverse();
 
           table[0][0] = "Date";
           table[0][1] = "";
 
           console.log(table);
 
-          console.log(data["bpi"]["2021-06-11"]);
-
           var data = google.visualization.arrayToDataTable(table);
 
           var options = {
-            title: 'BTC price history',
+            title: 'Price history',
             curveType: 'function',
             legend: { position: 'bottom' }
           };
