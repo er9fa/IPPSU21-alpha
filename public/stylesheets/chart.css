@@ -1,25 +1,44 @@
 body {
     font-family: 'Roboto', sans-serif;
     color: white;
-    justify-content: center;
-    align-items: center;
     background: #000;
     background-image: url('https://i.ibb.co/HGj2hcd/bg.png');
     background-size: cover;
+}
+
+#container-page-top {
+    justify-content: center;
+}
+
+#container-chart {
+    padding: 1.5rem;
+    background-color: #262628;
+    border: 0.3rem solid white;
+    border-radius: 10px;
+    box-shadow: 0 0 .5rem #fff, inset 0 0 .5rem #fff, 0 0 2rem #f40, inset 0 0 1rem #f40, 0 0 2rem #f40, inset 0 0 2rem #f40;
+}
+
+#title-page {
+    color: #fff;
+    padding: 1rem;
+    border: 0.3rem solid white;
+    border-radius: 2rem;
+    text-shadow: -0.2rem -0.2rem 1rem #fff, 0.2rem 0.2rem 1rem #fff, 0 0 .25rem #08f, 0 0 .5rem #08f, 0 0 .75rem #08f, 0 0 1rem #08f, 0 0 1.25rem #08f;
+    box-shadow: 0 0 .5rem #fff, inset 0 0 .5rem #fff, 0 0 2rem #f40, inset 0 0 1rem #f40, 0 0 2rem #f40, inset 0 0 2rem #f40;
 }
 
 #dropdown {
     width: 13rem;
 }
 
-#price-change-image {
-    width: 0.75rem;
-    height: 0.75rem;
-}
-
 #chart {
     background-color: #19242e;
     border-radius: 5px;
+}
+
+#price-change-image {
+    width: 0.75rem;
+    height: 0.75rem;
 }
 
 .clock {
