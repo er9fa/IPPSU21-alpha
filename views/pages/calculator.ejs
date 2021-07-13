@@ -81,11 +81,20 @@
     outputVal = document.getElementById("txtOutput");
     var currency = inputVal.value;
 
+    const url = new URL(baseUrl + 'v1/tools/price-conversion')
+    const params = {
+      'CMC_PRO_API_KEY': 'bc695b6b-f4b5-438b-9fab-88f108aead7f',
+      'amount': currency,
+      'symbol': symbol,
+      'convert': 
+    }
+
     // put conversion math here
-    num = currency / factor1.exchangeRate * factor2.exchangeRate;
-    outputVal.value = num.toPrecision(4);
+    //num = currency / factor1.exchangeRate * factor2.exchangeRate;
+    //outputVal.value = num.toPrecision(4);
     history()
   }
+  const symbol;
   function convertCoinListener(index, valObject, coinNameObject) { //index is the index of the selected option
     //This function simply gets the exchange rate from BTC to "selected coin here"
     // I still need a way to get a second dropdown, I will need to use that here too
