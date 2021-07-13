@@ -56,9 +56,6 @@
   createDropdown("dropdown1");
   createDropdown("dropdown2");
 
-  var dropdown1Selection;
-  var dropdown2Selection;
-
   let factor1 = {
     exchangeRate: 0
   };
@@ -120,6 +117,8 @@
     const symbol = coin.tickerSymbol;
 
     valObject.value = symbol
+    console.log("convertCoinListener() dropdown1 " + dropdown1Symbol.value)
+    console.log("convertCoinListener() dropdown2 " + dropdown2Symbol.value)
   }
 
   function history() {
@@ -153,7 +152,7 @@
       setOnChangeListenerForDropdown((selectedOption) => convertCoinListener(selectedOption, dropdown1Symbol), "dropdown1") //dropdown menu will return the index of the selected option, use this index to figure out what coin was selected
 
       bindOptionsToDropdown(options1, "dropdown2")
-      setOnChangeListenerForDropdown((selectedOption) => convertCoinListener(selectedOption, dropdown1Symbol), "dropdown2")
+      setOnChangeListenerForDropdown((selectedOption) => convertCoinListener(selectedOption, dropdown2Symbol), "dropdown2")
 
       setOnChangeListenerForDropdown((selectedOption) => setChartCoin(selectedOption), "dropdown1")
 
