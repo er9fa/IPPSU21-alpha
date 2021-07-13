@@ -1,4 +1,5 @@
 const urlbase = `https://api.coingecko.com/api/v3/`
+const urlbase1 = "https://pro-api.coinmarketcap.com/"
 async function getExchangeRates(){
   const response = await fetchExchangeRates()
   return formatExchangeCoin(response)
