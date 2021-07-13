@@ -103,3 +103,10 @@ function setDefaultOption(index, divElementID) {
     divElementID = convertElementIDToJQueryFormat(divElementID)
     $(divElementID).val(index).trigger('change');
 }
+
+function requireMinimumNumberOfKeysToDisplayOptions(number, divElementID) {
+    divElementID = convertElementIDToJQueryFormat(divElementID)
+    $(divElementID).select2({
+        minimumInputLength: number
+    });
+}
