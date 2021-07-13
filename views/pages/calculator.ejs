@@ -106,17 +106,20 @@
     history()
   }
   const symbol = "";
-  function convertCoinListener(index, valObject, coinNameObject) { //index is the index of the selected option
+  function convertCoinListener(selectedOption, valObject, coinNameObject) { //index is the index of the selected option
     //This function simply gets the exchange rate from BTC to "selected coin here"
     // I still need a way to get a second dropdown, I will need to use that here too
-    const symbol = index.id;
-    const coin = exchangeCoins[symbol];
+    console.log("convertCoinListener() selectedOption", selectedOption)
+    const coin = exchangeCoins[selectedOption.id]
+    console.log("convertCoinListener() coin", coin)
+        const symbol = selectedOption.id;
+    //const coin = exchangeCoins[symbol];
 
     valObject.exchangeRate = coin.exchangeRate;
 
     coinNameObject.coinName = coin.name;
 
-    console.log("index:", index);
+    console.log("index:", selectedOption);
     console.log("factor 1", factor1);
     console.log("factor 2", factor2);
     console.log("input coin", inputCoinName);
