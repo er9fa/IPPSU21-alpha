@@ -3,53 +3,53 @@
 
 <head>
   <%- include('../partials/header.ejs') %>
-    <title>Crypto Calc</title>
-    <link rel="stylesheet" type="text/css" href="stylesheets/Karthik.css">
-    <link rel="stylesheet" type="text/css" href="stylesheets/mainpage.css">
-    <link rel="stylesheet" type="text/css"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <title>Crypto Calc</title>
+  <link rel="stylesheet" type="text/css" href="stylesheets/Karthik.css">
+  <link rel="stylesheet" type="text/css" href="stylesheets/mainpage.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap">
 
-    <!-- Scrolling-bar dependencies -->
-    <script src="/helpers/convertHelper.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/dynamic-marquee@2"></script>
+  <!-- Scrolling-bar dependencies -->
+  <script src="/helpers/convertHelper.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/dynamic-marquee@2"></script>
 
-    <!-- Dropdown dependencies -->
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="/helpers/dropdown/dropdownHelper.js"></script>
-    <link rel="stylesheet" type="text/css" href="stylesheets/dropdown.css">
-    <!-- Coinmarket API helper -->
-    <script src="/helpers/convert/convertHelperCoinMarket.js"></script>
+  <!-- Dropdown dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <script src="/helpers/dropdown/dropdownHelper.js"></script>
+  <link rel="stylesheet" type="text/css" href="stylesheets/dropdown.css">
+  <!-- Coinmarket API helper -->
+  <script src="/helpers/convert/convertHelperCoinMarket.js"></script>
 </head>
 
 <body>
   <%- include('../pages/scrolling-bar.ejs') %>
-    <%- include('../partials/navbar-altin.ejs') %>
-      <h1 contenteditable spellcheck="false">Crypto Calc</h1>
-      <div class="background-box">
-        <form class="input">
-          Input :
-          <input type="text" name="Input" id="txtInput" style="background-color: gray; color: white;">
-        </form>
-        <form class="output">
-          Output :
-          <input type="text" name="output" id="txtOutput" style="background-color: gray; color: white;">
-        </form>
-        <h2 class="inputCoinDropdown">Input Coin</h2>
-        <h2 class="outputCoinDropdown">Output Coin</h2>
-      </div>
-      <table id="myTable">
-        <tr>
-          <th> Date and Time: </th>
-          <th> Input: </th>
-          <th> Output: </th>
-        </tr>
-      </table>
-      <button class="button button1" onclick="convertCoins(); kaching.play()">ENTER</button>
-      <div id="dropdown1" style="width: 13rem"></div>
-      <div id="dropdown2" style="width: 13rem"></div>
+  <%- include('../partials/navbar-altin.ejs') %>
+  <h1 contenteditable spellcheck="false">Crypto Calc</h1>
+  <div class="background-box">
+    <form class="input">
+      Input :
+      <input type="text" name="Input" id="txtInput" style="background-color: gray; color: white;">
+    </form>
+    <form class="output">
+      Output :
+      <input type="text" name="output" id="txtOutput" style="background-color: gray; color: white;">
+    </form>
+    <h2 class="inputCoinDropdown">Input Coin</h2>
+    <h2 class="outputCoinDropdown">Output Coin</h2>
+  </div>
+  <table id="myTable">
+    <tr>
+      <th> Date and Time: </th>
+      <th> Input: </th>
+      <th> Output: </th>
+    </tr>
+  </table>
+  <button class="button button1" onclick="convertCoins(); kaching.play()">ENTER</button>
+  <div id="dropdown1" style="width: 13rem"></div>
+  <div id="dropdown2" style="width: 13rem"></div>
 </body>
 
 
@@ -57,8 +57,6 @@
   getCryptocurrencies()
   getFiatCurrencies()
 
-  createDropdown("dropdown1");
-  createDropdown("dropdown2");
 
   var date;
   var inputVal;
@@ -72,54 +70,21 @@
   var kaching = new Audio();
   kaching.src = "https://www.myinstants.com/media/sounds/ka-ching.mp3";
   var num = 0;
-  var currency = 0;
-  let dropdown1Symbol = {
-    symbol: ""
-  }
-  let dropdown2Symbol = {
-    symbol: ""
-  }
+  
 
-
-  async function convertCoins() {
-    inputVal = document.getElementById("txtInput");
-    outputVal = document.getElementById("txtOutput");
-    currency = inputVal.value;
-
-    console.log("currency", currency)
-    console.log(`https://pro-api.coinmarketcap.com/v1/tools/price-conversion?CMC_PRO_API_KEY=bc695b6b-f4b5-438b-9fab-88f108aead7f&amount=${currency}&symbol=${dropdown1Symbol.symbol}&convert=${dropdown2Symbol.symbol}`)
-
-    /*const url = new URL(urlbase1)
-    const params = { 
-        'amount': currency,
-        'symbol': dropdown1Symbol.symbol,
-        'convert': dropdown2Symbol.symbol
-    }
-    // If an array of coin IDs has been provided, add it to the query
-    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
-    console.log("dropdown1symbol" + dropdown1Symbol.symbol)
-    console.log("dropdown2symbol" + dropdown2Symbol.symbol)
-    
-    const response = await fetch(url).then(r => r.json())
-        .then(data => {
-            console.log("Retrieved conversion data", data)
-            return data
-        })
-    // Return the coins as a JSON object
-    return response
-    */
-
-    fetch(`/conversiondata?amount=${currency}&symbol=${dropdown1Symbol.symbol}&convert=${dropdown2Symbol.symbol}`).then(r => r.json()).then(data => {
-      console.log("Retrieved Converted Value", data)
-      num = data.data.quote[dropdown2Symbol.symbol].price; //Here symbol is the symbol of coin 2
-      outputVal.value = num.toPrecision(4);
-      history()
-    })
-
-
-  }
   let currencies = []
   $(document).ready(() => {
+    var currency = 0;
+    let dropdown1Symbol = {
+      symbol: ""
+    }
+    let dropdown2Symbol = {
+      symbol: ""
+    }
+
+    createDropdown("dropdown1");
+    createDropdown("dropdown2");
+
     // Create promises to Fetch all currencies
     let promiseCryptoCurrencies = Promise.resolve(getCryptocurrencies())
     let promiseFiatCurrencies = Promise.resolve(getFiatCurrencies())
@@ -151,6 +116,11 @@
         requireMinimumNumberOfKeysToDisplayOptions(2, "dropdown2")
       })
   })
+
+  // Checks if a coin's ticker symbol matches the one being searched for
+  function isMatchingCurrency(currency, symbol) {
+    return currency.symbol == symbol
+  }
 
   function convertCurrenciesToDropdownOptions(currencies) {
     const resultOptions = []
@@ -196,6 +166,42 @@
     var mysound = document.getElementById("mysound");
     mysound.autoplay = 'true';
     mysound.load();
+  }
+
+  async function convertCoins() {
+    inputVal = document.getElementById("txtInput");
+    outputVal = document.getElementById("txtOutput");
+    currency = inputVal.value;
+
+    console.log("currency", currency)
+    console.log(`https://pro-api.coinmarketcap.com/v1/tools/price-conversion?CMC_PRO_API_KEY=bc695b6b-f4b5-438b-9fab-88f108aead7f&amount=${currency}&symbol=${dropdown1Symbol.symbol}&convert=${dropdown2Symbol.symbol}`)
+
+    /*const url = new URL(urlbase1)
+    const params = { 
+        'amount': currency,
+        'symbol': dropdown1Symbol.symbol,
+        'convert': dropdown2Symbol.symbol
+    }
+    // If an array of coin IDs has been provided, add it to the query
+    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
+    console.log("dropdown1symbol" + dropdown1Symbol.symbol)
+    console.log("dropdown2symbol" + dropdown2Symbol.symbol)
+    
+    const response = await fetch(url).then(r => r.json())
+        .then(data => {
+            console.log("Retrieved conversion data", data)
+            return data
+        })
+    // Return the coins as a JSON object
+    return response
+    */
+
+    fetch(`/conversiondata?amount=${currency}&symbol=${dropdown1Symbol.symbol}&convert=${dropdown2Symbol.symbol}`).then(r => r.json()).then(data => {
+      console.log("Retrieved Converted Value", data)
+      num = data.data.quote[dropdown2Symbol.symbol].price; //Here symbol is the symbol of coin 2
+      outputVal.value = num.toPrecision(4);
+      history()
+    })
   }
 </script>
 <%- include("../partials/footer.ejs") %>
