@@ -66,18 +66,6 @@
 </body>
 <script>
     let chart = createChart("bitcoin", "chart")
-
-    let popularCoins
-    $(document).ready(() => {
-        createDropdown("dropdown")
-        getPopularCoins().then(coins => {
-            popularCoins = coins
-            options = convertCoinsToDropdownOptions(coins)
-            bindOptionsToDropdown(options, "dropdown")
-            setOnChangeListenerForDropdown((selectedOption) => changeChartCoin(selectedOption, popularCoins), "dropdown")
-            changeInputFieldPlaceholderText("Search for a coin...", "dropdown")
-        })
-    })
 </script>
 <%- include("../partials/footer-altin.ejs") %>
 
