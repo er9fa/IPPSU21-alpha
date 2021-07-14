@@ -57,6 +57,16 @@
   getCryptocurrencies()
   getFiatCurrencies()
 
+  createDropdown("dropdown1");
+  createDropdown("dropdown2");
+
+  var currency = 0;
+  let dropdown1Symbol = {
+    symbol: ""
+  }
+  let dropdown2Symbol = {
+    symbol: ""
+  }
 
   var date;
   var inputVal;
@@ -70,20 +80,10 @@
   var kaching = new Audio();
   kaching.src = "https://www.myinstants.com/media/sounds/ka-ching.mp3";
   var num = 0;
-  
+
 
   let currencies = []
   $(document).ready(() => {
-    var currency = 0;
-    let dropdown1Symbol = {
-      symbol: ""
-    }
-    let dropdown2Symbol = {
-      symbol: ""
-    }
-
-    createDropdown("dropdown1");
-    createDropdown("dropdown2");
 
     // Create promises to Fetch all currencies
     let promiseCryptoCurrencies = Promise.resolve(getCryptocurrencies())
@@ -94,6 +94,8 @@
         responses.forEach((setOfCurrencies) => {
           currencies = currencies.concat(setOfCurrencies)
         })
+
+        console.log("Final list of curencies: ", currencies)
 
         options = convertCurrenciesToDropdownOptions(currencies)
         bindOptionsToDropdown(options, "dropdown1")
@@ -140,7 +142,7 @@
     console.log("convertCoinListener() selectedOption", selectedOption)
     const currency = currencies[selectedOption.id]
     console.log("convertCoinListener() currency", currency)
-    const symbol = currency.tickerSymbol;
+    const symbol = currency.symbol;
 
     valObject.symbol = symbol
     console.log("convertCoinListener() dropdown1 " + dropdown1Symbol.symbol)
@@ -203,6 +205,21 @@
       history()
     })
   }
+
+  // This function is executed every time a currency is selected in the first dropdown menu
+  function setChartCoin(selectedOption) {
+    const index = selectedOption.id
+    selectedCurrency = currencies[index]
+    symbol = selectedCurrency.symbol
+
+    console.log("setChartCoin(), param selectedOption:", selectedOption)
+    console.log("setChartCoin(), selectedCoin:", selectedCurrency)
+    console.log("setChartCoin(), tickerSymbol: " + symbol)
+
+    // TODO: Create a history chart for the selectedCoin using the tickerSymbol
+
+  }
+
 </script>
 <%- include("../partials/footer.ejs") %>
 
