@@ -30,10 +30,10 @@ function formatCryptocurrencies(response) {
     fetchedCoins.forEach((cryptocurrency) => {
         const id = cryptocurrency.id
         const name = cryptocurrency.name
-        const tickerSymbol = cryptocurrency.symbol.toUpperCase()
+        const symbol = cryptocurrency.symbol.toUpperCase()
 
         coins.push({
-            "tickerSymbol": tickerSymbol,
+            "symbol": symbol,
             "name": name,
             "coinMarketID": id
         })
