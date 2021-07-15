@@ -3,7 +3,6 @@ var i = 0;
 var search_string = "bitcoin";
 
 function updateNews() {
-  console.log(`https://newsapi.org/v2/everything?apiKey=a791d1a1c2674ac8914503c53d9a1e8b&language=en&q=${search_string}&page=${page_num}`);
   fetch(`/newsdata?search_string=${search_string}&page_num=${page_num}`).then(r => r.json()).then(data => {
       var num_articles = data.totalResults;
       console.log(num_articles + " articles found");
@@ -180,14 +179,26 @@ function updateNews() {
   })
 }
 
+updateNews();
+
 function updateSearch() {
-    console.log("Success!");
-    search_string = "bitcoin+" + document.getElementById("search_bar").value;
-    updateNews();
+    var new_search = document.getElementById("search_bar").value
+    if (new_search != "") {
+      search_string = "bitcoin+" + new_search;
+      document.getElementById("cancelDiv").style.display = "inline-block";
+      document.getElementById("cancelText").textContent = new_search;
+      updateNews();
+    }
     return false;
 }
 
-updateNews();
+function cancelCurrentSearch() {
+  search_string = "bitcoin"
+  document.getElementById("cancelDiv").style.display = "none";
+  document.getElementById("cancelText").textContent = "";
+  document.getElementById("search_bar").value = "";
+  updateNews();
+}
 
 function oneClicked() {
   page_num = 1;
