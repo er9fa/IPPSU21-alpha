@@ -24,6 +24,24 @@ let setIntervalID_updateChart // The ID of the setInterval for updating the char
  * @returns A chart object (see Chart.js documentation)
  */
 function createChart(coinID, divElementID) {
+    const chart = createChartHelper(coinID, divElementID)
+
+    let popularCoins
+    $(document).ready(() => {
+        createDropdown("dropdown")
+        getPopularCoins().then(coins => {
+            popularCoins = coins
+            options = convertCoinsToDropdownOptions(coins)
+            bindOptionsToDropdown(options, "dropdown")
+            setOnChangeListenerForDropdown((selectedOption) => changeChartCoin(selectedOption, popularCoins), "dropdown")
+            changeInputFieldPlaceholderText("Search for a coin...", "dropdown")
+        })
+    })
+
+    return chart
+}
+
+function createChartHelper(coinID, divElementID) {
     const chartConfig = getChartConfig()
 
     var chart = new Chart(

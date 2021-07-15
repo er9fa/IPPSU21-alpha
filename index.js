@@ -58,8 +58,28 @@ express()
     });
   })
 
+  .get('/conversiondata', (req, res) => {
+    currency = req.query.amount;
+    dropdown1Symbol = req.query.symbol;
+    dropdown2Symbol = req.query.convert;
+ 
+    console.log("Currency" + currency)
+    console.log("dropdown1Symbol" + dropdown1Symbol)
+    console.log("dropdown2Symbol" + dropdown2Symbol)
+
+     console.log(`https://pro-api.coinmarketcap.com/v1/tools/price-conversion?CMC_PRO_API_KEY=bc695b6b-f4b5-438b-9fab-88f108aead7f&amount=${currency}&symbol=${dropdown1Symbol}&convert=${dropdown2Symbol}`)
+     fetch(`https://pro-api.coinmarketcap.com/v1/tools/price-conversion?CMC_PRO_API_KEY=bc695b6b-f4b5-438b-9fab-88f108aead7f&amount=${currency}&symbol=${dropdown1Symbol}&convert=${dropdown2Symbol}`)
+     .catch(err => console.log(err))
+     .then(r => r.json()).then(data => {
+       console.log(data);
+       res.header('Access-Control-Allow-Origin', '*');
+       res.send(data);
+     });
+   })
+
   .get('/main', (req, res) => res.render('pages/main'))
   .get('/calculator', (req, res) => res.render('pages/calculator'))
+  .get('/calculator2', (req, res) => res.render('pages/calculator-altin'))
   .get('/news', (req, res) => res.render('pages/news'))
   .get('/database', (req, res) => res.render('pages/database'))
   .get('/game', (req, res) => res.render('pages/game'))

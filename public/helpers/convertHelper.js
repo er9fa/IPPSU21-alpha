@@ -1,4 +1,5 @@
 const urlbase = `https://api.coingecko.com/api/v3/`
+const urlbase1 = "/conversiondata/"
 async function getExchangeRates(){
   const response = await fetchExchangeRates()
   return formatExchangeCoin(response)
@@ -20,8 +21,6 @@ function formatExchangeCoin(response) {
     console.log("formatExchangeCoin", response)
     let coins = []
     for (const [key, value] of Object.entries(response)) {
-  console.log(key);
-  console.log(value);
   const name = value.name
   const factor = value.value
   const tickerSymbol = key.toUpperCase()

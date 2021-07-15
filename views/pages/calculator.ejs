@@ -8,7 +8,7 @@
   <link rel="stylesheet" type="text/css" href="stylesheets/mainpage.css">
   <link rel="stylesheet" type="text/css"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-  
+
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap">
 
   <!-- Scrolling-bar dependencies -->
@@ -20,25 +20,26 @@
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   <script src="/helpers/dropdown/dropdownHelper.js"></script>
   <link rel="stylesheet" type="text/css" href="stylesheets/dropdown.css">
+  <!-- Coinmarket API helper -->
+  <script src="/helpers/convert/convertHelperCoinMarket.js"></script>
 </head>
 
 <body>
   <%- include('../pages/scrolling-bar.ejs') %>
   <%- include('../partials/navbar-altin.ejs') %>
   <h1 contenteditable spellcheck="false">Crypto Calc</h1>
-  <div class = "background-box">
-  <form class="input">
-    Input :  
-    <input type="text" name="Input" id="txtInput" style="background-color: gray; color: white;">
-  </form>
-  <form class="output">
-    Output :
-    <input type="text" name="output" id="txtOutput" style="background-color: gray; color: white;">
-  </form>
-  <h2 class="inputCoinDropdown">Input Coin</h2>
-  <h2 class="outputCoinDropdown">Output Coin</h2>
+  <div class="background-box">
+    <form class="input">
+      Input :
+      <input type="text" name="Input" id="txtInput" style="background-color: gray; color: white;">
+    </form>
+    <form class="output">
+      Output :
+      <input type="text" name="output" id="txtOutput" style="background-color: gray; color: white;">
+    </form>
+    <h2 class="inputCoinDropdown">Input Coin</h2>
+    <h2 class="outputCoinDropdown">Output Coin</h2>
   </div>
-
   <table id="myTable">
     <tr>
       <th> Date and Time: </th>
@@ -53,18 +54,20 @@
 
 
 <script>
+  getCryptocurrencies()
+  getFiatCurrencies()
+
   createDropdown("dropdown1");
   createDropdown("dropdown2");
 
-  var dropdown1Selection;
-  var dropdown2Selection;
+  var currency = 0;
+  let dropdown1Symbol = {
+    symbol: ""
+  }
+  let dropdown2Symbol = {
+    symbol: ""
+  }
 
-  let factor1 = {
-    exchangeRate: 0
-  };
-  let factor2 = {
-    exchangeRate: 0
-  };
   var date;
   var inputVal;
   var outputVal;
@@ -76,34 +79,74 @@
   };
   var kaching = new Audio();
   kaching.src = "https://www.myinstants.com/media/sounds/ka-ching.mp3";
-  function convertCoins() {
-    inputVal = document.getElementById("txtInput");
-    outputVal = document.getElementById("txtOutput");
-    var currency = inputVal.value;
+  var num = 0;
 
-    // put conversion math here
-    num = currency / factor1.exchangeRate * factor2.exchangeRate;
-    outputVal.value = num.toPrecision(4);
-    history()
+
+  let currencies = []
+  $(document).ready(() => {
+
+    // Create promises to Fetch all currencies
+    let promiseCryptoCurrencies = Promise.resolve(getCryptocurrencies())
+    let promiseFiatCurrencies = Promise.resolve(getFiatCurrencies())
+    // After all promises are resolved, concat the fetched currencies into one array
+    Promise.all([promiseCryptoCurrencies, promiseFiatCurrencies])
+      .then((responses) => {
+        responses.forEach((setOfCurrencies) => {
+          currencies = currencies.concat(setOfCurrencies)
+        })
+
+        console.log("Final list of curencies: ", currencies)
+
+        options = convertCurrenciesToDropdownOptions(currencies)
+        bindOptionsToDropdown(options, "dropdown1")
+        bindOptionsToDropdown(options, "dropdown2")
+
+        setOnChangeListenerForDropdown((selectedOption) => convertCoinListener(selectedOption, dropdown1Symbol), "dropdown1") //dropdown menu will return the index of the selected option, use this index to figure out what coin was selected
+        setOnChangeListenerForDropdown((selectedOption) => convertCoinListener(selectedOption, dropdown2Symbol), "dropdown2")
+
+        // Change coin shown on graph when an option is selected
+        setOnChangeListenerForDropdown((selectedOption) => setChartCoin(selectedOption), "dropdown1")
+
+        // Find the indices of the default dropdown currencies
+        indexBTC = currencies.findIndex((currency) => isMatchingCurrency(currency, "BTC"))
+        indexUSD = currencies.findIndex((currency) => isMatchingCurrency(currency, "USD"))
+
+        // Set the default dropdown currencies
+        setDefaultOption(indexBTC, "dropdown1")
+        setDefaultOption(indexUSD, "dropdown2")
+        requireMinimumNumberOfKeysToDisplayOptions(2, "dropdown1")
+        requireMinimumNumberOfKeysToDisplayOptions(2, "dropdown2")
+      })
+  })
+
+  // Checks if a coin's ticker symbol matches the one being searched for
+  function isMatchingCurrency(currency, symbol) {
+    return currency.symbol == symbol
   }
-  function convertCoinListener(index, valObject, coinNameObject) { //index is the index of the selected option
+
+  function convertCurrenciesToDropdownOptions(currencies) {
+    const resultOptions = []
+    // Convert the retrieved coins into the format the dropdown menu library requires to display them (see Select2 library for more details)
+    currencies.forEach((currency, index) => {
+      result = {
+        id: index,
+        text: currency.symbol + " " + currency.name
+      }
+      resultOptions.push(result)
+    })
+    return resultOptions
+  }
+  function convertCoinListener(selectedOption, valObject) { //index is the index of the selected option
     //This function simply gets the exchange rate from BTC to "selected coin here"
     // I still need a way to get a second dropdown, I will need to use that here too
-    const symbol = index.id;
-    const coin = exchangeCoins[symbol];
+    console.log("convertCoinListener() selectedOption", selectedOption)
+    const currency = currencies[selectedOption.id]
+    console.log("convertCoinListener() currency", currency)
+    const symbol = currency.symbol;
 
-    valObject.exchangeRate = coin.exchangeRate;
-
-    coinNameObject.coinName = coin.name;
-
-    console.log("index:", index);
-    console.log("factor 1", factor1);
-    console.log("factor 2", factor2);
-    console.log("input coin", inputCoinName);
-    console.log("output coin", outputCoinName);
-
-
-
+    valObject.symbol = symbol
+    console.log("convertCoinListener() dropdown1 " + dropdown1Symbol.symbol)
+    console.log("convertCoinListener() dropdown2 " + dropdown2Symbol.symbol)
   }
 
   function history() {
@@ -127,44 +170,51 @@
     mysound.load();
   }
 
-  var exchangeCoins;
-  $(document).ready(() => {
-    getExchangeRates().then(coins => {
-      exchangeCoins = coins //format coins into the array that I need
-      console.log(exchangeCoins)
-      options1 = convertExchangeCoinsToDropdownOptions(exchangeCoins) //Instead of converting popularcoins, convert exchange rates into dropdown options
-      bindOptionsToDropdown(options1, "dropdown1")
-      setOnChangeListenerForDropdown((selectedOption) => convertCoinListener(selectedOption, factor1, inputCoinName), "dropdown1") //dropdown menu will return the index of the selected option, use this index to figure out what coin was selected
+  async function convertCoins() {
+    inputVal = document.getElementById("txtInput");
+    outputVal = document.getElementById("txtOutput");
+    currency = inputVal.value;
 
-      bindOptionsToDropdown(options1, "dropdown2")
-      setOnChangeListenerForDropdown((selectedOption) => convertCoinListener(selectedOption, factor2, outputCoinName), "dropdown2")
+    console.log("currency", currency)
+    console.log(`https://pro-api.coinmarketcap.com/v1/tools/price-conversion?CMC_PRO_API_KEY=bc695b6b-f4b5-438b-9fab-88f108aead7f&amount=${currency}&symbol=${dropdown1Symbol.symbol}&convert=${dropdown2Symbol.symbol}`)
 
-      setOnChangeListenerForDropdown((selectedOption) => setChartCoin(selectedOption), "dropdown1")
+    /*const url = new URL(urlbase1)
+    const params = { 
+        'amount': currency,
+        'symbol': dropdown1Symbol.symbol,
+        'convert': dropdown2Symbol.symbol
+    }
+    // If an array of coin IDs has been provided, add it to the query
+    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
+    console.log("dropdown1symbol" + dropdown1Symbol.symbol)
+    console.log("dropdown2symbol" + dropdown2Symbol.symbol)
+    
+    const response = await fetch(url).then(r => r.json())
+        .then(data => {
+            console.log("Retrieved conversion data", data)
+            return data
+        })
+    // Return the coins as a JSON object
+    return response
+    */
 
-      // Checks if a coin's ticker symbol matches the one being searched for
-      function findCoin(coin, ticker) {
-        return coin.tickerSymbol == ticker
-      }
-      
-      // Find the indices of the default dropdown currencies
-      indexBTC = exchangeCoins.findIndex((coin) => findCoin(coin, "BTC"))
-      indexUSD = exchangeCoins.findIndex((coin) => findCoin(coin, "USD"))
-
-      // Set the default dropdown currencies
-      setDefaultOption(indexBTC, "dropdown1")
-      setDefaultOption(indexUSD, "dropdown2")
+    fetch(`/conversiondata?amount=${currency}&symbol=${dropdown1Symbol.symbol}&convert=${dropdown2Symbol.symbol}`).then(r => r.json()).then(data => {
+      console.log("Retrieved Converted Value", data)
+      num = data.data.quote[dropdown2Symbol.symbol].price; //Here symbol is the symbol of coin 2
+      outputVal.value = num.toPrecision(4);
+      history()
     })
-  })
+  }
 
   // This function is executed every time a currency is selected in the first dropdown menu
   function setChartCoin(selectedOption) {
     const index = selectedOption.id
-    selectedCoin = exchangeCoins[index]
-    tickerSymbol = selectedCoin.tickerSymbol
-    
+    selectedCurrency = currencies[index]
+    symbol = selectedCurrency.symbol
+
     console.log("setChartCoin(), param selectedOption:", selectedOption)
-    console.log("setChartCoin(), selectedCoin:", selectedCoin)
-    console.log("setChartCoin(), tickerSymbol: " + tickerSymbol)
+    console.log("setChartCoin(), selectedCoin:", selectedCurrency)
+    console.log("setChartCoin(), tickerSymbol: " + symbol)
 
     // TODO: Create a history chart for the selectedCoin using the tickerSymbol
 
