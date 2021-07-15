@@ -49,7 +49,6 @@ express()
     search_string = req.query.search_string;
     page_num = req.query.page_num;
 
-    console.log(`https://newsapi.org/v2/everything?apiKey=a791d1a1c2674ac8914503c53d9a1e8b&language=en&q=${search_string}&page=${page_num}`);
     fetch(`https://newsapi.org/v2/everything?apiKey=a791d1a1c2674ac8914503c53d9a1e8b&language=en&q=${search_string}&page=${page_num}`)
     .catch(err => console.log(err))
     .then(r => r.json()).then(data => {
@@ -59,11 +58,49 @@ express()
     });
   })
 
+  .get('/conversiondata', (req, res) => {
+    currency = req.query.amount;
+    dropdown1Symbol = req.query.symbol;
+    dropdown2Symbol = req.query.convert;
+ 
+    console.log("Currency" + currency)
+    console.log("dropdown1Symbol" + dropdown1Symbol)
+    console.log("dropdown2Symbol" + dropdown2Symbol)
+
+     console.log(`https://pro-api.coinmarketcap.com/v1/tools/price-conversion?CMC_PRO_API_KEY=bc695b6b-f4b5-438b-9fab-88f108aead7f&amount=${currency}&symbol=${dropdown1Symbol}&convert=${dropdown2Symbol}`)
+     fetch(`https://pro-api.coinmarketcap.com/v1/tools/price-conversion?CMC_PRO_API_KEY=bc695b6b-f4b5-438b-9fab-88f108aead7f&amount=${currency}&symbol=${dropdown1Symbol}&convert=${dropdown2Symbol}`)
+     .catch(err => console.log(err))
+     .then(r => r.json()).then(data => {
+       console.log(data);
+       res.header('Access-Control-Allow-Origin', '*');
+       res.send(data);
+     });
+   })
+
+  .get('/coinmarket-dropdown', (req, res) => {
+    const baseUrlConvertHelper = "https://pro-api.coinmarketcap.com/v1/"
+    let url = new URL(`${req.protocol}://${req.get('host')}${req.originalUrl}`)
+    let params = "?" + (new URLSearchParams(url.search.slice(1))).toString();
+
+    let result = baseUrlConvertHelper + "cryptocurrency/map" + params
+    
+    fetch(result)
+    .catch(err => console.log(err))
+    .then(r => r.json()).then(data => {
+      console.log("RESULT: " + result)
+      console.log(data);
+        res.header('Access-Control-Allow-Origin', '*');
+        res.send(data);
+      });
+  })
+
   .get('/main', (req, res) => res.render('pages/main'))
-  .get('/calculator', (req, res) => res.render('pages/calculator'))
+  .get('/calculator', (req, res) => res.render('pages/calculator-altin'))
+  .get('/calculator2', (req, res) => res.render('pages/calculator'))
   .get('/news', (req, res) => res.render('pages/news'))
   .get('/database', (req, res) => res.render('pages/database'))
   .get('/game', (req, res) => res.render('pages/game'))
+  .get('/secret', (req, res) => res.render('pages/secret'))
   .get('/scrolling-bar', (req, res) => res.render('pages/scrolling-bar'))
   .get('/chart', (req, res) => res.render('pages/chart-coin'))
   .get('/about', (req, res) => res.render('pages/about'))

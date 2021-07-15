@@ -1,9 +1,14 @@
+html {
+    min-height: 100%;
+}
+
 body {
+    min-height: 100%;
     font-family: 'Roboto', sans-serif;
     color: white;
-    background: #000;
-    background-image: url('https://i.ibb.co/HGj2hcd/bg.png');
-    background-size: cover;
+    background: linear-gradient(0deg, rgba(27, 67, 175, 1) 0%, rgba(0, 0, 0, 1) 100%);
+    /* Adds whitespace to the bottom of the page so the scrolling bar doesn't overlap */
+    padding-bottom: 5rem
 }
 
 #container-page-top {
