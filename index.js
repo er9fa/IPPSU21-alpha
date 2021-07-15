@@ -34,6 +34,7 @@ express()
   .get('/al-bio', (req, res) => res.render('pages/al-bio', {title:'Altin\'s Bio'}))
   .get('/paulspage', (req, res) => res.render('pages/paulspage'))
   .get('/newstest', (req, res) => res.render('pages/newstest'))
+  .get('/historical', (req, res) => res.render('pages/historical'))
   .get('/serhiispage', (req, res) => res.render('pages/serhiispage'))
   .get('/testcoin', (req, res) => {
     rp(requestOptions).then(response => {
@@ -62,7 +63,7 @@ express()
     currency = req.query.amount;
     dropdown1Symbol = req.query.symbol;
     dropdown2Symbol = req.query.convert;
- 
+
     console.log("Currency" + currency)
     console.log("dropdown1Symbol" + dropdown1Symbol)
     console.log("dropdown2Symbol" + dropdown2Symbol)
@@ -83,7 +84,7 @@ express()
     let params = "?" + (new URLSearchParams(url.search.slice(1))).toString();
 
     let result = baseUrlConvertHelper + "cryptocurrency/map" + params
-    
+
     fetch(result)
     .catch(err => console.log(err))
     .then(r => r.json()).then(data => {

@@ -38,11 +38,7 @@
 		left: -17%;
 		border-radius: 5px;
 		border: 5px solid white;
-		box-shadow:
-		0 0 5px #fff,
-		0 0 10px #fff,
-		0 0 20px #fff,
-		0 0 40px #00f;
+		box-shadow: 0 0 2rem #f40, inset 0 0 1rem #f40, 0 0 2rem #f40, inset 0 0 2rem #f40;
 }
 
 #sidebar.active{
