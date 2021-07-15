@@ -3,13 +3,14 @@
 .side-navbar {
     /* Prevents words from wrapping while opening navbar */
     white-space: nowrap;
+    border: 0.3rem solid white;
     /* Smooth top and bottom right edges of navbar */
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
     /* Height of navbar */
     height: fit-content;
     /* Width is not constantly 0. It changes when executing the navbar button listener */
-    width: 0;
+    width: 0.4rem;
     /* Stay in place */
     position: fixed;
     /* Stay on top of other elements */
@@ -24,7 +25,7 @@
     background-image: linear-gradient(#2f2159, #4000ff);
     /* 0.5 second transition effect to slide in the sidenav */
     transition: 0.5s;
-    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #00f;
+    box-shadow: 0 0 .5rem #fff, inset 0 0 .5rem #fff, 0 0 2rem #f40, inset 0 0 1rem #f40, 0 0 2rem #f40, inset 0 0 2rem #f40;
     text-align: center;
 }
 
@@ -47,6 +48,7 @@
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+
 @media screen and (max-height: 450px) {
     .side-navbar {
         padding-top: 15px;
