@@ -49,7 +49,6 @@ express()
     search_string = req.query.search_string;
     page_num = req.query.page_num;
 
-    console.log(`https://newsapi.org/v2/everything?apiKey=a791d1a1c2674ac8914503c53d9a1e8b&language=en&q=${search_string}&page=${page_num}`);
     fetch(`https://newsapi.org/v2/everything?apiKey=a791d1a1c2674ac8914503c53d9a1e8b&language=en&q=${search_string}&page=${page_num}`)
     .catch(err => console.log(err))
     .then(r => r.json()).then(data => {
@@ -64,6 +63,7 @@ express()
   .get('/news', (req, res) => res.render('pages/news'))
   .get('/database', (req, res) => res.render('pages/database'))
   .get('/game', (req, res) => res.render('pages/game'))
+  .get('/secret', (req, res) => res.render('pages/secret'))
   .get('/scrolling-bar', (req, res) => res.render('pages/scrolling-bar'))
   .get('/chart', (req, res) => res.render('pages/chart-coin'))
   .get('/about', (req, res) => res.render('pages/about'))
