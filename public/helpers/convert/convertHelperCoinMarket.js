@@ -7,7 +7,7 @@ async function getCryptocurrencies() {
 
 async function fetchCryptocurrencies() {
     // Begin creating the query to send to the CoinGecko API
-    const url = new URL("/coinmarket-dropdown/", location)
+    const url = new URL("/cm-get-crypto-currencies", location)
     const params = {
         'CMC_PRO_API_KEY': 'bc695b6b-f4b5-438b-9fab-88f108aead7f',
     }
@@ -67,6 +67,25 @@ async function getFiatCurrencies() {
 }
 
 async function fetchFiatCurrencies() {
+    // Begin creating the query to send to the CoinGecko API
+    const url = new URL("/cm-get-fiat-currencies", location)
+    const params = {
+        'CMC_PRO_API_KEY': 'bc695b6b-f4b5-438b-9fab-88f108aead7f',
+    }
+    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
+
+    const response = await fetch(url).then(r => r.json())
+        .then(data => {
+            return data
+        })
+
+    console.log("fetchFiatCcurrencies(), response:", response)
+
+    // Return the coins as a JSON object
+    return response
+}
+
+async function old_fetchFiatCurrencies() {
     // Begin creating the query to send to the CoinGecko API
     const url = new URL(baseUrlConvertHelper + 'fiat/map')
     const params = {
