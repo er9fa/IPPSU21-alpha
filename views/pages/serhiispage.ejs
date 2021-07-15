@@ -1,78 +1,103 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+  <link rel="stylesheet" href="stylesheets/serhiiscss.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tourney:ital@1&display=swap" rel="stylesheet">
 </head>
 <body>
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <h1>Historical Value</h1>
 
-  <button type="button" onclick="drawChart()">
-    Test
-  </button>
+  <div class="historyBox">
 
-  <label for="cars">Choose a currency:</label>
-  <select id="currencies" name="currencies">
-    <option value="bitcoin">bitcoin</option>
-    <option value="ethereum">ethereum</option>
-    <option value="dogecoin">dogecoin</option>
-  </select>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-  <script type="text/javascript">
-    google.charts.load('current', {'packages':['corechart']});
+    <div class="historyControl">
+      <button id="histButton" class="historyButton" type="button" onclick="drawChart()">
+        Enter
+      </button>
 
-    function drawChart() {
-      var apirequest = "";
-      if (document.getElementById("currencies").value=="bitcoin"){
-        apirequest = 'https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=30&interval=daily';
-      } else if (document.getElementById("currencies").value=="ethereum"){
-        apirequest = 'https://api.coingecko.com/api/v3/coins/ethereum/market_chart?vs_currency=usd&days=30&interval=daily';
-      } else if (document.getElementById("currencies").value=="dogecoin"){
-        apirequest = 'https://api.coingecko.com/api/v3/coins/dogecoin/market_chart?vs_currency=usd&days=30&interval=daily';
+      <label class="historyLabel" for="cars">Choose a cryptocurrency:</label>
+      <select id="currencies" name="currencies">
+        <option value="bitcoin">bitcoin</option>
+        <option value="ethereum">ethereum</option>
+        <option value="dogecoin">dogecoin</option>
+      </select>
+    </div>
+
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var apirequest = "";
+        if (document.getElementById("currencies").value=="bitcoin"){
+          apirequest = 'https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=30&interval=daily';
+        } else if (document.getElementById("currencies").value=="ethereum"){
+          apirequest = 'https://api.coingecko.com/api/v3/coins/ethereum/market_chart?vs_currency=usd&days=30&interval=daily';
+        } else if (document.getElementById("currencies").value=="dogecoin"){
+          apirequest = 'https://api.coingecko.com/api/v3/coins/dogecoin/market_chart?vs_currency=usd&days=30&interval=daily';
+        }
+
+        console.log(document.getElementById("currencies").value);
+
+        fetch(apirequest)
+          .then(response => response.json())
+          .then(data => {
+
+            var table = [];
+
+            for (let i = 0; i < 30; i++){
+              table.push([]);
+            }
+
+            for (let i = 0; i < 30; i++){
+              var today = new Date();
+              today.setDate(today.getDate()-30+i);
+              var dd = String(today.getDate()).padStart(2, '0');
+              var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+              var yyyy = today.getFullYear();
+              today = yyyy + "-" + mm + "-" + dd;
+              table[i].push(today);
+              table[i].push(data["prices"][i][1]);
+            }
+
+            table[0][0] = "Date";
+            table[0][1] = "";
+
+            console.log(table);
+
+            var data = google.visualization.arrayToDataTable(table);
+
+            var options = {
+              curveType: 'function',
+              legend: { position: 'bottom' },
+              backgroundColor: "3B409B",
+              hAxis: {
+                title: 'Date',
+                titleTextStyle: {color: 'white'}
+              },
+              colors: ["red"],
+              hAxis: {
+                  textStyle:{color: '#FFF'}
+              },
+              vAxis: {
+                  textStyle:{color: '#FFF'}
+              }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+            chart.draw(data, options);
+          });
       }
+    </script>
 
-      console.log(document.getElementById("currencies").value);
+    <div id="curve_chart" style="width: 900px; height: 500px"></div>
+  </div>
 
-      fetch(apirequest)
-        .then(response => response.json())
-        .then(data => {
-
-          var table = [];
-
-          for (let i = 0; i < 30; i++){
-            table.push([]);
-          }
-
-          for (let i = 0; i < 30; i++){
-            var today = new Date();
-            today.setDate(today.getDate()-30+i);
-            var dd = String(today.getDate()).padStart(2, '0');
-            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-            var yyyy = today.getFullYear();
-            today = yyyy + "-" + mm + "-" + dd;
-            table[i].push(today);
-            table[i].push(data["prices"][i][1]);
-          }
-
-          table[0][0] = "Date";
-          table[0][1] = "";
-
-          console.log(table);
-
-          var data = google.visualization.arrayToDataTable(table);
-
-          var options = {
-            title: 'Price history',
-            curveType: 'function',
-            legend: { position: 'bottom' }
-          };
-
-          var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-
-          chart.draw(data, options);
-        });
-    }
-  </script>
-
-  <div id="curve_chart" style="width: 900px; height: 500px"></div>
+  <%- include('../partials/navbar.ejs') %>
+  <%- include('../pages/scrolling-bar.ejs') %>
 </body>
 </html>

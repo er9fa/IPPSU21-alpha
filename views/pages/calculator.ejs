@@ -8,7 +8,7 @@
   <link rel="stylesheet" type="text/css" href="stylesheets/mainpage.css">
   <link rel="stylesheet" type="text/css"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-  
+
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap">
 
   <!-- Scrolling-bar dependencies -->
@@ -25,10 +25,11 @@
 <body>
   <%- include('../pages/scrolling-bar.ejs') %>
   <%- include('../partials/navbar-altin.ejs') %>
+    
   <h1 contenteditable spellcheck="false">Crypto Calc</h1>
   <div class = "background-box">
   <form class="input">
-    Input :  
+    Input :
     <input type="text" name="Input" id="txtInput" style="background-color: gray; color: white;">
   </form>
   <form class="output">
@@ -145,7 +146,7 @@
       function findCoin(coin, ticker) {
         return coin.tickerSymbol == ticker
       }
-      
+
       // Find the indices of the default dropdown currencies
       indexBTC = exchangeCoins.findIndex((coin) => findCoin(coin, "BTC"))
       indexUSD = exchangeCoins.findIndex((coin) => findCoin(coin, "USD"))
@@ -161,7 +162,7 @@
     const index = selectedOption.id
     selectedCoin = exchangeCoins[index]
     tickerSymbol = selectedCoin.tickerSymbol
-    
+
     console.log("setChartCoin(), param selectedOption:", selectedOption)
     console.log("setChartCoin(), selectedCoin:", selectedCoin)
     console.log("setChartCoin(), tickerSymbol: " + tickerSymbol)
