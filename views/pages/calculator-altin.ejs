@@ -28,34 +28,42 @@
             </div>
         </div>
     </div>
-    <div id="container-calculator" class="container mb-4">
-        <div class="row">
-            <div class="col-auto">
-                <form class="input">
-                    Input :
-                    <input type="text" name="Input" id="txtInput" style="background-color: gray; color: white;">
-                </form>
+    <div class="container mb-4">
+        <div class="row align-items-center gx-5">
+            <div id="row-calculator" class="col-10 pl-4">
+                <div class="row align-items-center my-5">
+                    <div class="col-auto">
+                        <form class="input">
+                            Input :
+                            <input type="text" name="Input" id="txtInput" style="background-color: gray; color: white;">
+                        </form>
+                    </div>
+                    <div class="col-auto">
+                        <div id="dropdown1" class="dropdown"></div>
+                    </div>
+                </div>
+                <div class="row align-items-center mb-5">
+                    <div class="col-auto">
+                        <form class="input">
+                            Output :
+                            <input type="text" name="output" id="txtOutput"
+                                style="background-color: gray; color: white;">
+                        </form>
+                    </div>
+                    <div class="col-auto">
+                        <div id="dropdown2" class="dropdown"></div>
+                    </div>
+                </div>
             </div>
-            <div class="col-auto">
-                <div id="dropdown1" class="dropdown"></div>
+            <div class="col-2">
+                <div class="row">
+                    <div class="col-auto">
+                        <button id="enter-button" onclick="convertCoins(); kaching.play()">ENTER</button>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row justify-content-end">
-            <div class="col-auto">
-                <button id="enter-button" onclick="convertCoins(); kaching.play()">ENTER</button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-auto">
-                <form class="output">
-                    Output :
-                    <input type="text" name="output" id="txtOutput" style="background-color: gray; color: white;">
-                </form>
-            </div>
-            <div class="col-auto">
-                <div id="dropdown2" class="dropdown"></div>
-            </div>
-        </div>
+
     </div>
     <div class="container">
         <table id="myTable">
