@@ -17,7 +17,7 @@ h1:not(.newscalc) {
 }
 
 .historyBox{
-  background-image: url('https://i.ibb.co/HGj2hcd/bg.png');
+  background-color: #3B409B;
   background-size: cover;
   margin: auto;
   width: 61%;
@@ -40,6 +40,8 @@ h1:not(.newscalc) {
 }
 
 .historyControl{
+  text-align: center;
+  width: 100%;
   display: flex;
   align-items: center;
 }
