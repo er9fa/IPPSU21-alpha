@@ -82,10 +82,13 @@ express()
     let url = new URL(`${req.protocol}://${req.get('host')}${req.originalUrl}`)
     let params = "?" + (new URLSearchParams(url.search.slice(1))).toString();
 
-    fetch(baseUrlConvertHelper + "cryptocurrency/map" + params)
-      .catch(err => console.log(err))
-      .then(r => r.json()).then(data => {
-        console.log(data);
+    let result = baseUrlConvertHelper + "cryptocurrency/map" + params
+    
+    fetch(result)
+    .catch(err => console.log(err))
+    .then(r => r.json()).then(data => {
+      console.log("RESULT: " + result)
+      console.log(data);
         res.header('Access-Control-Allow-Origin', '*');
         res.send(data);
       });
