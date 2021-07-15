@@ -7,7 +7,7 @@
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
     /* Height of navbar */
-    height: 50%;
+    height: fit-content;
     /* Width is not constantly 0. It changes when executing the navbar button listener */
     width: 0;
     /* Stay in place */
@@ -20,7 +20,7 @@
     /* Disable horizontal scroll */
     overflow-x: hidden;
     /* Place buttons 60px from the top of the navbar */
-    padding-top: 5rem;
+    padding-block: 5rem;
     background-image: linear-gradient(#2f2159, #4000ff);
     /* 0.5 second transition effect to slide in the sidenav */
     transition: 0.5s;
