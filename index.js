@@ -77,6 +77,20 @@ express()
      });
    })
 
+  .get('/coinmarket-dropdown', (req, res) => {
+    const baseUrlConvertHelper = "https://pro-api.coinmarketcap.com/v1/"
+    let url = new URL(`${req.protocol}://${req.get('host')}${req.originalUrl}`)
+    let params = "?" + (new URLSearchParams(url.search.slice(1))).toString();
+
+    fetch(baseUrlConvertHelper + "cryptocurrency/map" + params)
+      .catch(err => console.log(err))
+      .then(r => r.json()).then(data => {
+        console.log(data);
+        res.header('Access-Control-Allow-Origin', '*');
+        res.send(data);
+      });
+  })
+
   .get('/main', (req, res) => res.render('pages/main'))
   .get('/calculator', (req, res) => res.render('pages/calculator'))
   .get('/calculator2', (req, res) => res.render('pages/calculator-altin'))
