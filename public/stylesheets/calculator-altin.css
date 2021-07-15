@@ -1,0 +1,86 @@
+html {
+    min-height: 100%;
+}
+
+body {
+    min-height: 100%;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    background: linear-gradient(0deg, rgba(27, 67, 175, 1) 0%, rgba(0, 0, 0, 1) 100%);
+    /* Adds whitespace to the bottom of the page so the scrolling bar doesn't overlap */
+    padding-bottom: 5rem
+}
+
+#container-page-top {
+    margin-top: 7rem;
+    margin-bottom: 7rem;
+}
+
+#container-calculator {
+    padding-block: 1.5rem;
+    padding-inline: 10rem;
+    background-color: #262628;
+    border: 0.3rem solid white;
+    border-radius: 10px;
+    box-shadow: 0 0 .5rem #fff, inset 0 0 .5rem #fff, 0 0 2rem #f40, inset 0 0 1rem #f40, 0 0 2rem #f40, inset 0 0 2rem #f40;
+}
+
+#title-page {
+    color: #fff;
+    padding: 1rem;
+    border: 0.3rem solid white;
+    border-radius: 2rem;
+    text-shadow: -0.2rem -0.2rem 1rem #fff, 0.2rem 0.2rem 1rem #fff, 0 0 .25rem #08f, 0 0 .5rem #08f, 0 0 .75rem #08f, 0 0 1rem #08f, 0 0 1.25rem #08f;
+    box-shadow: 0 0 .5rem #fff, inset 0 0 .5rem #fff, 0 0 2rem #f40, inset 0 0 1rem #f40, 0 0 2rem #f40, inset 0 0 2rem #f40;
+}
+
+.dropdown {
+    width: 13rem;
+}
+
+table {
+    width: 60%;
+    color: white;
+    position: fixed;
+    left: 19.5%;
+    border: 1px solid white;
+    box-shadow: 0 0 .5rem #fff, inset 0 0 .5rem #fff, 0 0 0rem var(--neon-border-color), inset 0 0 0rem var(--neon-border-color), 0 0 4rem var(--neon-border-color), inset 0 0 0rem var(--neon-border-color);
+    background-color: #141d26;
+}
+
+th {
+    font-size: 20px;
+    text-align: center;
+    text-shadow: 0 0 5px #0000ff, 0 0 10px #0000ff, 0 0 20px #0000ff, 0 0 40px #00f, 0 0 80px #00f, 0 0 90px #00f, 0 0 100px #00f, 0 0 150px #00f;
+    box-shadow: 0 0 .5rem #fff, inset 0 0 .5rem #f40, 0 0 0rem var(--neon-border-color), inset 0 0 0rem var(--neon-border-color), inset 0 0 0rem var(--neon-border-color);
+}
+
+td {
+    font-size: 20px;
+    text-align: center;
+    color: white;
+    background-color: #141d26;
+    box-shadow: 0 0 .5rem #fff, inset 0 0 .5rem #f40, 0 0 0rem var(--neon-border-color), inset 0 0 0rem var(--neon-border-color), inset 0 0 0rem var(--neon-border-color);
+}
+
+#enter-button {
+    --neon-text-color: #08f;
+    --neon-border-color: #f40;
+    color: var(--neon-border-color);
+    font-family: 'Roboto Slab', serif;
+    display: flex;
+    font-size: 2rem;
+    font-weight: 200;
+    font-style: italic;
+    color: #fff;
+    padding: 1rem 1.5rem 1rem;
+    border: 0.4rem solid #fff;
+    border-radius: 1rem;
+    text-transform: uppercase;
+    box-shadow: 0 0 .5rem #fff, inset 0 0 .5rem #fff, 0 0 0rem var(--neon-border-color), inset 0 0 0rem var(--neon-border-color), 0 0 4rem var(--neon-border-color), inset 0 0 0rem var(--neon-border-color);
+    background-color: #141d26;
+}
+
+.button:hover #enter-button, .button:focus #enter-button {
+    background-color: #2980B9;
+}
