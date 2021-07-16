@@ -33,6 +33,8 @@ body {
 }
 
 #title-page {
+    font-family: 'Roboto Slab', serif;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #00f, 0 0 80px #00f, 0 0 90px #00f, 0 0 100px #00f, 0 0 150px #00f;
     color: #fff;
     padding: 1rem;
     border: 0.3rem solid white;
