@@ -1,0 +1,84 @@
+:root {
+    --dark-gray: #1d1d1d;
+}
+
+.select2-container .select2-selection--single {
+    background-color: var(--dark-gray);
+    border-radius: 4px;
+    height: fit-content;
+    margin: 0.2rem;
+}
+
+.select2-container .select2-selection--single .select2-selection__rendered {
+    color: white;
+    line-height: 55px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    margin-top: 1rem;
+    margin-right: 0.5rem;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow b {
+    border-width: 7px 6px 0 6px;
+}
+
+.select2-search {
+    background-color: var(--dark-gray);
+}
+
+.select2-search input {
+    background-color: var(--dark-gray);
+    color: white;
+    outline: none;
+    font-size: small;
+}
+
+.select2-results__options li {
+    font-size: small;
+}
+
+.select2-results {
+    background-color: var(--dark-gray);
+    color: white;
+}
+
+.select2-choice {
+    background-color: var(--dark-gray) !important;
+}
+
+.select2-container--default .select2-results__option--selected {
+    background-color: #4678C7 !important;
+}
+
+.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
+    background-color: #2B497A;
+}
+
+/* Not sure why the class selector above doesn't catch this */
+
+/* Scrollbar customization */
+
+/* Width */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+
+::-webkit-scrollbar-track {
+    background: #f1f1f10e;
+}
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
