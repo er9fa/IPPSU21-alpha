@@ -24,6 +24,7 @@ body {
 }
 
 #title-page {
+    font-family: 'Tourney', cursive;
     color: #fff;
     padding: 1rem;
     border: 0.3rem solid white;

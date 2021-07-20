@@ -22,6 +22,9 @@
   <link rel="stylesheet" type="text/css" href="stylesheets/dropdown.css">
   <!-- Coinmarket API helper -->
   <script src="/helpers/convert/convertHelperCoinMarket.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tourney:ital@1&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -158,7 +161,7 @@
     console.log("currency", currency)
     console.log(`https://pro-api.coinmarketcap.com/v1/tools/price-conversion?CMC_PRO_API_KEY=bc695b6b-f4b5-438b-9fab-88f108aead7f&amount=${currency}&symbol=${dropdown1Symbol.symbol}&convert=${dropdown2Symbol.symbol}`)
     /*const url = new URL(urlbase1)
-    const params = { 
+    const params = {
         'amount': currency,
         'symbol': dropdown1Symbol.symbol,
         'convert': dropdown2Symbol.symbol
@@ -167,7 +170,7 @@
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
     console.log("dropdown1symbol" + dropdown1Symbol.symbol)
     console.log("dropdown2symbol" + dropdown2Symbol.symbol)
-    
+
     const response = await fetch(url).then(r => r.json())
         .then(data => {
             console.log("Retrieved conversion data", data)
