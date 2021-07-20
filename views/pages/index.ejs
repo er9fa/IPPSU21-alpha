@@ -9,6 +9,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Tourney:ital@1&display=swap" rel="stylesheet">
   </head>
   <body>
+    <div style="display: block">
+      <%- include('../partials/navbar-altin.ejs') %>
+    </div>
+    <%- include('../pages/scrolling-bar.ejs') %>
+
     <h1 class="title">Crypto Calculator</h1>
 
     <svg class="calc" xmlns="http://www.w3.org/2000/svg" width="10vw" height="10rem" fill="currentColor" class="bi bi-calculator" viewBox="0 0 16 16">
@@ -60,8 +65,6 @@
       </div>
     </div>
 
-    <%- include('../partials/navbar.ejs') %>
-    <%- include('../pages/scrolling-bar.ejs') %>
   </body>
 
   <script>
