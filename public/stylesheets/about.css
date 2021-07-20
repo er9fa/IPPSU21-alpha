@@ -19,6 +19,7 @@ h1:not(.newscalc) {
 }
 
 h1::-moz-selection {
+  font-family: 'Tourney', cursive;
   background-color: var(--neon-border-color);
   color: var(--neon-text-color);
 }
@@ -184,6 +185,7 @@ p {
 
 
 .newscalc{
+  font-family: 'Tourney', cursive;
   font-size: 60px;
   color: #fff;
   text-align: center;

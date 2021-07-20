@@ -15,7 +15,7 @@ body {
   }
 
 h1:not(.title):not(.calctitle):not(.newscalc){
-  font-family: 'Roboto Slab', serif;  display: flex;
+  font-family: 'Tourney', cursive;  display: flex;
   font-size: 4rem;
   font-weight: 200;
   font-style: italic;
@@ -324,5 +324,3 @@ select{
   background-color: #141d26;
 
 }
-
-
