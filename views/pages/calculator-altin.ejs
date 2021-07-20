@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <%- include('../partials/header-altin.ejs') %>
+    <%- include('../partials/navbar.ejs') %>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap">
     <title>Crypto Calc</title>
     <!-- Scrolling-bar dependencies -->
@@ -17,10 +17,12 @@
     <script src="/helpers/convert/convertHelperCoinMarket.js"></script>
     <!-- Page specific stylesheet -->
     <link rel="stylesheet" type="text/css" href="stylesheets/calculator-altin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tourney:ital@1&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <%- include('../partials/navbar-altin.ejs') %>
     <%- include('../pages/scrolling-bar.ejs') %>
     <div class="container">
         <div class="row justify-content-md-center mt-5 mb-4">
@@ -205,7 +207,7 @@
         console.log(`https://pro-api.coinmarketcap.com/v1/tools/price-conversion?CMC_PRO_API_KEY=bc695b6b-f4b5-438b-9fab-88f108aead7f&amount=${currency}&symbol=${dropdown1Symbol.symbol}&convert=${dropdown2Symbol.symbol}`)
 
         /*const url = new URL(urlbase1)
-        const params = { 
+        const params = {
             'amount': currency,
             'symbol': dropdown1Symbol.symbol,
             'convert': dropdown2Symbol.symbol
@@ -214,7 +216,7 @@
         Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
         console.log("dropdown1symbol" + dropdown1Symbol.symbol)
         console.log("dropdown2symbol" + dropdown2Symbol.symbol)
-        
+
         const response = await fetch(url).then(r => r.json())
             .then(data => {
                 console.log("Retrieved conversion data", data)

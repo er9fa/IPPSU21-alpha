@@ -28,7 +28,7 @@ body {
 }
 
 #title-page {
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Tourney', cursive;
     text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #00f, 0 0 80px #00f, 0 0 90px #00f, 0 0 100px #00f, 0 0 150px #00f;
     color: #fff;
     padding: 1rem;
@@ -71,7 +71,7 @@ td {
     --neon-text-color: #08f;
     --neon-border-color: #f40;
     color: var(--neon-border-color);
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Tourney', cursive;
     display: flex;
     font-size: 2rem;
     font-weight: 200;
