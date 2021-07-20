@@ -87,7 +87,7 @@ function gameLoop() {
         for (var i = index + 1; i < snake.cells.length; i++) {
             // if snake touches itself, reset game
             if (cell.x === snake.cells[i].x && cell.y === snake.cells[i].y) {
-                scoreDisplayElem.innerHTML = ' 0';
+                scoreDisplayElem.innerHTML = '$0';
                 score = 0;
                 snake = resetSnake();
                 apple.x = getRandomInt(0, 25) * grid;
