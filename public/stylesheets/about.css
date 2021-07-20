@@ -1,5 +1,5 @@
 body {
-  font-family: 'Exo 2', sans-serif;
+  font-family: Georgia, Times, "Times New Roman", serif;
   justify-content: center;
   align-items: center;
   background: #000;
@@ -33,27 +33,15 @@ h1:focus {
   outline: none;
 }
 
-.name {
-  color: white;
-  text-shadow:
-  -0.2rem -0.2rem 1rem #fff,
-  0.2rem 0.2rem 1rem #fff,
-  0 0 .25rem #08f,
-  0 0 .5rem #08f,
-  0 0 .75rem #08f,
-  0 0 1rem #08f,
-  0 0 1.25rem #08f;
+.newscalc{
+  font-family: 'Tourney', cursive;
+  font-size: 60px;
+  color: #fff;
   text-align: center;
-}
-
-.special_thanks {
-  color: white;
-  background-color: #141d26;
-  text-align: center;
-  margin: 2em 16em 2em 16em;
+  margin: 0em 31% 1em 31%;
   padding: 1rem;
   border: 0.3rem solid #fff;
-  border-radius: 1rem;
+  border-radius: 2rem;
   text-shadow:
       -0.2rem -0.2rem 1rem #fff,
       0.2rem 0.2rem 1rem #fff,
@@ -69,18 +57,6 @@ h1:focus {
       inset 0 0 1rem #f40,
       0 0 2rem #f40,
       inset 0 0 2rem #f40;
-}
-
-p {
-  color: white;
-}
-
-.about_table {
-  list-style-type: none;
-  text-align: center;
-  margin: 1em 16em 2em 16em;
-  padding-left: 0em;
-  clear: both;
 }
 
 .devhub_info {
@@ -114,7 +90,7 @@ p {
 }
 
 .devhub_link:visited {
-  color: #c4c4c4;
+  color: white;
 }
 
 .devhub_link:hover {
@@ -143,12 +119,21 @@ p {
 }
 
 .bio {
-  text-align: left;
-  background-color: #141d26;
+  display: inline-block;
+  margin: 1em;
+}
+
+.left_bio {
+  margin-left: 17em;
+}
+
+.bottom_row {
+  margin-bottom: 3em;
+}
+
+.bio_image {
   border: 0.3rem solid white;
-  border-bottom: none;
-  padding: 1em;
-  overflow: auto;
+  border-radius: 10px;
   box-shadow:
   0 0 .5rem #fff,
   inset 0 0 .5rem #fff,
@@ -156,56 +141,22 @@ p {
   inset 0 0 1rem #f40,
   0 0 2rem #f40,
   inset 0 0 2rem #f40;
-}
-
-.first-bio {
-  border-radius: 10px 10px 0px 0px;
-}
-
-.last-bio {
-  border: 0.3rem solid white;
-  border-radius: 0px 0px 10px 10px;
-}
-
-.left_image {
-  float: left;
-  margin-right: 1em;
-  border-radius: 5px;
-}
-
-.right_image {
-  float: right;
-  margin-right: 1em;
-  border-radius: 5px;
+  height: 275px;
+  width: auto;
 }
 
 p {
   color: white;
 }
 
-
-.newscalc{
-  font-family: 'Tourney', cursive;
-  font-size: 60px;
-  color: #fff;
-  text-align: center;
-  margin: 0em 31% 1em 31%;
-  padding: 1rem;
-  border: 0.3rem solid #fff;
-  border-radius: 2rem;
+.name {
+  font-size: 1.25em;
   text-shadow:
-      -0.2rem -0.2rem 1rem #fff,
-      0.2rem 0.2rem 1rem #fff,
-      0 0 .25rem #08f,
-      0 0 .5rem #08f,
-      0 0 .75rem #08f,
-      0 0 1rem #08f,
-      0 0 1.25rem #08f;
-  box-shadow:
-      0 0 .5rem #fff,
-      inset 0 0 .5rem #fff,
-      0 0 2rem #f40,
-      inset 0 0 1rem #f40,
-      0 0 2rem #f40,
-      inset 0 0 2rem #f40;
+  -0.2rem -0.2rem 1rem #fff,
+  0.2rem 0.2rem 1rem #fff,
+  0 0 .25rem #08f,
+  0 0 .5rem #08f,
+  0 0 .75rem #08f,
+  0 0 1rem #08f,
+  0 0 1.25rem #08f;
 }

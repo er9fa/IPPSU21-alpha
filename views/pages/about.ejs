@@ -17,75 +17,50 @@
 
     <!--Page Specific CSS -->
     <link rel="stylesheet" type="text/css" href="stylesheets/about.css">
+
+
+    <!-- Import Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tourney:ital@1&display=swap" rel="stylesheet">
   </head>\
   <body>
     <%- include('../partials/navbar.ejs') %>
+    <%- include('../pages/scrolling-bar.ejs') %>
 
     <h1 class="newscalc">About</h1>
-    <div class="paulswrapper" style="text-align: center">
 
       <p class="devhub_info">Crypto Calc was developed for <a class="devhub_link" href="https://devhub.virginia.edu/" target="_blank">UVA Dev Hub</a> by the following team members:</p>
 
-      <ul class="about_table">
-        <li>
-          <article class="bio first-bio">
-            <h4 class="name">Ned Rossman (Project Manager)</h4>
-            <p><img class="left_image" id="image_0" src="" onerror="this.src='https://organizationchange.org/wp-content/uploads/2018/12/profile-generic-portrait.jpg'" width="auto" height="100"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eu dui commodo, tincidunt ex id, tincidunt dui. In auctor ante nec nisl varius mattis. Suspendisse id tempus diam. Quisque felis est, lacinia sit amet placerat ut, placerat id eros. Ut ac accumsan leo. Mauris sed dignissim elit. Duis id elementum arcu. Praesent faucibus ultrices dolor. Pellentesque eget sodales nibh, ac luctus sem. Pellentesque sit amet euismod lorem. Etiam magna enim, consequat ac fringilla sodales, imperdiet id purus. Aenean fermentum consectetur justo nec semper. Proin non semper urna. Praesent lobortis felis ac varius ultricies. Suspendisse potenti. Duis nec porta mi.</p>
-            <p id="preview_0"></p>
+          <article class="bio left_bio">
+            <img class="bio_image" id="image_0" src="/images/Paul-Photo.jpg" onerror="this.src='https://organizationchange.org/wp-content/uploads/2018/12/profile-generic-portrait.jpg'"/>
+            <p class="name">Paul Bartenfeld<br><em>Dev Intern</em></p>
           </article>
-        </li>
-        <li>
-          <article class="bio">
-            <h4 class="name">Paul Bartenfeld (Development Intern)</h4>
-            <p><img class="right_image" id="image_1" src="" onerror="this.src='https://organizationchange.org/wp-content/uploads/2018/12/profile-generic-portrait.jpg'" width="auto" height="100"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eu dui commodo, tincidunt ex id, tincidunt dui. In auctor ante nec nisl varius mattis. Suspendisse id tempus diam. Quisque felis est, lacinia sit amet placerat ut, placerat id eros. Ut ac accumsan leo. Mauris sed dignissim elit. Duis id elementum arcu. Praesent faucibus ultrices dolor. Pellentesque eget sodales nibh, ac luctus sem. Pellentesque sit amet euismod lorem. Etiam magna enim, consequat ac fringilla sodales, imperdiet id purus. Aenean fermentum consectetur justo nec semper. Proin non semper urna. Praesent lobortis felis ac varius ultricies. Suspendisse potenti. Duis nec porta mi.</p>
-            <p id="preview_1"></p>
-          </article>
-        </li>
-        <li>
-          <article class="bio">
-            <h4 class="name">Karthik (Development Intern)</h4>
-            <p><img class="left_image" id="image_2" src="" onerror="this.src='https://organizationchange.org/wp-content/uploads/2018/12/profile-generic-portrait.jpg'" width="auto" height="100"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eu dui commodo, tincidunt ex id, tincidunt dui. In auctor ante nec nisl varius mattis. Suspendisse id tempus diam. Quisque felis est, lacinia sit amet placerat ut, placerat id eros. Ut ac accumsan leo. Mauris sed dignissim elit. Duis id elementum arcu. Praesent faucibus ultrices dolor. Pellentesque eget sodales nibh, ac luctus sem. Pellentesque sit amet euismod lorem. Etiam magna enim, consequat ac fringilla sodales, imperdiet id purus. Aenean fermentum consectetur justo nec semper. Proin non semper urna. Praesent lobortis felis ac varius ultricies. Suspendisse potenti. Duis nec porta mi.</p>
-            <p id="preview_2"></p>
-          </article>
-        </li>
-        <li>
-          <article class="bio">
-            <h4 class="name">Serhii Maltsev (Development Intern)</h4>
-            <p><img class="right_image" id="image_3" src="" onerror="this.src='https://organizationchange.org/wp-content/uploads/2018/12/profile-generic-portrait.jpg'" width="auto" height="100"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eu dui commodo, tincidunt ex id, tincidunt dui. In auctor ante nec nisl varius mattis. Suspendisse id tempus diam. Quisque felis est, lacinia sit amet placerat ut, placerat id eros. Ut ac accumsan leo. Mauris sed dignissim elit. Duis id elementum arcu. Praesent faucibus ultrices dolor. Pellentesque eget sodales nibh, ac luctus sem. Pellentesque sit amet euismod lorem. Etiam magna enim, consequat ac fringilla sodales, imperdiet id purus. Aenean fermentum consectetur justo nec semper. Proin non semper urna. Praesent lobortis felis ac varius ultricies. Suspendisse potenti. Duis nec porta mi.</p>
-            <p id="preview_3"></p>
-          </article>
-        </li>
-        <li>
-          <article class="bio last-bio">
-            <h4 class="name">Altin Terstena (Development Intern)</h4>
-            <p><img class="left_image" id="image_4" src="" onerror="this.src='https://organizationchange.org/wp-content/uploads/2018/12/profile-generic-portrait.jpg'" width="auto" height="100"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eu dui commodo, tincidunt ex id, tincidunt dui. In auctor ante nec nisl varius mattis. Suspendisse id tempus diam. Quisque felis est, lacinia sit amet placerat ut, placerat id eros. Ut ac accumsan leo. Mauris sed dignissim elit. Duis id elementum arcu. Praesent faucibus ultrices dolor. Pellentesque eget sodales nibh, ac luctus sem. Pellentesque sit amet euismod lorem. Etiam magna enim, consequat ac fringilla sodales, imperdiet id purus. Aenean fermentum consectetur justo nec semper. Proin non semper urna. Praesent lobortis felis ac varius ultricies. Suspendisse potenti. Duis nec porta mi.</p>
-            <p id="preview_4"></p>
-          </article>
-        </li>
-      </ul>
 
-      <h3 class="special_thanks">With help from ...</h3>
+          <article class="bio">
+            <img class="bio_image" id="image_0" src="/images/Karthik-Photo.jpg" onerror="this.src='https://organizationchange.org/wp-content/uploads/2018/12/profile-generic-portrait.jpg'"/>
+            <p class="name">Karthik Eswarapragada<br><em>Dev Intern</em></p>
+          </article>
 
-      <ul class="about_table">
-        <li>
-          <article class="bio first-bio">
-            <h4 class="name">Nadim El-Jaroudi (Supervisor)</h4>
-            <p><img class="left_image" id="image_6" src="" onerror="this.src='https://organizationchange.org/wp-content/uploads/2018/12/profile-generic-portrait.jpg'" width="auto" height="100"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eu dui commodo, tincidunt ex id, tincidunt dui. In auctor ante nec nisl varius mattis. Suspendisse id tempus diam. Quisque felis est, lacinia sit amet placerat ut, placerat id eros. Ut ac accumsan leo. Mauris sed dignissim elit. Duis id elementum arcu. Praesent faucibus ultrices dolor. Pellentesque eget sodales nibh, ac luctus sem. Pellentesque sit amet euismod lorem. Etiam magna enim, consequat ac fringilla sodales, imperdiet id purus. Aenean fermentum consectetur justo nec semper. Proin non semper urna. Praesent lobortis felis ac varius ultricies. Suspendisse potenti. Duis nec porta mi.</p>
-            <p id="preview_6"></p>
+          <article class="bio">
+            <img class="bio_image" id="image_0" src="/images/Serhii-Photo.jpg" onerror="this.src='https://organizationchange.org/wp-content/uploads/2018/12/profile-generic-portrait.jpg'"/>
+            <p class="name">Serhii Maltsev<br><em>Dev Intern</em></p>
           </article>
-        </li>
-        <li>
-          <article class="bio last-bio">
-            <h4 class="name">G Michael (???)</h4>
-            <p><img class="right_image" id="image_7" src="" onerror="this.src='https://organizationchange.org/wp-content/uploads/2018/12/profile-generic-portrait.jpg'" width="auto" height="100"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eu dui commodo, tincidunt ex id, tincidunt dui. In auctor ante nec nisl varius mattis. Suspendisse id tempus diam. Quisque felis est, lacinia sit amet placerat ut, placerat id eros. Ut ac accumsan leo. Mauris sed dignissim elit. Duis id elementum arcu. Praesent faucibus ultrices dolor. Pellentesque eget sodales nibh, ac luctus sem. Pellentesque sit amet euismod lorem. Etiam magna enim, consequat ac fringilla sodales, imperdiet id purus. Aenean fermentum consectetur justo nec semper. Proin non semper urna. Praesent lobortis felis ac varius ultricies. Suspendisse potenti. Duis nec porta mi.</p>
-            <p id="preview_7"></p>
+
+          <article class="bio left_bio bottom_row">
+            <img class="bio_image" id="image_0" src="" onerror="this.src='https://organizationchange.org/wp-content/uploads/2018/12/profile-generic-portrait.jpg'"/>
+            <p class="name">Altin Terstena<br><em>Dev Intern</em></p>
           </article>
-        </li>
-      </ul>
-    </div>
+
+          <article class="bio bottom_row">
+            <img class="bio_image" id="image_0" src="/images/Ned-Photo.jpeg" onerror="this.src='https://organizationchange.org/wp-content/uploads/2018/12/profile-generic-portrait.jpg'"/>
+            <p class="name">Ned Rossman<br><em>Project Manager</em></p>
+          </article>
+
+          <article class="bio bottom_row">
+            <img class="bio_image" id="image_0" src="" onerror="this.src='https://organizationchange.org/wp-content/uploads/2018/12/profile-generic-portrait.jpg'"/>
+            <p class="name">Nadim El-Jaroudi<br><em>Supervisor</em></p>
+          </article>
 
   </body>
 
