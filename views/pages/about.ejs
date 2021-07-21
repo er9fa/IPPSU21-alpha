@@ -1,19 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <%- include('../partials/header-altin.ejs') %>
     <title>Crypto Calc</title>
 
     <!-- Scrolling bar library; Source: https://github.com/tjenkinson/dynamic-marquee -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/dynamic-marquee@2"></script>
     <!-- My crypto API -->
-    <script src="/data/cryptoAPI.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <meta charset="utf-8">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="stylesheets/navbar.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
 
     <!--Page Specific CSS -->
     <link rel="stylesheet" type="text/css" href="stylesheets/about.css">
@@ -23,12 +20,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tourney:ital@1&display=swap" rel="stylesheet">
-  </head>\
+  </head>
   <body>
     <%- include('../pages/scrolling-bar.ejs') %>
     <%- include('../partials/navbar-altin.ejs') %>
 
-    <h1 class="newscalc">About</h1>
+    <h1 class="newscalc mt-5">About</h1>
 
       <p class="devhub_info">Crypto Calc was developed for <a class="devhub_link" href="https://devhub.virginia.edu/" target="_blank">UVA Dev Hub</a> by the following team members:</p>
 
