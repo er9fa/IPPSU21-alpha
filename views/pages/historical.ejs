@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <%- include("../partials/header-altin.ejs") %>
   <link rel="stylesheet" href="stylesheets/historical.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Tourney:ital@1&display=swap" rel="stylesheet">
 </head>
 <body>
+  <%- include('../partials/navbar-altin.ejs') %>
+  <%- include('../pages/scrolling-bar.ejs') %>
   <h1>Historical Value</h1>
 
   <div class="historyBox">
@@ -109,8 +112,5 @@
 
     <div id="curve_chart" style="width: 900px; height: 500px"></div>
   </div>
-
-  <%- include('../partials/navbar-altin.ejs') %>
-  <%- include('../pages/scrolling-bar.ejs') %>
 </body>
 </html>
