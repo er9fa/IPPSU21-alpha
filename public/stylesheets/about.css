@@ -124,7 +124,11 @@ h1:focus {
 }
 
 .left_bio {
-  margin-left: 17em;
+  margin-left: 8em;
+}
+
+.second_left_bio {
+  margin-left: 24em;
 }
 
 .bottom_row {
@@ -141,7 +145,7 @@ h1:focus {
   inset 0 0 1rem #f40,
   0 0 2rem #f40,
   inset 0 0 2rem #f40;
-  height: 275px;
+  height: 225px;
   width: auto;
 }
 
