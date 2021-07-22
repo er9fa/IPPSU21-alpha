@@ -64,9 +64,9 @@ function gameLoop() {
       snake.cells.pop();
     }
 
-    // draw apple
+    // draw bitcoin
     var bit_image = document.getElementById("bit_logo1");
-    context.fillStyle = 'yellow';
+    context.fillStyle = '#f2a900';
     context.fillRect(apple.x, apple.y, grid-1, grid-1);
 
     // draw snake
